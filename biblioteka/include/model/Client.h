@@ -16,7 +16,9 @@ private:
     string personalID;
     string address;
 public:
-
+    Client();
+    Client(const string &firstName, const string &lastName, const string &personalId);
+    virtual ~Client();
 };
 
 
