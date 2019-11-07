@@ -10,7 +10,7 @@ set(SOURCE_FILES
 add_executable(Program ${SOURCE_FILES})
 
 #Dolacz POBILibrary
-#[[target_link_libraries(Program Biblioteka)]]
+target_link_libraries(Program Biblioteka)
 
 #dalacz pliki naglowkowe include projektu glownego
 target_include_directories(Program PUBLIC include)

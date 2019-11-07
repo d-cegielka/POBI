@@ -17,7 +17,7 @@ enable_language(CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_VERBOSE_MAKEFILE TRUE)
 
-#[[add_subdirectory(biblioteka)]]
+add_subdirectory(biblioteka)
 add_subdirectory(program)
 
 enable_testing()
