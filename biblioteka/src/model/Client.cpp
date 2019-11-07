@@ -7,10 +7,6 @@
 
 using namespace std;
 
-Client::Client() : firstName("IMIĘ"), lastName("NAZWISKO"), personalID("PESEL"){
-    cout << "Konstruktor bezparametrowy Client zostal wywolany" << endl;
-}
-
 Client::Client(const string &firstName, const string &lastName, const string &personalId) : firstName(firstName),
                                                                                             lastName(lastName),
                                                                                             personalID(personalId) {
@@ -24,4 +20,16 @@ Client::~Client() {
 string Client::clientInfo() {
         return "Imie i nazwisko: " + firstName + " " + lastName +
         "\nPESEL " + personalID;
+}
+
+const string &Client::getFirstName() const {
+    return firstName;
+}
+
+const string &Client::getLastName() const {
+    return lastName;
+}
+
+const string &Client::getPersonalId() const {
+    return personalID;
 }
