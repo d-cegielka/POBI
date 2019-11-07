@@ -5,7 +5,8 @@ project(Biblioteka)
 
 set(SOURCE_FILES
     src/model/Client.cpp
-        )
+    src/model/Address.cpp
+    )
 
 add_library(Biblioteka ${SOURCE_FILES})
 
