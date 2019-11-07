@@ -15,11 +15,18 @@ private:
     string lastName;
     string personalID;
     string address;
+    string registredAddress;
 public:
     Client();
     Client(const string &firstName, const string &lastName, const string &personalId);
     virtual ~Client();
     string clientInfo();
+
+    const string &getFirstName() const;
+
+    const string &getLastName() const;
+
+    const string &getPersonalId() const;
 };
 
 

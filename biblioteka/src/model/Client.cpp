@@ -25,3 +25,15 @@ string Client::clientInfo() {
         return "Imie i nazwisko: " + firstName + " " + lastName +
         "\nPESEL " + personalID;
 }
+
+const string &Client::getFirstName() const {
+    return firstName;
+}
+
+const string &Client::getLastName() const {
+    return lastName;
+}
+
+const string &Client::getPersonalId() const {
+    return personalID;
+}
