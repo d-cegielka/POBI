@@ -18,8 +18,26 @@ Client::~Client() {
 }
 
 string Client::clientInfo() {
+    if((registredaddress!=NULL) && (address!=NULL)) {
         return "Imie i nazwisko: " + firstName + " " + lastName +
-        "\nPESEL " + personalID;
+               "\nPESEL: " + personalID +
+               "\nAdres zameldowania: " + registredaddress->getStreet() + " " + registredaddress->getNumber() +
+               "\nAdres zamieszkania: " + address->getStreet() + " " + address->getNumber();
+    }
+    else if(registredaddress!=NULL) {
+        return "Imie i nazwisko: " + firstName + " " + lastName +
+               "\nPESEL: " + personalID +
+               "\nAdres zameldowania: " + registredaddress->getStreet() + " " + registredaddress->getNumber();
+    }
+    else if(address!=NULL) {
+        return "Imie i nazwisko: " + firstName + " " + lastName +
+               "\nPESEL: " + personalID +
+               "\nAdres zamieszkania: " + address->getStreet() + " " + address->getNumber();
+    }
+    else {
+        return "Imie i nazwisko: " + firstName + " " + lastName +
+               "\nPESEL " + personalID;
+    }
 }
 
 const string &Client::getFirstName() const {
@@ -32,4 +50,12 @@ const string &Client::getLastName() const {
 
 const string &Client::getPersonalId() const {
     return personalID;
+}
+
+void Client::setAddress(Address *address) {
+    Client::address = address;
+}
+
+void Client::setRegistredaddress(Address *registredaddress) {
+    Client::registredaddress = registredaddress;
 }
