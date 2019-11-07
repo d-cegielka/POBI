@@ -4,7 +4,7 @@ project(Biblioteka)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-
+    src/model/Client.cpp
         )
 
 add_library(Biblioteka ${SOURCE_FILES})
