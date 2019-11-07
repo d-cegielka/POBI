@@ -20,3 +20,8 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
 Client::~Client() {
     cout << "Destruktor Client zostal wywolany" << endl;
 }
+
+string Client::clientInfo() {
+        return "Imie i nazwisko: " + firstName + " " + lastName +
+        "\nPESEL " + personalID;
+}
