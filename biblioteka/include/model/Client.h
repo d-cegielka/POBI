@@ -6,6 +6,7 @@
 #define POBIPROJECT_CLIENT_H
 
 #include <string>
+#include "Address.h"
 
 using namespace std;
 
@@ -14,8 +15,8 @@ private:
     string firstName;
     string lastName;
     string personalID;
-    string address;
-    string registredAddress;
+    Address *address = NULL;
+    Address *registredaddress = NULL;
 public:
     Client(const string &firstName, const string &lastName, const string &personalId);
     virtual ~Client();
@@ -24,6 +25,9 @@ public:
     const string &getFirstName() const;
     const string &getLastName() const;
     const string &getPersonalId() const;
+
+    void setAddress(Address *address);
+    void setRegistredaddress(Address *registredaddress);
 };
 
 
