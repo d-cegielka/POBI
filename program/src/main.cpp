@@ -16,5 +16,11 @@ int main() {
     cout<<k1.clientInfo()<<endl;
     cout<<k2.clientInfo()<<endl;
 
+    adres.setStreet("Poznańska");
+    adres.setNumber("66");
+
+    cout<<k1.clientInfo()<<endl;
+    cout<<k2.clientInfo()<<endl;
+
     return 0;
 }
