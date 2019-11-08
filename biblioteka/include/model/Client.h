@@ -15,10 +15,11 @@ private:
     string firstName;
     string lastName;
     string personalID;
-    Address *address = NULL;
-    Address *registredaddress = NULL;
+    Address *address;
+    Address *registredAddress;
 public:
-    Client(const string &firstName, const string &lastName, const string &personalId);
+    Client(const string &firstName, const string &lastName, const string &personalId,const string &registredAddress_street,
+           const string &registredAddress_number, const string &address_street,const string &address_number);
     virtual ~Client();
     string clientInfo();
 
@@ -26,8 +27,8 @@ public:
     const string &getLastName() const;
     const string &getPersonalId() const;
 
-    void setAddress(Address *address);
-    void setRegistredaddress(Address *registredaddress);
+    void setAddress(string street, string number);
+    void setRegistredAddress(string street, string number);
 };
 
 
