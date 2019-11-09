@@ -6,9 +6,13 @@
 #define POBIPROJECT_CLIENT_H
 
 #include <string>
+#include <list>
 #include "Address.h"
+//#include "Rent.h"
 
 using namespace std;
+
+class Rent;
 
 class Client {
 private:
@@ -17,11 +21,13 @@ private:
     string personalID;
     Address *address;
     Address *registredAddress;
+    list<Rent *> rents;
 public:
     Client(const string &firstName, const string &lastName, const string &personalId,const string &registredAddress_street,
            const string &registredAddress_number, const string &address_street,const string &address_number);
     virtual ~Client();
     string clientInfo();
+    string clientRentsInfo();
 
     const string &getFirstName() const;
     const string &getLastName() const;
@@ -29,6 +35,9 @@ public:
 
     void setAddress(string street, string number);
     void setRegistredAddress(string street, string number);
+
+    void addRent(Rent *rent);
+    void removeRent(Rent *rent);
 };
 
 
