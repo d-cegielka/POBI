@@ -16,7 +16,7 @@ private:
 public:
     Vehicle(const string &id, const int baseRentPrice);
     virtual ~Vehicle();
-
+    string vehicleInfo();
 
 };
 

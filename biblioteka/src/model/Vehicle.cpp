@@ -4,6 +4,12 @@
 
 #include "model/Vehicle.h"
 
+
 Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPrice(baseRentPrice) {}
 
 Vehicle::~Vehicle() {}
+
+string Vehicle::vehicleInfo() {
+    return "Numer rejestracyjny: " + id +
+    "\nCena wypożyczenia: " + to_string(baseRentPrice);
+}
