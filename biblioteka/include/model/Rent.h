@@ -9,6 +9,7 @@
 #include "Client.h"
 #include <boost/uuid/uuid.hpp>
 #include <boost/date_time/local_time/local_time.hpp>
+#include <string>
 
 class Rent {
 private:
@@ -26,6 +27,9 @@ public:
 
     int rentDuration();
     int rentPrice();
+    string rentClientInfo();
+    string rentVehicleInfo();
+    string rentInfo();
 };
 
 

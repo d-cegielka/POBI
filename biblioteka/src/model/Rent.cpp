@@ -4,6 +4,7 @@
 
 #include "model/Rent.h"
 #include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
 
 using namespace boost::uuids;
 using namespace boost::local_time;
@@ -36,5 +37,26 @@ int Rent::rentDuration() {
 
 int Rent::rentPrice() {
     return this->vehicle->getBaseRentPrice() * this->rentDuration();
+}
+
+string Rent::rentClientInfo() {
+    return this->client->clientInfo();
+}
+
+string Rent::rentVehicleInfo() {
+    return this->vehicle->vehicleInfo();
+}
+
+string Rent::rentInfo() {
+    string info;
+    if(returnDateTime != nullptr){
+        info = "\nData zwrotu: " + returnDateTime->to_string() +
+                "\nKoszt wypożyczenia" + to_string(rentPrice());
+    }
+    return "ID wypożyczenia: " + to_string(uuid) +
+            "\nData wypożyczenia: " + rentalDateTime->to_string() +
+            "\nIlość dni wypożyczenia: " + to_string(rentDuration()) +
+            info + "\nWypożyczony pojazd\n" + rentVehicleInfo() +
+            "\nOsoba wypożyczająca\n" + rentClientInfo();
 }
 
