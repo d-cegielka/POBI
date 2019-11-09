@@ -23,6 +23,9 @@ public:
     Rent(boost::local_time::local_date_time *rentalDateTime, Client *client, Vehicle *vehicle);
 
     virtual ~Rent();
+
+    int rentDuration();
+    int rentPrice();
 };
 
 

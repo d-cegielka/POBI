@@ -18,6 +18,8 @@ public:
     virtual ~Vehicle();
     string vehicleInfo();
 
+    const int getBaseRentPrice() const;
+
 };
 
 

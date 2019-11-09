@@ -24,3 +24,17 @@ Rent::~Rent() {
         delete returnDateTime;
 }
 
+int Rent::rentDuration() {
+    if(returnDateTime != nullptr) {
+        local_time_period duration(*rentalDateTime, *returnDateTime);
+        if (duration.length().hours() % 24 == 0) return duration.length().hours() /24;
+        else return (duration.length().hours() /24) + 1;
+    }
+    else return 0;
+
+}
+
+int Rent::rentPrice() {
+    return this->vehicle->getBaseRentPrice() * this->rentDuration();
+}
+
