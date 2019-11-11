@@ -12,7 +12,7 @@ using namespace boost::posix_time;
 
 
 Rent::Rent(Client *client, Vehicle *vehicle) : client(client), vehicle(vehicle),uuid(random_generator()()) {
-    time_zone_ptr zone(new posix_time_zone("CET"));
+    time_zone_ptr zone(new posix_time_zone("CET+1"));
     rentalDateTime = new local_date_time(local_sec_clock::local_time(zone));
     this->client->addRent(this);
 }
@@ -54,7 +54,7 @@ string Rent::rentInfo() {
     string info;
     if(returnDateTime != nullptr){
         info = "\nData zwrotu: " + returnDateTime->to_string() +
-                "\nKoszt wypożyczenia" + to_string(rentPrice());
+                "\nKoszt wypożyczenia: " + to_string(rentPrice());
     }
     return "ID wypożyczenia: " + to_string(uuid) +
             "\nData wypożyczenia: " + rentalDateTime->to_string() +
