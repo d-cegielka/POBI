@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "model/Client.h"
+#include "model/Rent.h"
 
 using namespace std;
 
@@ -49,4 +50,24 @@ void Client::setAddress(string street, string number) {
 void Client::setRegistredAddress(string street, string number) {
     registredAddress->setStreet(street);
     registredAddress->setNumber(number);
+}
+
+void Client::addRent(Rent *rent) {
+    rents.push_back(rent);
+}
+
+void Client::removeRent(Rent *rent) {
+    rents.remove(rent);
+}
+
+
+string Client::clientRentsInfo() {
+    string info;
+    info = "Klient: \n" + clientInfo() + "\nWypożyczenia: \n";
+    if(rents.size() !=0) {
+        for(auto rent:rents) info += rent->rentInfo() + "\n";
+    }
+    else info += "Klient nie ma wypożyczonych pojazdów.";
+
+    return info;
 }

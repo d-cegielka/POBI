@@ -13,3 +13,7 @@ string Vehicle::vehicleInfo() {
     return "Numer rejestracyjny: " + id +
     "\nCena wypożyczenia: " + to_string(baseRentPrice);
 }
+
+const int Vehicle::getBaseRentPrice() const {
+    return baseRentPrice;
+}
