@@ -14,10 +14,13 @@ using namespace boost::posix_time;
 Rent::Rent(Client *client, Vehicle *vehicle) : client(client), vehicle(vehicle),uuid(random_generator()()) {
     time_zone_ptr zone(new posix_time_zone("CET"));
     rentalDateTime = new local_date_time(local_sec_clock::local_time(zone));
+    this->client->addRent(this);
 }
 
 Rent::Rent(boost::local_time::local_date_time *rentalDateTime, Client *client, Vehicle *vehicle) : rentalDateTime(
-        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()) {}
+        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()) {
+    this->client->addRent(this);
+}
 
 Rent::~Rent() {
     delete rentalDateTime;
@@ -58,5 +61,11 @@ string Rent::rentInfo() {
             "\nIlość dni wypożyczenia: " + to_string(rentDuration()) +
             info + "\nWypożyczony pojazd\n" + rentVehicleInfo() +
             "\nOsoba wypożyczająca\n" + rentClientInfo();
+}
+
+void Rent::returnVehicle() {
+    time_zone_ptr zone(new posix_time_zone("CET"));
+    returnDateTime = new local_date_time(local_sec_clock::local_time(zone));
+    this->client->removeRent(this);
 }
 

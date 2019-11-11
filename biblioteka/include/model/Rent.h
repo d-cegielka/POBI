@@ -30,6 +30,7 @@ public:
     string rentClientInfo();
     string rentVehicleInfo();
     string rentInfo();
+    void returnVehicle();
 };
 
 
