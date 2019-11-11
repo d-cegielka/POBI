@@ -52,12 +52,22 @@ void Client::setRegistredAddress(string street, string number) {
     registredAddress->setNumber(number);
 }
 
-void Client::addRent(Rent *rent) {
-    rents.push_back(rent);
+bool Client::addRent(Rent *rent) {
+    if(find(rents.begin(),rents.end(),rent) == rents.end())
+    {
+        rents.push_back(rent);
+        return true;
+    }
+    else return false;
 }
 
-void Client::removeRent(Rent *rent) {
-    rents.remove(rent);
+bool Client::removeRent(Rent *rent) {
+    if(find(rents.begin(),rents.end(),rent) != rents.end())
+    {
+        rents.remove(rent);
+        return true;
+    }
+    else return false;
 }
 
 
