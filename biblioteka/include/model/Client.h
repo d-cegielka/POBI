@@ -36,8 +36,8 @@ public:
     void setAddress(string street, string number);
     void setRegistredAddress(string street, string number);
 
-    void addRent(Rent *rent);
-    void removeRent(Rent *rent);
+    bool addRent(Rent *rent);
+    bool removeRent(Rent *rent);
 };
 
 
