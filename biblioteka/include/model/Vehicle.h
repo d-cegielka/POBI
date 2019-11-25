@@ -14,9 +14,9 @@ private:
 public:
     Vehicle(const std::string &id, const int baseRentPrice);
     virtual ~Vehicle();
-    std::string vehicleInfo();
+    virtual std::string vehicleInfo() const;
 
-    const int getBaseRentPrice() const;
+    virtual double actualRentalPrice() const;
 
 };
 

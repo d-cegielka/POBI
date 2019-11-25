@@ -39,8 +39,8 @@ int Rent::rentDuration() {
 
 }
 
-int Rent::rentPrice() {
-    return this->vehicle->getBaseRentPrice() * this->rentDuration();
+double Rent::rentPrice() {
+    return this->vehicle->actualRentalPrice() * this->rentDuration();
 }
 
 string Rent::rentClientInfo() {
