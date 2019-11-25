@@ -26,7 +26,7 @@ public:
     virtual ~Rent();
 
     int rentDuration();
-    int rentPrice();
+    double rentPrice();
     std::string rentClientInfo();
     std::string rentVehicleInfo();
     std::string rentInfo();
