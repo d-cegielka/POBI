@@ -6,6 +6,7 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
+using namespace std;
 using namespace boost::uuids;
 using namespace boost::local_time;
 using namespace boost::posix_time;

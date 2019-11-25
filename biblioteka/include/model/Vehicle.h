@@ -7,16 +7,14 @@
 
 #include <string>
 
-using namespace std;
-
 class Vehicle {
 private:
-    const string id;
+    const std::string id;
     const int baseRentPrice;
 public:
-    Vehicle(const string &id, const int baseRentPrice);
+    Vehicle(const std::string &id, const int baseRentPrice);
     virtual ~Vehicle();
-    string vehicleInfo();
+    std::string vehicleInfo();
 
     const int getBaseRentPrice() const;
 

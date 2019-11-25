@@ -8,33 +8,30 @@
 #include <string>
 #include <list>
 #include "Address.h"
-//#include "Rent.h"
-
-using namespace std;
 
 class Rent;
 
 class Client {
 private:
-    string firstName;
-    string lastName;
-    string personalID;
+    std::string firstName;
+    std::string lastName;
+    std::string personalID;
     Address *address;
     Address *registredAddress;
-    list<Rent *> rents;
+    std::list<Rent *> rents;
 public:
-    Client(const string &firstName, const string &lastName, const string &personalId,const string &registredAddress_street,
-           const string &registredAddress_number, const string &address_street,const string &address_number);
+    Client(const std::string &firstName, const std::string &lastName, const std::string &personalId,const std::string &registredAddress_street,
+           const std::string &registredAddress_number, const std::string &address_street, const std::string &address_number);
     virtual ~Client();
-    string clientInfo();
-    string clientRentsInfo();
+    std::string clientInfo();
+    std::string clientRentsInfo();
 
-    const string &getFirstName() const;
-    const string &getLastName() const;
-    const string &getPersonalId() const;
+    const std::string &getFirstName() const;
+    const std::string &getLastName() const;
+    const std::string &getPersonalId() const;
 
-    void setAddress(string street, string number);
-    void setRegistredAddress(string street, string number);
+    void setAddress(std::string street, std::string number);
+    void setRegistredAddress(std::string street, std::string number);
 
     bool addRent(Rent *rent);
     bool removeRent(Rent *rent);

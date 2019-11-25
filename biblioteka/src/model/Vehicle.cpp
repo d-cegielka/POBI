@@ -4,6 +4,7 @@
 
 #include "model/Vehicle.h"
 
+using namespace std;
 
 Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPrice(baseRentPrice) {}
 

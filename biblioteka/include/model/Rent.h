@@ -27,9 +27,9 @@ public:
 
     int rentDuration();
     int rentPrice();
-    string rentClientInfo();
-    string rentVehicleInfo();
-    string rentInfo();
+    std::string rentClientInfo();
+    std::string rentVehicleInfo();
+    std::string rentInfo();
     void returnVehicle();
 };
 

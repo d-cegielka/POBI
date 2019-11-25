@@ -7,26 +7,24 @@
 
 #include <string>
 
-using namespace std;
-
 class Address {
 private:
-    string street;
-    string number;
+    std::string street;
+    std::string number;
 public:
     Address();
 
     virtual ~Address();
 
-    Address(const string &street, const string &number);
+    Address(const std::string &street, const std::string &number);
 
-    const string &getStreet() const;
+    const std::string &getStreet() const;
 
-    void setStreet(const string &street);
+    void setStreet(const std::string &street);
 
-    const string &getNumber() const;
+    const std::string &getNumber() const;
 
-    void setNumber(const string &number);
+    void setNumber(const std::string &number);
 
 };
 
