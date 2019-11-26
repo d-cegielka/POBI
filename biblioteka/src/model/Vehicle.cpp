@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPrice(baseRentPrice) {}
+Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPrice(baseRentPrice), availability(true) {}
 
 Vehicle::~Vehicle() {}
 
@@ -17,4 +17,12 @@ std::string Vehicle::vehicleInfo() const {
 
 double Vehicle::actualRentalPrice() const {
     return baseRentPrice;
+}
+
+bool Vehicle::isAvailability() const {
+    return availability;
+}
+
+void Vehicle::setIsAvailability(bool isAvailability) {
+    Vehicle::availability = isAvailability;
 }

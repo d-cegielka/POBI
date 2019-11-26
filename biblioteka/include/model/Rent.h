@@ -5,11 +5,13 @@
 #ifndef POBIPROJECT_RENT_H
 #define POBIPROJECT_RENT_H
 
-#include "Vehicle.h"
-#include "Client.h"
 #include <boost/uuid/uuid.hpp>
 #include <boost/date_time/local_time/local_time.hpp>
 #include <string>
+
+class CurrentRentsRepository;
+class Vehicle;
+class Client;
 
 class Rent {
 private:
@@ -18,10 +20,12 @@ private:
     boost::local_time::local_date_time* returnDateTime = nullptr;
     Client* client;
     Vehicle* vehicle;
+    CurrentRentsRepository* currentRentsRepository;
 
 public:
-    Rent(Client *client, Vehicle *vehicle);
-    Rent(boost::local_time::local_date_time *rentalDateTime, Client *client, Vehicle *vehicle);
+    Rent(Client *client, Vehicle *vehicle, CurrentRentsRepository *currentRentsRepository);
+    Rent(boost::local_time::local_date_time *rentalDateTime, Client *client, Vehicle *vehicle, CurrentRentsRepository *currentRentsRepository);
+
 
     virtual ~Rent();
 
@@ -31,6 +35,8 @@ public:
     std::string rentVehicleInfo();
     std::string rentInfo();
     void returnVehicle();
+
+    Vehicle *getVehicle() const;
 };
 
 

@@ -27,7 +27,7 @@ string Client::clientInfo() {
         return "Imie i nazwisko: " + firstName + " " + lastName +
         "\nPESEL: " + personalID +
         "\nAdres zameldowania: " + registredAddress->getStreet() + " " + registredAddress->getNumber() +
-        "\nAdres zamieszkania: " + address->getStreet() + " " + address->getNumber();
+        "\nAdres zamieszkania: " + address->getStreet() + " " + address->getNumber() + "\n";
 }
 
 const string &Client::getFirstName() const {

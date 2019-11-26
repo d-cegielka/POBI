@@ -5,6 +5,9 @@
 #include "model/Rent.h"
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+#include "model/Vehicle.h"
+#include "model/Client.h"
+#include "model/CurrentRentsRepository.h"
 
 using namespace std;
 using namespace boost::uuids;
@@ -12,15 +15,23 @@ using namespace boost::local_time;
 using namespace boost::posix_time;
 
 
-Rent::Rent(Client *client, Vehicle *vehicle) : client(client), vehicle(vehicle),uuid(random_generator()()) {
+Rent::Rent(Client *client, Vehicle *vehicle, CurrentRentsRepository *currentRentsRepository) : client(client), vehicle(vehicle),uuid(random_generator()()), currentRentsRepository(currentRentsRepository) {
     time_zone_ptr zone(new posix_time_zone("CET+1"));
     rentalDateTime = new local_date_time(local_sec_clock::local_time(zone));
-    this->client->addRent(this);
+    if(vehicle->isAvailability()) {
+        currentRentsRepository->createRent(this);
+        vehicle->setIsAvailability(false);
+        this->client->addRent(this);
+    }
 }
 
-Rent::Rent(boost::local_time::local_date_time *rentalDateTime, Client *client, Vehicle *vehicle) : rentalDateTime(
-        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()) {
-    this->client->addRent(this);
+Rent::Rent(boost::local_time::local_date_time *rentalDateTime, Client *client, Vehicle *vehicle, CurrentRentsRepository *currentRentsRepository) : rentalDateTime(
+        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), currentRentsRepository(currentRentsRepository) {
+    if(vehicle->isAvailability()) {
+        currentRentsRepository->createRent(this);
+        vehicle->setIsAvailability(false);
+        this->client->addRent(this);
+    }
 }
 
 Rent::~Rent() {
@@ -68,5 +79,11 @@ void Rent::returnVehicle() {
     time_zone_ptr zone(new posix_time_zone("CET"));
     returnDateTime = new local_date_time(local_sec_clock::local_time(zone));
     this->client->removeRent(this);
+    this->vehicle->setIsAvailability(true);
+    this->currentRentsRepository->removeRent(this);
+}
+
+Vehicle *Rent::getVehicle() const {
+    return vehicle;
 }
 
