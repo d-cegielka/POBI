@@ -12,7 +12,8 @@ set(SOURCE_FILES
     src/model/Bicycle.cpp
     src/model/Car.cpp
     src/model/Mope.cpp
-    src/model/CurrentRentsRepository.cpp)
+    src/model/CurrentRentsRepository.cpp
+    src/model/VehicleRepository.cpp)
 
 add_library(Biblioteka ${SOURCE_FILES})
 
