@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_SUITE(RentSuiteCorrect)
         Rent *rent = new Rent(rentalDateTime,client,vehicle,currentRentsRepository);
         rent->returnVehicle();
         BOOST_CHECK_EQUAL(rent->rentDuration(), 5.0);
-        delete client, vehicle, rentalDateTime, rent currentRentsRepository;
+        delete client, vehicle, rentalDateTime, rent, currentRentsRepository;
     }
 
     BOOST_AUTO_TEST_CASE( ClientRentTestAfterReturn ) {
@@ -59,6 +59,21 @@ BOOST_AUTO_TEST_SUITE(RentSuiteCorrect)
         rent->returnVehicle();
         BOOST_CHECK_EQUAL(client->addRent(rent), true);
         delete client, vehicle, rentalDateTime, rent, currentRentsRepository;
+    }
+
+    BOOST_AUTO_TEST_CASE(ClientRepositoryTest){
+        Client *client = new Client("Hubert","Lis","92112563112", "Warszawska", "20","Batorego","44");
+        Vehicle *vehicle = new Vehicle("WD5463",200);
+        CurrentRentsRepository *currentRentsRepository = new CurrentRentsRepository();
+        Rent *rent1 = new Rent(client,vehicle,currentRentsRepository);
+        BOOST_CHECK_EQUAL(vehicle->isAvailability(),false);
+        BOOST_CHECK_EQUAL(contains(currentRentsRepository->getClientForRentedVehicle(vehicle),"92112563112"), true);
+        BOOST_CHECK_EQUAL(contains(currentRentsRepository->rentReport(),"WD5463"), true);
+        rent1->returnVehicle();
+        BOOST_CHECK_EQUAL(vehicle->isAvailability(), true);
+        BOOST_CHECK_EQUAL(contains(currentRentsRepository->getClientForRentedVehicle(vehicle),"92112563112"), false);
+        BOOST_CHECK_EQUAL(contains(currentRentsRepository->rentReport(),"WD5463"), false);
+        delete client, vehicle, rent1, currentRentsRepository;
     }
 
 BOOST_AUTO_TEST_SUITE_END()
