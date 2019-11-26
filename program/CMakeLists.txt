@@ -5,7 +5,7 @@ project(Program)
 #ustaw zbior plików zrodlowych projektu
 set(SOURCE_FILES
         src/main.cpp
-        )
+        src/RentalGenerator.cpp include/RentalGenerator.h)
 #wlacz wskazane pliki do programu wykonywalnego Program
 add_executable(Program ${SOURCE_FILES})
 

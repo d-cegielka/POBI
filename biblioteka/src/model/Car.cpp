@@ -14,7 +14,7 @@ double Car::actualRentalPrice() const {
 }
 
 std::string Car::vehicleInfo() const {
-    return "Typ: Samochód\n Segment: " + std::to_string(segment) + "\n" + MotorVehicle::vehicleInfo();
+    return "Typ: Samochód\nSegment: " + std::string(1,segment) + "\n" + MotorVehicle::vehicleInfo();
 }
 
 double Car::getSegmentMultiplier() const {

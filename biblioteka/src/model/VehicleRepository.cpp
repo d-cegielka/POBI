@@ -41,10 +41,14 @@ bool VehicleRepository::removeVehicle(Vehicle *vehicle) {
 }
 
 std::string VehicleRepository::vehicleReport() {
-    string raport;
-    if (listOfVehicles.size() != 0) {
-        for(auto *vehicle:listOfVehicles)
-            raport += vehicle->vehicleInfo() + "\n";
-    } 
-    else return "Brak pojazdów!";
+    string raport="";
+    if (listOfVehicles.size() == 0) {
+        return "Brak pojazdów!";
+    }
+    else {
+        for(auto vehicle:listOfVehicles){
+            raport += vehicle->vehicleInfo() + "\n\n";
+        }
+        return raport;
+    }
 }
