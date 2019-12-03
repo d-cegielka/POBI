@@ -12,69 +12,55 @@
 using namespace boost::local_time;
 using namespace boost::posix_time;
 using namespace boost::algorithm;
+using namespace std;
+
+//typedef shared_ptr<local_date_time> local_date_timePtr;
+
+shared_ptr<Client> client = make_shared<Client>("Waldemar", "Nowak", "92875697851", "Warszawska", "22", "Batorego","55G");
+shared_ptr<Vehicle> vehicle = make_shared<Vehicle>("WW5698", 180);
+time_zone_ptr zone(new posix_time_zone("CET"));
+shared_ptr<local_date_time> rentalDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone)-hours(120));
 
 BOOST_AUTO_TEST_SUITE(RentSuiteCorrect)
 
     BOOST_AUTO_TEST_CASE( RentDurationTestBeforeReturn ) {
-        Client *client = new Client("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
-        Vehicle *vehicle= new Vehicle("WW5698",180);
-        CurrentRentsRepository *currentRentsRepository = new CurrentRentsRepository();
-        time_zone_ptr zone(new posix_time_zone("CET"));
-        local_date_time *rentalDateTime = new local_date_time(local_sec_clock::local_time(zone)-hours(120));
-        Rent *rent = new Rent(rentalDateTime,client,vehicle,currentRentsRepository);
+        CurrentRentsRepositoryPtr currentRentsRepository = make_shared<CurrentRentsRepository>();
+        RentPtr rent = make_shared<Rent>(rentalDateTime,client,vehicle,currentRentsRepository);
         BOOST_CHECK_EQUAL(rent->rentDuration(), 0.0);
-        delete client, vehicle, rentalDateTime, rent, currentRentsRepository;
     }
 
     BOOST_AUTO_TEST_CASE( ClientRentTestBeforeReturn ) {
-        Client *client = new Client("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
-        Vehicle *vehicle= new Vehicle("WW5698",180);
-        CurrentRentsRepository *currentRentsRepository = new CurrentRentsRepository();;
-        time_zone_ptr zone(new posix_time_zone("CET"));
-        local_date_time *rentalDateTime = new local_date_time(local_sec_clock::local_time(zone)-hours(120));
-        Rent *rent = new Rent(rentalDateTime,client,vehicle,currentRentsRepository);
+        CurrentRentsRepositoryPtr currentRentsRepository = make_shared<CurrentRentsRepository>();
+        RentPtr rent = make_shared<Rent>(rentalDateTime,client,vehicle,currentRentsRepository);
         BOOST_CHECK_EQUAL(client->addRent(rent), false);
-        delete client, vehicle, rentalDateTime, rent, currentRentsRepository;
     }
 
     BOOST_AUTO_TEST_CASE( RentDurationTestAfterReturn ) {
-        Client *client = new Client("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
-        Vehicle *vehicle= new Vehicle("WW5698",180);
-        CurrentRentsRepository *currentRentsRepository = new CurrentRentsRepository();
-        time_zone_ptr zone(new posix_time_zone("CET"));
-        local_date_time *rentalDateTime = new local_date_time(local_sec_clock::local_time(zone)-hours(120));
-        Rent *rent = new Rent(rentalDateTime,client,vehicle,currentRentsRepository);
+        CurrentRentsRepositoryPtr currentRentsRepository = make_shared<CurrentRentsRepository>();
+        RentPtr rent = make_shared<Rent>(rentalDateTime,client,vehicle,currentRentsRepository);
         rent->returnVehicle();
         BOOST_CHECK_EQUAL(rent->rentDuration(), 5.0);
-        delete client, vehicle, rentalDateTime, rent, currentRentsRepository;
     }
 
     BOOST_AUTO_TEST_CASE( ClientRentTestAfterReturn ) {
-        Client *client = new Client("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
-        Vehicle *vehicle= new Vehicle("WW5698",180);
-        CurrentRentsRepository *currentRentsRepository = new CurrentRentsRepository();
-        time_zone_ptr zone(new posix_time_zone("CET"));
-        local_date_time *rentalDateTime = new local_date_time(local_sec_clock::local_time(zone)-hours(120));
-        Rent *rent = new Rent(rentalDateTime,client,vehicle,currentRentsRepository);
+        CurrentRentsRepositoryPtr currentRentsRepository = make_shared<CurrentRentsRepository>();
+        RentPtr rent = make_shared<Rent>(rentalDateTime,client,vehicle,currentRentsRepository);
         rent->returnVehicle();
         BOOST_CHECK_EQUAL(client->addRent(rent), true);
-        delete client, vehicle, rentalDateTime, rent, currentRentsRepository;
     }
 
     BOOST_AUTO_TEST_CASE(ClientRepositoryTest){
-        Client *client = new Client("Hubert","Lis","92112563112", "Warszawska", "20","Batorego","44");
-        Vehicle *vehicle = new Vehicle("WD5463",200);
-        CurrentRentsRepository *currentRentsRepository = new CurrentRentsRepository();
-        Rent *rent1 = new Rent(client,vehicle,currentRentsRepository);
+        CurrentRentsRepositoryPtr currentRentsRepository = make_shared<CurrentRentsRepository>();
+        ClientPtr client2 = make_shared<Client>("Hubert","Lis","92112563112", "Warszawska", "20","Batorego","44");
+        VehiclePtr vehicle2 = make_shared<Vehicle>("WD5463",200);
+        RentPtr rent = make_shared<Rent>(client,vehicle,currentRentsRepository);
         BOOST_CHECK_EQUAL(vehicle->isAvailability(),false);
         BOOST_CHECK_EQUAL(contains(currentRentsRepository->getClientForRentedVehicle(vehicle),"92112563112"), true);
         BOOST_CHECK_EQUAL(contains(currentRentsRepository->rentReport(),"WD5463"), true);
-        rent1->returnVehicle();
+        rent->returnVehicle();
         BOOST_CHECK_EQUAL(vehicle->isAvailability(), true);
         BOOST_CHECK_EQUAL(contains(currentRentsRepository->getClientForRentedVehicle(vehicle),"92112563112"), false);
         BOOST_CHECK_EQUAL(contains(currentRentsRepository->rentReport(),"WD5463"), false);
-        delete client, vehicle, rent1, currentRentsRepository;
     }
-
 BOOST_AUTO_TEST_SUITE_END()
 

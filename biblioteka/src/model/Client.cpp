@@ -13,15 +13,11 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
                const string &address_street, const string &address_number) :
                firstName(firstName),
                lastName(lastName),
-               personalID(personalId) {
-    registredAddress = new Address(registredAddress_street,registredAddress_number);
-    address = new Address(address_street,address_number);
-}
+               personalID(personalId),
+               address(new Address(address_street,address_number)),
+               registredAddress(new Address(registredAddress_street,registredAddress_number)){}
 
-Client::~Client() {
-    delete registredAddress;
-    delete address;
-}
+Client::~Client() {}
 
 string Client::clientInfo() {
         return "Imie i nazwisko: " + firstName + " " + lastName +
@@ -52,7 +48,7 @@ void Client::setRegistredAddress(string street, string number) {
     registredAddress->setNumber(number);
 }
 
-bool Client::addRent(Rent *rent) {
+bool Client::addRent(RentPtr rent) {
     if(find(rents.begin(),rents.end(),rent) == rents.end())
     {
         rents.push_back(rent);
@@ -61,7 +57,7 @@ bool Client::addRent(Rent *rent) {
     else return false;
 }
 
-bool Client::removeRent(Rent *rent) {
+bool Client::removeRent(RentPtr rent) {
     if(find(rents.begin(),rents.end(),rent) != rents.end())
     {
         rents.remove(rent);

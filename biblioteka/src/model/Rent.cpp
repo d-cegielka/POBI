@@ -15,33 +15,33 @@ using namespace boost::local_time;
 using namespace boost::posix_time;
 
 
-Rent::Rent(Client *client, Vehicle *vehicle, CurrentRentsRepository *currentRentsRepository) : client(client), vehicle(vehicle),uuid(random_generator()()), currentRentsRepository(currentRentsRepository) {
+Rent::Rent(ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository) : client(client), vehicle(vehicle), uuid(random_generator()()), currentRentsRepository(currentRentsRepository) {
     time_zone_ptr zone(new posix_time_zone("CET+1"));
-    rentalDateTime = new local_date_time(local_sec_clock::local_time(zone));
+    rentalDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone));
     if(vehicle->isAvailability()) {
-        currentRentsRepository->createRent(this);
+        currentRentsRepository->createRent(static_cast<RentPtr>(this));
         vehicle->setIsAvailability(false);
-        this->client->addRent(this);
+        this->client->addRent(static_cast<RentPtr>(this));
     }
 }
 
-Rent::Rent(boost::local_time::local_date_time *rentalDateTime, Client *client, Vehicle *vehicle, CurrentRentsRepository *currentRentsRepository) : rentalDateTime(
+Rent::Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository) : rentalDateTime(
         rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), currentRentsRepository(currentRentsRepository) {
     if(vehicle->isAvailability()) {
-        currentRentsRepository->createRent(this);
+        currentRentsRepository->createRent(static_cast<RentPtr>(this));
         vehicle->setIsAvailability(false);
-        this->client->addRent(this);
+        this->client->addRent(static_cast<RentPtr>(this));
     }
 }
 
-Rent::~Rent() {
-    delete rentalDateTime;
+Rent::~Rent() = default;
+    /*delete rentalDateTime;
     if(returnDateTime != nullptr)
-        delete returnDateTime;
-}
+        delete returnDateTime;*/
 
-int Rent::rentDuration() {
-    if(returnDateTime != nullptr) {
+
+int Rent::rentDuration() const {
+    if(returnDateTime) {
         local_time_period duration(*rentalDateTime, *returnDateTime);
         if (duration.length().hours() % 24 == 0) return duration.length().hours() /24;
         else return (duration.length().hours() /24) + 1;
@@ -50,19 +50,19 @@ int Rent::rentDuration() {
 
 }
 
-double Rent::rentPrice() {
+double Rent::rentPrice() const{
     return this->vehicle->actualRentalPrice() * this->rentDuration();
 }
 
-string Rent::rentClientInfo() {
+string Rent::rentClientInfo() const{
     return this->client->clientInfo();
 }
 
-string Rent::rentVehicleInfo() {
+string Rent::rentVehicleInfo() const{
     return this->vehicle->vehicleInfo();
 }
 
-string Rent::rentInfo() {
+string Rent::rentInfo() const{
     string info;
     if(returnDateTime != nullptr){
         info = "\nData zwrotu: " + returnDateTime->to_string() +
@@ -77,13 +77,13 @@ string Rent::rentInfo() {
 
 void Rent::returnVehicle() {
     time_zone_ptr zone(new posix_time_zone("CET"));
-    returnDateTime = new local_date_time(local_sec_clock::local_time(zone));
-    this->client->removeRent(this);
+    returnDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone));
+    this->client->removeRent(static_cast<RentPtr>(this));
     this->vehicle->setIsAvailability(true);
-    this->currentRentsRepository->removeRent(this);
+    this->currentRentsRepository->removeRent(static_cast<RentPtr>(this));
 }
 
-Vehicle *Rent::getVehicle() const {
+VehiclePtr Rent::getVehicle() const {
     return vehicle;
 }
 

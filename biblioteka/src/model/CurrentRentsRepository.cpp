@@ -6,12 +6,12 @@
 #include "model/Vehicle.h"
 using namespace std;
 
-CurrentRentsRepository::CurrentRentsRepository() {}
+CurrentRentsRepository::CurrentRentsRepository() = default;
 
-CurrentRentsRepository::~CurrentRentsRepository() {}
+CurrentRentsRepository::~CurrentRentsRepository() = default;
 
-bool CurrentRentsRepository::createRent(Rent *rentToAdd) {
-    for(auto *rent:rentsRepository)
+bool CurrentRentsRepository::createRent(RentPtr rentToAdd) {
+    for(auto rent:rentsRepository)
         if(rent == rentToAdd)
             return false;
 
@@ -19,8 +19,8 @@ bool CurrentRentsRepository::createRent(Rent *rentToAdd) {
     return true;
 }
 
-bool CurrentRentsRepository::removeRent(Rent *rentToRemove) {
-    for(auto *rent:rentsRepository)
+bool CurrentRentsRepository::removeRent(RentPtr rentToRemove) {
+    for(auto rent:rentsRepository)
     {
         if(rent == rentToRemove)
         {
@@ -31,10 +31,10 @@ bool CurrentRentsRepository::removeRent(Rent *rentToRemove) {
     return false;
 }
 
-string CurrentRentsRepository::getClientForRentedVehicle(Vehicle *vehicle) {
+string CurrentRentsRepository::getClientForRentedVehicle(VehiclePtr vehicle) {
     if(vehicle->isAvailability()) return "Pojazd nie jest wypożyczony, brak informacji o kliencie!";
 
-    for(auto *rent:rentsRepository){
+    for(auto rent:rentsRepository){
         if(rent->getVehicle() == vehicle)
             return rent->rentClientInfo();
     }
