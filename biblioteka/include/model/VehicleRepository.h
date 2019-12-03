@@ -9,21 +9,24 @@
 #include "Vehicle.h"
 #include <list>
 #include <string>
+#include <memory>
+
+typedef std::shared_ptr<Vehicle> VehiclePtr;
 
 class VehicleRepository {
 private:
-    std::list<Vehicle*> listOfVehicles;
+    std::list<VehiclePtr> listOfVehicles;
 
 public:
     VehicleRepository();
 
     virtual ~VehicleRepository();
 
-    bool addVehicle(Vehicle* vehicle);
+    bool addVehicle(VehiclePtr vehicle);
 
-    bool removeVehicle(Vehicle* vehicle);
+    bool removeVehicle(VehiclePtr vehicle);
 
-    Vehicle* getVehicle(int index) const;
+    VehiclePtr getVehicle(int index) const;
 
     std::string vehicleReport();
 

@@ -4,10 +4,14 @@
 
 #include "model/Bicycle.h"
 
-Bicycle::Bicycle(const std::string &id, const int baseRentPrice) : Vehicle(id, baseRentPrice) {}
+using namespace std;
+
+Bicycle::Bicycle(const string &id, const int baseRentPrice) : Vehicle(id, baseRentPrice) {}
 
 Bicycle::~Bicycle() {}
 
-std::string Bicycle::vehicleInfo() const {
-    return "Typ: Rower\n" + Vehicle::vehicleInfo();
+string Bicycle::vehicleInfo() const {
+    string infoVehicle;
+    infoVehicle.append("Typ: Rower\n").append(Vehicle::vehicleInfo());
+    return infoVehicle;
 }

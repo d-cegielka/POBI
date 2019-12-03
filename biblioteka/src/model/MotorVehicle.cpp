@@ -4,7 +4,9 @@
 
 #include "model/MotorVehicle.h"
 
-MotorVehicle::MotorVehicle(const std::string &id, const int baseRentPrice, const int engineDisplacement)
+using namespace std;
+
+MotorVehicle::MotorVehicle(const string &id, const int baseRentPrice, const int engineDisplacement)
 : Vehicle(id, baseRentPrice), engineDisplacement(engineDisplacement) {}
 
 MotorVehicle::~MotorVehicle() {}
@@ -20,7 +22,10 @@ double MotorVehicle::actualRentalPrice() const {
     return Vehicle::actualRentalPrice() * getMultiplier();
 }
 
-std::string MotorVehicle::vehicleInfo() const {
-    return "Pojemność silnika: "+ std::to_string(engineDisplacement) + "\n" + Vehicle::vehicleInfo();
+string MotorVehicle::vehicleInfo() const {
+    string infoVehicle;
+    infoVehicle.append("Pojemność silnika: ").append(to_string(engineDisplacement))
+            .append("\n").append(Vehicle::vehicleInfo());
+    return infoVehicle;
 }
 

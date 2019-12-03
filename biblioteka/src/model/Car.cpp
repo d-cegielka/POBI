@@ -4,7 +4,9 @@
 
 #include "model/Car.h"
 
-Car::Car(const std::string &id, const int baseRentPrice, const int engineDisplacement, char segment)
+using namespace std;
+
+Car::Car(const string &id, const int baseRentPrice, const int engineDisplacement, char segment)
         : MotorVehicle(id, baseRentPrice, engineDisplacement), segment(segment) {}
 
 Car::~Car() {}
@@ -13,8 +15,11 @@ double Car::actualRentalPrice() const {
     return MotorVehicle::actualRentalPrice() * getSegmentMultiplier();
 }
 
-std::string Car::vehicleInfo() const {
-    return "Typ: Samochód\nSegment: " + std::string(1,segment) + "\n" + MotorVehicle::vehicleInfo();
+string Car::vehicleInfo() const{
+    string infoVehicle;
+    infoVehicle.append("Typ: Samochód\nSegment: ").append(string(1, segment))
+            .append("\n").append(MotorVehicle::vehicleInfo());
+    return infoVehicle;
 }
 
 double Car::getSegmentMultiplier() const {

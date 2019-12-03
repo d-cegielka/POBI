@@ -4,11 +4,15 @@
 
 #include "model/Mope.h"
 
-Mope::Mope(const std::string &id, const int baseRentPrice, const int engineDisplacement)
+using namespace std;
+
+Mope::Mope(const string &id, const int baseRentPrice, const int engineDisplacement)
             : MotorVehicle(id, baseRentPrice, engineDisplacement) {}
 
 Mope::~Mope() {}
 
-std::string Mope::vehicleInfo() const {
-    return "Typ: Motorower\n" + MotorVehicle::vehicleInfo();
+string Mope::vehicleInfo() const {
+    string infoVehicle;
+    infoVehicle.append("Typ: Motorower\n").append(MotorVehicle::vehicleInfo());
+    return infoVehicle;
 }

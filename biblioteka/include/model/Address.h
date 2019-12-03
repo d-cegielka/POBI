@@ -12,11 +12,9 @@ private:
     std::string street;
     std::string number;
 public:
-    Address();
+    Address(const std::string &street, const std::string &number);
 
     virtual ~Address();
-
-    Address(const std::string &street, const std::string &number);
 
     const std::string &getStreet() const;
 

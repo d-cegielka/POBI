@@ -13,21 +13,20 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
                const string &address_street, const string &address_number) :
                firstName(firstName),
                lastName(lastName),
-               personalID(personalId) {
-    registredAddress = new Address(registredAddress_street,registredAddress_number);
-    address = new Address(address_street,address_number);
-}
+               personalID(personalId),
+               address(new Address(address_street,address_number)),
+               registredAddress(new Address(registredAddress_street,registredAddress_number)){}
 
-Client::~Client() {
-    delete registredAddress;
-    delete address;
-}
+Client::~Client() {}
 
 string Client::clientInfo() {
-        return "Imie i nazwisko: " + firstName + " " + lastName +
-        "\nPESEL: " + personalID +
-        "\nAdres zameldowania: " + registredAddress->getStreet() + " " + registredAddress->getNumber() +
-        "\nAdres zamieszkania: " + address->getStreet() + " " + address->getNumber() + "\n";
+    string infoClient;
+    infoClient.append("Imie i nazwisko: ").append(firstName).append(" ").append(lastName)
+            .append("\nPESEL: ").append(personalID).append("\nAdres zameldowania: ")
+            .append(registredAddress->getStreet()).append(" ").append(registredAddress->getNumber())
+            .append("\nAdres zamieszkania: ").append(address->getStreet()).append(" ").append(
+                    address->getNumber()).append("\n");
+    return infoClient;
 }
 
 const string &Client::getFirstName() const {
@@ -52,7 +51,7 @@ void Client::setRegistredAddress(string street, string number) {
     registredAddress->setNumber(number);
 }
 
-bool Client::addRent(Rent *rent) {
+bool Client::addRent(RentPtr rent) {
     if(find(rents.begin(),rents.end(),rent) == rents.end())
     {
         rents.push_back(rent);
@@ -61,7 +60,7 @@ bool Client::addRent(Rent *rent) {
     else return false;
 }
 
-bool Client::removeRent(Rent *rent) {
+bool Client::removeRent(RentPtr rent) {
     if(find(rents.begin(),rents.end(),rent) != rents.end())
     {
         rents.remove(rent);
@@ -73,11 +72,11 @@ bool Client::removeRent(Rent *rent) {
 
 string Client::clientRentsInfo() {
     string info;
-    info = "Klient: \n" + clientInfo() + "\nWypożyczenia: \n";
+    info.append("Klient: \n").append(clientInfo()).append("\nWypożyczenia: \n");
     if(rents.size() !=0) {
-        for(auto rent:rents) info += rent->rentInfo() + "\n";
+        for(auto rent:rents) info.append(rent->rentInfo()).append("\n");
     }
-    else info += "Klient nie ma wypożyczonych pojazdów.";
+    else info.append("Klient nie ma wypożyczonych pojazdów.");
 
     return info;
 }

@@ -9,20 +9,22 @@
 #include <list>
 #include "Rent.h"
 
+typedef std::shared_ptr <Rent> RentPtr;
+
 class CurrentRentsRepository {
 private:
-    std::list<Rent *> rentsRepository;
+    std::list<RentPtr> rentsRepository;
 
 public:
     CurrentRentsRepository();
 
     virtual ~CurrentRentsRepository();
 
-    bool createRent(Rent * rentToAdd);
+    bool createRent(RentPtr rentToAdd);
 
-    bool removeRent(Rent * rentToRemove);
+    bool removeRent(RentPtr rentToRemove);
 
-    std::string getClientForRentedVehicle(Vehicle *vehicle);
+    std::string getClientForRentedVehicle(VehiclePtr vehicle);
 
     std::string rentReport();
 

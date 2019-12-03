@@ -28,7 +28,7 @@ int main() {
     cout<<rent2.rentInfo()<<endl;
     rent1.returnVehicle();
     cout<<rent1.rentInfo()<<endl;*/
-    VehicleRepository* v_repository = new VehicleRepository();
+    VehicleRepositoryPtr v_repository(new VehicleRepository());
     RentalGenerator* rentalGenerator = new RentalGenerator(v_repository);
 
     return 0;

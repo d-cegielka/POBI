@@ -13,30 +13,34 @@ class CurrentRentsRepository;
 class Vehicle;
 class Client;
 
+typedef std::shared_ptr <Client> ClientPtr;
+typedef std::shared_ptr <Vehicle> VehiclePtr;
+typedef std::shared_ptr <boost::local_time::local_date_time> local_date_timePtr;
+typedef std::shared_ptr <CurrentRentsRepository> CurrentRentsRepositoryPtr;
+
 class Rent {
 private:
     boost::uuids::uuid uuid;
-    boost::local_time::local_date_time* rentalDateTime;
-    boost::local_time::local_date_time* returnDateTime = nullptr;
-    Client* client;
-    Vehicle* vehicle;
-    CurrentRentsRepository* currentRentsRepository;
+    local_date_timePtr rentalDateTime;
+    local_date_timePtr returnDateTime;
+    ClientPtr client;
+    VehiclePtr vehicle;
+    CurrentRentsRepositoryPtr currentRentsRepository;
 
 public:
-    Rent(Client *client, Vehicle *vehicle, CurrentRentsRepository *currentRentsRepository);
-    Rent(boost::local_time::local_date_time *rentalDateTime, Client *client, Vehicle *vehicle, CurrentRentsRepository *currentRentsRepository);
-
+    Rent(ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository);
+    Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository);
 
     virtual ~Rent();
 
-    int rentDuration();
-    double rentPrice();
-    std::string rentClientInfo();
-    std::string rentVehicleInfo();
-    std::string rentInfo();
+    int rentDuration() const;
+    double rentPrice() const;
+    std::string rentClientInfo() const;
+    std::string rentVehicleInfo() const;
+    std::string rentInfo() const;
     void returnVehicle();
 
-    Vehicle *getVehicle() const;
+    VehiclePtr getVehicle() const;
 };
 
 

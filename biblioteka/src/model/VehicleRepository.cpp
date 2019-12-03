@@ -4,6 +4,8 @@
 
 //#include <algorithm>
 #include <algorithm>
+#include <boost/shared_ptr.hpp>
+#include <model/Rent.h>
 #include "model/VehicleRepository.h"
 #include "model/Vehicle.h"
 
@@ -15,14 +17,14 @@ VehicleRepository::~VehicleRepository() {
 
 }
 
-Vehicle * VehicleRepository::getVehicle(int index) const {
+VehiclePtr VehicleRepository::getVehicle(int index) const {
    if(index >=0 && index < listOfVehicles.size())
        return *next(listOfVehicles.begin(),index);
 
    return nullptr;
 }
 
-bool VehicleRepository::addVehicle(Vehicle *vehicle) {
+bool VehicleRepository::addVehicle(VehiclePtr vehicle) {
     if(find(listOfVehicles.begin(),listOfVehicles.end(),vehicle) == listOfVehicles.end())
     {
         listOfVehicles.push_back(vehicle);
@@ -31,7 +33,7 @@ bool VehicleRepository::addVehicle(Vehicle *vehicle) {
     else return false;
 }
 
-bool VehicleRepository::removeVehicle(Vehicle *vehicle) {
+bool VehicleRepository::removeVehicle(VehiclePtr vehicle) {
     if(find(listOfVehicles.begin(),listOfVehicles.end(),vehicle) != listOfVehicles.end())
     {
         listOfVehicles.remove(vehicle);
