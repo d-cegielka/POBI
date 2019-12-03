@@ -17,6 +17,8 @@ public:
 
     virtual std::string getClientType() const;
 
+    virtual const int getDiscount(int RentPrice) const;
+
 };
 
 

@@ -20,5 +20,9 @@ std::string ClientType::getClientType() const{
     return clientTypeInfo;
 }
 
+const int ClientType::getDiscount(int RentPrice) const {
+    return 0;
+}
+
 
 

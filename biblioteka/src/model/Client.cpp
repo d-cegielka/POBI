@@ -65,6 +65,10 @@ const int Client::getMaxNumOfRentalVehicles() const {
     return clientType->getNumOfRentalVehicles();
 }
 
+const int Client::getClientDiscount(int RentPrice) const {
+    return clientType->getDiscount(RentPrice);
+}
+
 
 bool Client::addRent(RentPtr rent) {
     if(find(rents.begin(),rents.end(),rent) == rents.end())

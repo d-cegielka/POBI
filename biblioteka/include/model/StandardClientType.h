@@ -16,6 +16,8 @@ public:
     const int getNumOfRentalVehicles() const override;
 
     std::string getClientType() const override;
+
+    const int getDiscount(int RentPrice) const override;
 };
 
 

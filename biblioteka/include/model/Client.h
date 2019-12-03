@@ -42,7 +42,8 @@ public:
 
     void setClientType(const ClientTypePtr &clientType);
     const std::string getClientType() const;
-    const int Client::getMaxNumOfRentalVehicles() const;
+    const int getMaxNumOfRentalVehicles() const;
+    const int getClientDiscount(int RentPrice) const;
 
     bool addRent(RentPtr rent);
     bool removeRent(RentPtr rent);
