@@ -13,7 +13,10 @@ set(SOURCE_FILES
     src/model/Car.cpp
     src/model/Mope.cpp
     src/model/CurrentRentsRepository.cpp
-    src/model/VehicleRepository.cpp)
+    src/model/VehicleRepository.cpp
+    src/model/ClientType.cpp
+    src/model/StandardClientType.cpp
+    src/model/PremiumClientType.cpp src/model/VipClientType.cpp include/model/VipClientType.h)
 
 add_library(Biblioteka ${SOURCE_FILES})
 

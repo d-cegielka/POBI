@@ -5,6 +5,7 @@
 #include <iostream>
 #include "model/Client.h"
 #include "model/Rent.h"
+#include "model/StandardClientType.h"
 
 using namespace std;
 
@@ -15,11 +16,12 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
                lastName(lastName),
                personalID(personalId),
                address(new Address(address_street,address_number)),
-               registredAddress(new Address(registredAddress_street,registredAddress_number)){}
+               registredAddress(new Address(registredAddress_street,registredAddress_number)),
+               clientType(new StandardClientType()) {}
 
 Client::~Client() {}
 
-string Client::clientInfo() {
+const string Client::clientInfo() const {
     string infoClient;
     infoClient.append("Imie i nazwisko: ").append(firstName).append(" ").append(lastName)
             .append("\nPESEL: ").append(personalID).append("\nAdres zameldowania: ")
@@ -51,6 +53,23 @@ void Client::setRegistredAddress(string street, string number) {
     registredAddress->setNumber(number);
 }
 
+void Client::setClientType(const ClientTypePtr &clientType) {
+    Client::clientType = clientType;
+}
+
+const string Client::getClientType() const {
+    return clientType->getClientType();
+}
+
+const int Client::getMaxNumOfRentalVehicles() const {
+    return clientType->getNumOfRentalVehicles();
+}
+
+const int Client::getClientDiscount(int RentPrice) const {
+    return clientType->getDiscount(RentPrice);
+}
+
+
 bool Client::addRent(RentPtr rent) {
     if(find(rents.begin(),rents.end(),rent) == rents.end())
     {
@@ -70,7 +89,7 @@ bool Client::removeRent(RentPtr rent) {
 }
 
 
-string Client::clientRentsInfo() {
+const string Client::clientRentsInfo() const {
     string info;
     info.append("Klient: \n").append(clientInfo()).append("\nWypożyczenia: \n");
     if(rents.size() !=0) {
@@ -80,3 +99,4 @@ string Client::clientRentsInfo() {
 
     return info;
 }
+
