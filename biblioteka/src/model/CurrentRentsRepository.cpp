@@ -44,8 +44,8 @@ std::string CurrentRentsRepository::rentReport() {
     string rentInfo;
     if(rentsRepository.size() != 0){
         for(auto rent:rentsRepository)
-            rentInfo += rent->rentInfo();
+            rentInfo.append(rent->rentInfo());
 
         return rentInfo;
-    }else return "Brak wypożyczeń!";
+    } else return "Brak wypożyczeń!";
 }

@@ -11,8 +11,10 @@ Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPr
 Vehicle::~Vehicle() {}
 
 std::string Vehicle::vehicleInfo() const {
-    return "Numer rejestracyjny: " + id +
-    "\nCena wypożyczenia: " + to_string(baseRentPrice);
+    string infoVehicle;
+    infoVehicle.append("Numer rejestracyjny: ").append(id)
+    .append("\nCena wypożyczenia: ").append(to_string(baseRentPrice));
+    return infoVehicle;
 }
 
 double Vehicle::actualRentalPrice() const {

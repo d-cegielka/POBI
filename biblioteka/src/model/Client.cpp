@@ -20,10 +20,13 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
 Client::~Client() {}
 
 string Client::clientInfo() {
-        return "Imie i nazwisko: " + firstName + " " + lastName +
-        "\nPESEL: " + personalID +
-        "\nAdres zameldowania: " + registredAddress->getStreet() + " " + registredAddress->getNumber() +
-        "\nAdres zamieszkania: " + address->getStreet() + " " + address->getNumber() + "\n";
+    string infoClient;
+    infoClient.append("Imie i nazwisko: ").append(firstName).append(" ").append(lastName)
+            .append("\nPESEL: ").append(personalID).append("\nAdres zameldowania: ")
+            .append(registredAddress->getStreet()).append(" ").append(registredAddress->getNumber())
+            .append("\nAdres zamieszkania: ").append(address->getStreet()).append(" ").append(
+                    address->getNumber()).append("\n");
+    return infoClient;
 }
 
 const string &Client::getFirstName() const {
@@ -69,11 +72,11 @@ bool Client::removeRent(RentPtr rent) {
 
 string Client::clientRentsInfo() {
     string info;
-    info = "Klient: \n" + clientInfo() + "\nWypożyczenia: \n";
+    info.append("Klient: \n").append(clientInfo()).append("\nWypożyczenia: \n");
     if(rents.size() !=0) {
-        for(auto rent:rents) info += rent->rentInfo() + "\n";
+        for(auto rent:rents) info.append(rent->rentInfo()).append("\n");
     }
-    else info += "Klient nie ma wypożyczonych pojazdów.";
+    else info.append("Klient nie ma wypożyczonych pojazdów.");
 
     return info;
 }

@@ -35,10 +35,6 @@ Rent::Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehic
 }
 
 Rent::~Rent() = default;
-    /*delete rentalDateTime;
-    if(returnDateTime != nullptr)
-        delete returnDateTime;*/
-
 
 int Rent::rentDuration() const {
     if(returnDateTime) {
@@ -64,15 +60,16 @@ string Rent::rentVehicleInfo() const{
 
 string Rent::rentInfo() const{
     string info;
+    info.append("ID wypożyczenia: ").append(to_string(uuid))
+            .append("\nData wypożyczenia: ").append(rentalDateTime->to_string())
+            .append("\nIlość dni wypożyczenia: ").append(to_string(rentDuration()));
     if(returnDateTime != nullptr){
-        info = "\nData zwrotu: " + returnDateTime->to_string() +
-                "\nKoszt wypożyczenia: " + to_string(rentPrice());
+        info.append("\nData zwrotu: ").append(returnDateTime->to_string())
+                .append("\nKoszt wypożyczenia: ").append(to_string(rentPrice()));
     }
-    return "ID wypożyczenia: " + to_string(uuid) +
-            "\nData wypożyczenia: " + rentalDateTime->to_string() +
-            "\nIlość dni wypożyczenia: " + to_string(rentDuration()) +
-            info + "\nWypożyczony pojazd\n" + rentVehicleInfo() +
-            "\nOsoba wypożyczająca\n" + rentClientInfo();
+    info.append("\nWypożyczony pojazd\n").append(rentVehicleInfo())
+            .append("\nOsoba wypożyczająca\n").append(rentClientInfo());
+    return info;
 }
 
 void Rent::returnVehicle() {
