@@ -44,6 +44,7 @@ public:
     const std::string getClientType() const;
     const int getMaxNumOfRentalVehicles() const;
     const int getClientDiscount(int RentPrice) const;
+    const int getNumOfClientRents() const;
 
     bool addRent(RentPtr rent);
     bool removeRent(RentPtr rent);

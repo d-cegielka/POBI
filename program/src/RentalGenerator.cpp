@@ -7,6 +7,7 @@
 #include <model/Bicycle.h>
 #include <model/ClientRepository.h>
 #include <model/VehicleRepository.h>
+#include <model/RentsManager.h>
 #include "RentalGenerator.h"
 #include <iostream>
 #include <memory>
@@ -16,8 +17,12 @@ using namespace std;
 typedef shared_ptr<Car> CarPtr;
 typedef shared_ptr<Mope> MopePtr;
 typedef shared_ptr<Bicycle> BicyclePtr;
+typedef shared_ptr<RentsManager> RentsManagerPtr;
 
-RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository) : vehicleRepository(vehicleRepository), clientRepository(clientRepository) {
+RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository, CurrentRentsRepositoryPtr archiveRent, CurrentRentsRepositoryPtr currentRent) :
+                                vehicleRepository(vehicleRepository), clientRepository(clientRepository), archiveRents(archiveRent), currentRents(currentRent) {
+
+    RentsManagerPtr rentsManager = make_shared<RentsManager>(currentRent, archiveRent, vehicleRepository, clientRepository);
 
     ClientPtr client1 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
     ClientPtr client2 = make_shared<Client>("Jan","Kowalski","87110701881","Spokojna","1","Głośna","12");
@@ -36,7 +41,7 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     MopePtr mope4 = make_shared<Mope>("MO4444", 340, 1200);
 
     BicyclePtr bicycle1 = make_shared<Bicycle>("BC1111", 20);
-    BicyclePtr bicycle2 = make_shared<Bicycle>("BC1111", 45);
+    BicyclePtr bicycle2 = make_shared<Bicycle>("BC2222", 45);
 
     vehicleRepository->addVehicle(car1);
     vehicleRepository->addVehicle(car2);
@@ -51,9 +56,9 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     vehicleRepository->addVehicle(bicycle1);
     vehicleRepository->addVehicle(bicycle2);
 
+    rentsManager->rentVehicle(client1, car2, nullptr);
+
     std::cout<<vehicleRepository->vehicleReport();
 }
 
-RentalGenerator::~RentalGenerator() {
-
-}
+RentalGenerator::~RentalGenerator() {}

@@ -4,6 +4,7 @@
 #include "model/Client.h"
 #include "model/Vehicle.h"
 #include "model/CurrentRentsRepository.h"
+#include "model/ClientRepository.h"
 #include "model/VehicleRepository.h"
 #include "RentalGenerator.h"
 
@@ -11,6 +12,8 @@
 using namespace boost::local_time;
 using namespace boost::posix_time;
 using namespace std;
+
+
 
 int main() {
     /*Client k1("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
@@ -28,8 +31,12 @@ int main() {
     cout<<rent2.rentInfo()<<endl;
     rent1.returnVehicle();
     cout<<rent1.rentInfo()<<endl;*/
-    VehicleRepositoryPtr v_repository(new VehicleRepository());
-    RentalGenerator* rentalGenerator = new RentalGenerator(v_repository);
+    CurrentRentsRepositoryPtr currentRepository(new CurrentRentsRepository());
+    CurrentRentsRepositoryPtr archiveRepository(new CurrentRentsRepository());
+    ClientRepositoryPtr clientRepository(new ClientRepository());
+    VehicleRepositoryPtr vehicleRepository(new VehicleRepository());
+
+    RentalGenerator* rentalGenerator = new RentalGenerator(vehicleRepository, clientRepository, currentRepository, archiveRepository);
 
     return 0;
 }

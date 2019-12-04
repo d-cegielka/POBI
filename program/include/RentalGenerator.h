@@ -7,17 +7,21 @@
 
 class VehicleRepository;
 class ClientRepository;
+class CurrentRentsRepository;
 
 typedef std::shared_ptr<VehicleRepository> VehicleRepositoryPtr;
 typedef std::shared_ptr<ClientRepository> ClientRepositoryPtr;
+typedef std::shared_ptr<CurrentRentsRepository> CurrentRentsRepositoryPtr;
 
 class RentalGenerator {
 private:
     VehicleRepositoryPtr vehicleRepository;
     ClientRepositoryPtr clientRepository;
+    CurrentRentsRepositoryPtr currentRents;
+    CurrentRentsRepositoryPtr archiveRents;
 
 public:
-    RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository);
+    RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository, CurrentRentsRepositoryPtr currentRents, CurrentRentsRepositoryPtr archiveRents );
 
     virtual ~RentalGenerator();
 };

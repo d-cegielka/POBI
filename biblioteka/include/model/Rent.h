@@ -16,7 +16,6 @@ class Client;
 typedef std::shared_ptr <Client> ClientPtr;
 typedef std::shared_ptr <Vehicle> VehiclePtr;
 typedef std::shared_ptr <boost::local_time::local_date_time> local_date_timePtr;
-typedef std::shared_ptr <CurrentRentsRepository> CurrentRentsRepositoryPtr;
 
 class Rent {
 private:
@@ -25,11 +24,9 @@ private:
     local_date_timePtr returnDateTime;
     ClientPtr client;
     VehiclePtr vehicle;
-    CurrentRentsRepositoryPtr currentRentsRepository;
 
 public:
-    Rent(ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository);
-    Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository);
+    Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle);
 
     virtual ~Rent();
 

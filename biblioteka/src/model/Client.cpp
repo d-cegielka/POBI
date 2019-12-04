@@ -100,3 +100,7 @@ const string Client::clientRentsInfo() const {
     return info;
 }
 
+const int Client::getNumOfClientRents() const {
+    return rents.size();
+}
+

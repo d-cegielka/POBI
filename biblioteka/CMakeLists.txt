@@ -18,7 +18,8 @@ set(SOURCE_FILES
     src/model/StandardClientType.cpp
     src/model/PremiumClientType.cpp
     src/model/VipClientType.cpp
-    src/model/ClientRepository.cpp)
+    src/model/ClientRepository.cpp
+        src/model/RentsManager.cpp)
 
 add_library(Biblioteka ${SOURCE_FILES})
 
