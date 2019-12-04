@@ -16,7 +16,9 @@ set(SOURCE_FILES
     src/model/VehicleRepository.cpp
     src/model/ClientType.cpp
     src/model/StandardClientType.cpp
-    src/model/PremiumClientType.cpp src/model/VipClientType.cpp include/model/VipClientType.h)
+    src/model/PremiumClientType.cpp
+    src/model/VipClientType.cpp
+    src/model/ClientRepository.cpp)
 
 add_library(Biblioteka ${SOURCE_FILES})
 
@@ -27,7 +29,10 @@ target_include_directories(Biblioteka PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 find_package (Boost 1.60.0 COMPONENTS "unit_test_framework" REQUIRED)
 
 set(SOURCE_TEST_FILES
-        test/master.cpp test/RentTest.cpp test/VehicleTest.cpp)
+        test/master.cpp
+        #[[test/RentTest.cpp]]
+        test/VehicleTest.cpp
+        test/ClientTest.cpp)
 
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include

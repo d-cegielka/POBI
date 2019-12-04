@@ -5,6 +5,7 @@
 #include <model/Car.h>
 #include <model/Mope.h>
 #include <model/Bicycle.h>
+#include <model/ClientRepository.h>
 #include <model/VehicleRepository.h>
 #include "RentalGenerator.h"
 #include <iostream>
@@ -16,7 +17,13 @@ typedef shared_ptr<Car> CarPtr;
 typedef shared_ptr<Mope> MopePtr;
 typedef shared_ptr<Bicycle> BicyclePtr;
 
-RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository) : vehicleRepository(vehicleRepository) {
+RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository) : vehicleRepository(vehicleRepository), clientRepository(clientRepository) {
+
+    ClientPtr client1 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
+    ClientPtr client2 = make_shared<Client>("Jan","Kowalski","87110701881","Spokojna","1","Głośna","12");
+
+    clientRepository->createClient(client1);
+    clientRepository->createClient(client2);
 
     CarPtr car1 = make_shared<Car>("CA1111", 110, 1000, 'A');
     CarPtr car2 = make_shared<Car>("CA2222", 120, 1300, 'E');
