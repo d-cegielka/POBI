@@ -15,7 +15,7 @@ using namespace boost::local_time;
 using namespace boost::posix_time;
 
 Rent::Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle) : rentalDateTime(
-        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()) {}
+        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), rentPrice(0.0) {}
 
 Rent::~Rent() = default;
 
@@ -26,19 +26,14 @@ int Rent::rentDuration() const {
         else return (duration.length().hours() /24) + 1;
     }
     else return 0;
-
-}
-
-double Rent::rentPrice() const{
-    return this->vehicle->actualRentalPrice() * this->rentDuration();
 }
 
 string Rent::rentClientInfo() const{
-    return this->client->clientInfo();
+    return client->clientInfo();
 }
 
 string Rent::rentVehicleInfo() const{
-    return this->vehicle->vehicleInfo();
+    return vehicle->vehicleInfo();
 }
 
 string Rent::rentInfo() const{
@@ -48,7 +43,7 @@ string Rent::rentInfo() const{
             .append("\nIlość dni wypożyczenia: ").append(to_string(rentDuration()));
     if(returnDateTime != nullptr){
         info.append("\nData zwrotu: ").append(returnDateTime->to_string())
-                .append("\nKoszt wypożyczenia: ").append(to_string(rentPrice()));
+                .append("\nKoszt wypożyczenia: ").append(to_string(rentPrice));
     }
     info.append("\nWypożyczony pojazd\n").append(rentVehicleInfo())
             .append("\nOsoba wypożyczająca\n").append(rentClientInfo());
@@ -58,11 +53,18 @@ string Rent::rentInfo() const{
 void Rent::returnVehicle() {
     time_zone_ptr zone(new posix_time_zone("CET"));
     returnDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone));
-    this->client->removeRent(static_cast<RentPtr>(this));
-    this->vehicle->setIsAvailability(true);
+    rentPrice = vehicle->actualRentalPrice() * rentDuration();
+    rentPrice -= client->getClientDiscount(rentPrice);
 }
 
-VehiclePtr Rent::getVehicle() const {
+const ClientPtr &Rent::getClient() const {
+    return client;
+}
+
+const VehiclePtr &Rent::getVehicle() const {
     return vehicle;
 }
 
+double Rent::getRentPrice() const {
+    return rentPrice;
+}

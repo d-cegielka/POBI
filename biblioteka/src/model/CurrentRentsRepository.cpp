@@ -10,7 +10,7 @@ CurrentRentsRepository::CurrentRentsRepository() = default;
 
 CurrentRentsRepository::~CurrentRentsRepository() = default;
 
-bool CurrentRentsRepository::createRent(RentPtr rentToAdd) {
+const bool CurrentRentsRepository::createRent(const RentPtr &rentToAdd) {
     for(auto rent:rentsRepository)
         if(rent == rentToAdd)
             return false;
@@ -19,7 +19,7 @@ bool CurrentRentsRepository::createRent(RentPtr rentToAdd) {
     return true;
 }
 
-bool CurrentRentsRepository::removeRent(RentPtr rentToRemove) {
+const bool CurrentRentsRepository::removeRent(const RentPtr &rentToRemove) {
     for(auto rent:rentsRepository)
     {
         if(rent == rentToRemove)
@@ -31,12 +31,22 @@ bool CurrentRentsRepository::removeRent(RentPtr rentToRemove) {
     return false;
 }
 
-string CurrentRentsRepository::getClientForRentedVehicle(VehiclePtr vehicle) {
+const std::string CurrentRentsRepository::getClientInfoForRentedVehicle(const VehiclePtr &vehicle) const {
     if(vehicle->isAvailability()) return "Pojazd nie jest wypożyczony, brak informacji o kliencie!";
 
     for(auto rent:rentsRepository){
         if(rent->getVehicle() == vehicle)
             return rent->rentClientInfo();
+    }
+}
+
+
+ClientPtr CurrentRentsRepository::getClientForRentedVehicle(const VehiclePtr &vehicle) const {
+    if(vehicle->isAvailability()) return nullptr;
+
+    for(auto rent:rentsRepository){
+        if(rent->getVehicle() == vehicle)
+            return rent->getClient();
     }
 }
 
@@ -49,3 +59,5 @@ std::string CurrentRentsRepository::rentReport() {
         return rentInfo;
     } else return "Brak wypożyczeń!";
 }
+
+

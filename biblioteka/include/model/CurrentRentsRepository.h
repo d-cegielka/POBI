@@ -20,11 +20,13 @@ public:
 
     virtual ~CurrentRentsRepository();
 
-    bool createRent(RentPtr rentToAdd);
+    const bool createRent(const RentPtr &rentToAdd);
 
-    bool removeRent(RentPtr rentToRemove);
+    const bool removeRent(const RentPtr &rentToRemove);
 
-    std::string getClientForRentedVehicle(VehiclePtr vehicle);
+    const std::string getClientInfoForRentedVehicle(const VehiclePtr &vehicle) const;
+
+    ClientPtr getClientForRentedVehicle(const VehiclePtr &vehicle) const;
 
     std::string rentReport();
 

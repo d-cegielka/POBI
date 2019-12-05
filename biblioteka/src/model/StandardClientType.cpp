@@ -16,7 +16,7 @@ std::string StandardClientType::getClientType() const {
     return ClientType::getClientType() + "Standard";
 }
 
-const int StandardClientType::getDiscount(int RentPrice) const {
+const double StandardClientType::getDiscount(double RentPrice) const {
     return 0;
 }
 

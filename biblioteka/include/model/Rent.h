@@ -24,6 +24,7 @@ private:
     local_date_timePtr returnDateTime;
     ClientPtr client;
     VehiclePtr vehicle;
+    double rentPrice;
 
 public:
     Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle);
@@ -31,13 +32,17 @@ public:
     virtual ~Rent();
 
     int rentDuration() const;
-    double rentPrice() const;
+
+    double getRentPrice() const;
+
     std::string rentClientInfo() const;
     std::string rentVehicleInfo() const;
     std::string rentInfo() const;
     void returnVehicle();
 
-    VehiclePtr getVehicle() const;
+    const VehiclePtr &getVehicle() const;
+
+    const ClientPtr &getClient() const;
 };
 
 

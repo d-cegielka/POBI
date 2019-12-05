@@ -57,8 +57,12 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     vehicleRepository->addVehicle(bicycle2);
 
     rentsManager->rentVehicle(client1, car2, nullptr);
+    std::cout<<client1->clientRentsInfo();
+    rentsManager->returnVehicle(car2);
+    std::cout<<client1->clientRentsInfo();
 
-    std::cout<<vehicleRepository->vehicleReport();
+
+    //std::cout<<vehicleRepository->vehicleReport();
 }
 
 RentalGenerator::~RentalGenerator() {}

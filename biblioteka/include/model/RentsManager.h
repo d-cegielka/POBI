@@ -26,6 +26,10 @@ public:
     virtual ~RentsManager();
 
     void rentVehicle(const ClientPtr &client, const VehiclePtr &vehicle, const local_date_timePtr &rentDate);
+
+    void returnVehicle(const VehiclePtr &vehicle);
+
+
 };
 
 

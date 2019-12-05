@@ -65,7 +65,7 @@ const int Client::getMaxNumOfRentalVehicles() const {
     return clientType->getNumOfRentalVehicles();
 }
 
-const int Client::getClientDiscount(int RentPrice) const {
+const double Client::getClientDiscount(double RentPrice) const {
     return clientType->getDiscount(RentPrice);
 }
 
@@ -91,7 +91,7 @@ bool Client::removeRent(RentPtr rent) {
 
 const string Client::clientRentsInfo() const {
     string info;
-    info.append("Klient: \n").append(clientInfo()).append("\nWypożyczenia: \n");
+    info.append("\nWypożyczenia: \n");
     if(rents.size() !=0) {
         for(auto rent:rents) info.append(rent->rentInfo()).append("\n");
     }
@@ -102,5 +102,9 @@ const string Client::clientRentsInfo() const {
 
 const int Client::getNumOfClientRents() const {
     return rents.size();
+}
+
+const list<RentPtr> &Client::getRentsList() const {
+    return rents;
 }
 

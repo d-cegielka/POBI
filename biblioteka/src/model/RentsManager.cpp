@@ -12,10 +12,7 @@ RentsManager::RentsManager(const CurrentRentsRepositoryPtr &currentRents, const 
                            const VehicleRepositoryPtr &vehicles, const ClientRepositoryPtr &clients) : currentRents(
         currentRents), archiveRents(archiveRents), vehicles(vehicles), clients(clients) {}
 
-RentsManager::~RentsManager() {
-
-
-}
+RentsManager::~RentsManager() {}
 
 void RentsManager::rentVehicle(const ClientPtr &client, const VehiclePtr &vehicle, const local_date_timePtr &rentDate) {
     local_date_timePtr finalRentDate;
@@ -33,3 +30,21 @@ void RentsManager::rentVehicle(const ClientPtr &client, const VehiclePtr &vehicl
         vehicle->setIsAvailability(false);
     }
 }
+
+void RentsManager::returnVehicle(const VehiclePtr &vehicle) {
+    ClientPtr client = currentRents->getClientForRentedVehicle(vehicle);
+    if(client != nullptr){
+        for(auto rent:client->getRentsList()) {
+            if(rent->getVehicle() == vehicle) {
+                client->removeRent(rent);
+                rent->returnVehicle();
+                vehicle->setIsAvailability(true);
+                currentRents->removeRent(rent);
+                archiveRents->createRent(rent);
+                //changeClientType(client);
+                break;
+            }
+        }
+    }
+}
+
