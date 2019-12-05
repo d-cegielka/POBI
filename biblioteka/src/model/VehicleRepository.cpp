@@ -24,33 +24,25 @@ VehiclePtr VehicleRepository::getVehicle(int index) const {
    return nullptr;
 }
 
-bool VehicleRepository::addVehicle(VehiclePtr vehicle) {
+void VehicleRepository::addVehicle(const VehiclePtr &vehicle) {
     if(find(listOfVehicles.begin(),listOfVehicles.end(),vehicle) == listOfVehicles.end())
-    {
         listOfVehicles.push_back(vehicle);
-        return true;
-    }
-    else return false;
 }
 
-bool VehicleRepository::removeVehicle(VehiclePtr vehicle) {
+void VehicleRepository::removeVehicle(const VehiclePtr &vehicle) {
     if(find(listOfVehicles.begin(),listOfVehicles.end(),vehicle) != listOfVehicles.end())
-    {
         listOfVehicles.remove(vehicle);
-        return true;
-    }
-    else return false;
 }
 
-std::string VehicleRepository::vehicleReport() {
+const std::string &VehicleRepository::vehicleReport() {
     string raport="";
-    if (listOfVehicles.size() == 0) {
+    if (listOfVehicles.size() == 0)
         return "Brak pojazdów!";
-    }
+
     else {
-        for(auto vehicle:listOfVehicles){
+        for(auto vehicle:listOfVehicles)
             raport += vehicle->vehicleInfo() + "\n\n";
-        }
+
         return raport;
     }
 }

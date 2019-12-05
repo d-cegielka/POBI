@@ -20,9 +20,9 @@ public:
 
     virtual ~ClientRepository();
 
-    bool createClient(ClientPtr client);
+    void createClient(const ClientPtr &client);
 
-    bool removeClient(ClientPtr client);
+    void removeClient(const ClientPtr &client);
 
     void changeClientType(ClientPtr client, ClientTypePtr clientType);
 

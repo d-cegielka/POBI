@@ -3,10 +3,16 @@
 //
 
 #include "model/Vehicle.h"
+#include "model/VehicleException.h"
 
 using namespace std;
 
-Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPrice(baseRentPrice), availability(true) {}
+Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPrice(baseRentPrice){
+    if(baseRentPrice <= 0)
+        throw VehicleException("Cena bazowa musi być większa od 0!");
+    if(id.size() < 3)
+        throw VehicleException("ID pojazdu musi mieć conajmniej 3 znaki!");
+}
 
 Vehicle::~Vehicle() {}
 
@@ -21,10 +27,3 @@ double Vehicle::actualRentalPrice() const {
     return baseRentPrice;
 }
 
-bool Vehicle::isAvailability() const {
-    return availability;
-}
-
-void Vehicle::setIsAvailability(bool isAvailability) {
-    Vehicle::availability = isAvailability;
-}

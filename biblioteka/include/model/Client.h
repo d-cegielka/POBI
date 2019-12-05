@@ -37,8 +37,8 @@ public:
     const std::string &getLastName() const;
     const std::string &getPersonalId() const;
 
-    void setAddress(std::string street, std::string number);
-    void setRegistredAddress(std::string street, std::string number);
+    void setAddress(const std::string &street, const std::string &number);
+    void setRegistredAddress(const std::string &street, const std::string &number);
 
     void setClientType(const ClientTypePtr &clientType);
     const std::string getClientType() const;
@@ -46,8 +46,8 @@ public:
     const double getClientDiscount(double RentPrice) const;
     const int getNumOfClientRents() const;
 
-    bool addRent(RentPtr rent);
-    bool removeRent(RentPtr rent);
+    void addRent(const RentPtr &rent);
+    void removeRent(const RentPtr &rent);
 
     const std::list<RentPtr> &getRentsList() const;
 };
