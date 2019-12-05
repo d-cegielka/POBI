@@ -5,6 +5,7 @@
 #include "model/RentsManager.h"
 #include "model/PremiumClientType.h"
 #include "model/VipClientType.h"
+#include "model/RentException.h"
 
 using namespace std;
 using namespace boost::local_time;
@@ -18,19 +19,20 @@ RentsManager::~RentsManager() {}
 
 void RentsManager::rentVehicle(const ClientPtr &client, const VehiclePtr &vehicle, const local_date_timePtr &rentDate) {
     local_date_timePtr finalRentDate;
-    if(rentDate == nullptr)
-    {
+    if(rentDate == nullptr){
         time_zone_ptr zone(new posix_time_zone("CET+1"));
         finalRentDate = make_shared<local_date_time>(local_sec_clock::local_time(zone));
     } else finalRentDate = rentDate;
 
-    if(client->getNumOfClientRents() < client->getMaxNumOfRentalVehicles() && vehicle->isAvailability())
-    {
-        RentPtr rent = make_shared<Rent>(finalRentDate, client, vehicle);
-        currentRents->createRent(rent);
-        client->addRent(rent);
-        vehicle->setIsAvailability(false);
-    }
+    //if(client->getNumOfClientRents() < client->getMaxNumOfRentalVehicles() && vehicle->isAvailability()) {
+    if(currentRents->getClientForRentedVehicle(vehicle) != nullptr)
+        throw RentException("Pojazd jest obecnie niedostępny!");
+     if(client->getNumOfClientRents() == client->getMaxNumOfRentalVehicles())
+         throw RentException("Klient osiągnał limit wypożycznych pojazdów!");
+     RentPtr rent = make_shared<Rent>(finalRentDate, client, vehicle);
+     currentRents->createRent(rent);
+     client->addRent(rent);
+
 }
 
 void RentsManager::returnVehicle(const VehiclePtr &vehicle) {
@@ -40,7 +42,6 @@ void RentsManager::returnVehicle(const VehiclePtr &vehicle) {
             if(rent->getVehicle() == vehicle) {
                 client->removeRent(rent);
                 rent->returnVehicle();
-                vehicle->setIsAvailability(true);
                 currentRents->removeRent(rent);
                 archiveRents->createRent(rent);
                 changeClientType(client);
@@ -51,20 +52,20 @@ void RentsManager::returnVehicle(const VehiclePtr &vehicle) {
 }
 
 void RentsManager::changeClientType(const ClientPtr &client) {
-    if(checkClientRentBallance(client) >= 2500) {
+    if(checkClientRentBallance(client) >= 2500)
         clients->changeClientType(client,make_shared<PremiumClientType>());
-    }
-    if(checkClientRentBallance(client) >= 6000) {
+
+    if(checkClientRentBallance(client) >= 6000)
         clients->changeClientType(client,make_shared<VipClientType>());
-    }
+
 }
 
 const double RentsManager::checkClientRentBallance(const ClientPtr &client) const{
     list<RentPtr> rents = getAllClientRents(client);
     double balance = 0.0;
-    for(auto rent:rents) {
+    for(auto rent:rents)
         balance += rent->getRentPrice();
-    }
+
     return balance;
 }
 

@@ -33,7 +33,7 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     clientRepository->createClient(client2);
 
     CarPtr car1 = make_shared<Car>("CA1111", 110, 1000, 'A');
-    CarPtr car2 = make_shared<Car>("CA2222", 6000, 1300, 'E');
+    CarPtr car2 = make_shared<Car>("CA2222", 1000, 1300, 'E');
     CarPtr car3 = make_shared<Car>("CA3333", 130, 1500, 'C');
     CarPtr car4 = make_shared<Car>("CA4444", 140, 2000, 'B');
 
@@ -64,15 +64,22 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     cout<<client1->clientInfo()<<endl;
     cout<<client1->clientRentsInfo();
     rentsManager->returnVehicle(car2);
+    cout<<client1->clientInfo()<<endl;
+    cout<<client1->clientRentsInfo()<<endl;
+    cout<<rentsManager->checkClientRentBallance(client1)<<endl;
+
+    rentsManager->rentVehicle(client1, car2, rentTime);
+    //rentsManager->rentVehicle(client1, car2, rentTime);
+    rentsManager->returnVehicle(car2);
     cout<<client1->clientRentsInfo()<<endl;
     cout<<client1->clientInfo()<<endl;
     cout<<rentsManager->checkClientRentBallance(client1)<<endl;
-
     rentsManager->rentVehicle(client1, car2, rentTime);
     rentsManager->returnVehicle(car2);
     cout<<client1->clientRentsInfo()<<endl;
     cout<<client1->clientInfo()<<endl;
     cout<<rentsManager->checkClientRentBallance(client1)<<endl;
+
     //std::cout<<vehicleRepository->vehicleReport();
 }
 

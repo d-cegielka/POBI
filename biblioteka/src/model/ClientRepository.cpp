@@ -11,22 +11,14 @@ ClientRepository::~ClientRepository() {
 
 }
 
-bool ClientRepository::createClient(ClientPtr client) {
+void ClientRepository::createClient(const ClientPtr &client) {
     if(find(listOfClients.begin(), listOfClients.end(), client) == listOfClients.end())
-    {
         listOfClients.push_back(client);
-        return true;
-    }
-    else return false;
 }
 
-bool ClientRepository::removeClient(ClientPtr client) {
+void ClientRepository::removeClient(const ClientPtr &client) {
     if(find(listOfClients.begin(), listOfClients.end(), client) != listOfClients.end())
-    {
         listOfClients.remove(client);
-        return true;
-    }
-    else return false;
 }
 
 void ClientRepository::changeClientType(ClientPtr client, ClientTypePtr clientType) {

@@ -22,13 +22,13 @@ public:
 
     virtual ~VehicleRepository();
 
-    bool addVehicle(VehiclePtr vehicle);
+    void addVehicle(const VehiclePtr &vehicle);
 
-    bool removeVehicle(VehiclePtr vehicle);
+    void removeVehicle(const VehiclePtr &vehicle);
 
     VehiclePtr getVehicle(int index) const;
 
-    std::string vehicleReport();
+    const std::string &vehicleReport();
 
 };
 

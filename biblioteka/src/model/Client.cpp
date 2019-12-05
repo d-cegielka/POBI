@@ -6,6 +6,7 @@
 #include "model/Client.h"
 #include "model/Rent.h"
 #include "model/StandardClientType.h"
+#include "model/ClientException.h"
 
 using namespace std;
 
@@ -17,7 +18,14 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
                personalID(personalId),
                address(new Address(address_street,address_number)),
                registredAddress(new Address(registredAddress_street,registredAddress_number)),
-               clientType(new StandardClientType()) {}
+               clientType(new StandardClientType()) {
+    if(firstName == "")
+        throw ClientException("Imię jest wymagane!");
+    if(lastName == "")
+        throw ClientException("Nazwisko jest wymagane!");
+    if(personalId == "")
+        throw ClientException("PESEL jest wymagany!");
+}
 
 Client::~Client() {}
 
@@ -43,12 +51,12 @@ const string &Client::getPersonalId() const {
     return personalID;
 }
 
-void Client::setAddress(string street, string number) {
+void Client::setAddress(const string &street, const string &number) {
     address->setStreet(street);
     address->setNumber(number);
 }
 
-void Client::setRegistredAddress(string street, string number) {
+void Client::setRegistredAddress(const string &street, const string &number) {
     registredAddress->setStreet(street);
     registredAddress->setNumber(number);
 }
@@ -70,22 +78,14 @@ const double Client::getClientDiscount(double RentPrice) const {
 }
 
 
-bool Client::addRent(RentPtr rent) {
+void Client::addRent(const RentPtr &rent) {
     if(find(rents.begin(),rents.end(),rent) == rents.end())
-    {
         rents.push_back(rent);
-        return true;
-    }
-    else return false;
 }
 
-bool Client::removeRent(RentPtr rent) {
+void Client::removeRent(const RentPtr &rent) {
     if(find(rents.begin(),rents.end(),rent) != rents.end())
-    {
         rents.remove(rent);
-        return true;
-    }
-    else return false;
 }
 
 
