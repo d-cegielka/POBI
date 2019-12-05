@@ -27,7 +27,7 @@ const string Client::clientInfo() const {
             .append("\nPESEL: ").append(personalID).append("\nAdres zameldowania: ")
             .append(registredAddress->getStreet()).append(" ").append(registredAddress->getNumber())
             .append("\nAdres zamieszkania: ").append(address->getStreet()).append(" ").append(
-                    address->getNumber()).append("\n");
+                    address->getNumber()).append("\n").append(getClientType()).append("\n");
     return infoClient;
 }
 

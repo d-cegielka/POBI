@@ -2,8 +2,8 @@
 // Created by Kamil Zarych <224546@edu.p.lodz.pl> on 25.11.2019.
 //
 
-#ifndef POBIPROJECT_CURRENTRENTSREPOSITORY_H
-#define POBIPROJECT_CURRENTRENTSREPOSITORY_H
+#ifndef POBIPROJECT_RENTSREPOSITORY_H
+#define POBIPROJECT_RENTSREPOSITORY_H
 
 #include <string>
 #include <list>
@@ -11,14 +11,14 @@
 
 typedef std::shared_ptr <Rent> RentPtr;
 
-class CurrentRentsRepository {
+class RentsRepository {
 private:
     std::list<RentPtr> rentsRepository;
 
 public:
-    CurrentRentsRepository();
+    RentsRepository();
 
-    virtual ~CurrentRentsRepository();
+    virtual ~RentsRepository();
 
     const bool createRent(const RentPtr &rentToAdd);
 
@@ -28,10 +28,12 @@ public:
 
     ClientPtr getClientForRentedVehicle(const VehiclePtr &vehicle) const;
 
+    const std::list<RentPtr> getAllClientRents(const ClientPtr &client) const;
+
     std::string rentReport();
 
 
 };
 
 
-#endif //POBIPROJECT_CURRENTRENTSREPOSITORY_H
+#endif //POBIPROJECT_RENTSREPOSITORY_H

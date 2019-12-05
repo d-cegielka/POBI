@@ -3,6 +3,8 @@
 //
 
 #include "model/RentsManager.h"
+#include "model/PremiumClientType.h"
+#include "model/VipClientType.h"
 
 using namespace std;
 using namespace boost::local_time;
@@ -41,10 +43,32 @@ void RentsManager::returnVehicle(const VehiclePtr &vehicle) {
                 vehicle->setIsAvailability(true);
                 currentRents->removeRent(rent);
                 archiveRents->createRent(rent);
-                //changeClientType(client);
+                changeClientType(client);
                 break;
             }
         }
     }
+}
+
+void RentsManager::changeClientType(const ClientPtr &client) {
+    if(checkClientRentBallance(client) >= 2500) {
+        clients->changeClientType(client,make_shared<PremiumClientType>());
+    }
+    if(checkClientRentBallance(client) >= 6000) {
+        clients->changeClientType(client,make_shared<VipClientType>());
+    }
+}
+
+const double RentsManager::checkClientRentBallance(const ClientPtr &client) const{
+    list<RentPtr> rents = getAllClientRents(client);
+    double balance = 0.0;
+    for(auto rent:rents) {
+        balance += rent->getRentPrice();
+    }
+    return balance;
+}
+
+const list<RentPtr> RentsManager::getAllClientRents(const ClientPtr &client) const {
+    return archiveRents->getAllClientRents(client);
 }
 

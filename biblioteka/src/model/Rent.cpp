@@ -7,7 +7,7 @@
 #include <boost/uuid/uuid_io.hpp>
 #include "model/Vehicle.h"
 #include "model/Client.h"
-#include "model/CurrentRentsRepository.h"
+#include "model/RentsRepository.h"
 
 using namespace std;
 using namespace boost::uuids;

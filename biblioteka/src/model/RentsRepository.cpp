@@ -2,15 +2,15 @@
 // Created by Kamil Zarych <224546@edu.p.lodz.pl> on 25.11.2019.
 //
 
-#include "model/CurrentRentsRepository.h"
+#include "model/RentsRepository.h"
 #include "model/Vehicle.h"
 using namespace std;
 
-CurrentRentsRepository::CurrentRentsRepository() = default;
+RentsRepository::RentsRepository() = default;
 
-CurrentRentsRepository::~CurrentRentsRepository() = default;
+RentsRepository::~RentsRepository() = default;
 
-const bool CurrentRentsRepository::createRent(const RentPtr &rentToAdd) {
+const bool RentsRepository::createRent(const RentPtr &rentToAdd) {
     for(auto rent:rentsRepository)
         if(rent == rentToAdd)
             return false;
@@ -19,7 +19,7 @@ const bool CurrentRentsRepository::createRent(const RentPtr &rentToAdd) {
     return true;
 }
 
-const bool CurrentRentsRepository::removeRent(const RentPtr &rentToRemove) {
+const bool RentsRepository::removeRent(const RentPtr &rentToRemove) {
     for(auto rent:rentsRepository)
     {
         if(rent == rentToRemove)
@@ -31,7 +31,7 @@ const bool CurrentRentsRepository::removeRent(const RentPtr &rentToRemove) {
     return false;
 }
 
-const std::string CurrentRentsRepository::getClientInfoForRentedVehicle(const VehiclePtr &vehicle) const {
+const std::string RentsRepository::getClientInfoForRentedVehicle(const VehiclePtr &vehicle) const {
     if(vehicle->isAvailability()) return "Pojazd nie jest wypożyczony, brak informacji o kliencie!";
 
     for(auto rent:rentsRepository){
@@ -41,7 +41,7 @@ const std::string CurrentRentsRepository::getClientInfoForRentedVehicle(const Ve
 }
 
 
-ClientPtr CurrentRentsRepository::getClientForRentedVehicle(const VehiclePtr &vehicle) const {
+ClientPtr RentsRepository::getClientForRentedVehicle(const VehiclePtr &vehicle) const {
     if(vehicle->isAvailability()) return nullptr;
 
     for(auto rent:rentsRepository){
@@ -50,7 +50,7 @@ ClientPtr CurrentRentsRepository::getClientForRentedVehicle(const VehiclePtr &ve
     }
 }
 
-std::string CurrentRentsRepository::rentReport() {
+std::string RentsRepository::rentReport() {
     string rentInfo;
     if(rentsRepository.size() != 0){
         for(auto rent:rentsRepository)
@@ -60,4 +60,11 @@ std::string CurrentRentsRepository::rentReport() {
     } else return "Brak wypożyczeń!";
 }
 
-
+const list<RentPtr> RentsRepository::getAllClientRents(const ClientPtr &client) const {
+    list<RentPtr> rents;
+    for(const auto rent:rentsRepository){
+        if(rent->getClient() == client)
+            rents.push_back(rent);
+    }
+    return rents;
+}

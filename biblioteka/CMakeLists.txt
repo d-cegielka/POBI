@@ -12,7 +12,7 @@ set(SOURCE_FILES
     src/model/Bicycle.cpp
     src/model/Car.cpp
     src/model/Mope.cpp
-    src/model/CurrentRentsRepository.cpp
+        src/model/RentsRepository.cpp
     src/model/VehicleRepository.cpp
     src/model/ClientType.cpp
     src/model/StandardClientType.cpp

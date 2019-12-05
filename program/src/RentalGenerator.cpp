@@ -13,6 +13,8 @@
 #include <memory>
 
 using namespace std;
+using namespace boost::local_time;
+using namespace boost::posix_time;
 
 typedef shared_ptr<Car> CarPtr;
 typedef shared_ptr<Mope> MopePtr;
@@ -31,7 +33,7 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     clientRepository->createClient(client2);
 
     CarPtr car1 = make_shared<Car>("CA1111", 110, 1000, 'A');
-    CarPtr car2 = make_shared<Car>("CA2222", 120, 1300, 'E');
+    CarPtr car2 = make_shared<Car>("CA2222", 6000, 1300, 'E');
     CarPtr car3 = make_shared<Car>("CA3333", 130, 1500, 'C');
     CarPtr car4 = make_shared<Car>("CA4444", 140, 2000, 'B');
 
@@ -56,12 +58,21 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     vehicleRepository->addVehicle(bicycle1);
     vehicleRepository->addVehicle(bicycle2);
 
-    rentsManager->rentVehicle(client1, car2, nullptr);
-    std::cout<<client1->clientRentsInfo();
+    time_zone_ptr zone(new posix_time_zone("CET"));
+    local_date_timePtr rentTime = make_shared<local_date_time>(local_sec_clock::local_time(zone)-hours(23));
+    rentsManager->rentVehicle(client1, car2, rentTime);
+    cout<<client1->clientInfo()<<endl;
+    cout<<client1->clientRentsInfo();
     rentsManager->returnVehicle(car2);
-    std::cout<<client1->clientRentsInfo();
+    cout<<client1->clientRentsInfo()<<endl;
+    cout<<client1->clientInfo()<<endl;
+    cout<<rentsManager->checkClientRentBallance(client1)<<endl;
 
-
+    rentsManager->rentVehicle(client1, car2, rentTime);
+    rentsManager->returnVehicle(car2);
+    cout<<client1->clientRentsInfo()<<endl;
+    cout<<client1->clientInfo()<<endl;
+    cout<<rentsManager->checkClientRentBallance(client1)<<endl;
     //std::cout<<vehicleRepository->vehicleReport();
 }
 

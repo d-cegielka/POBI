@@ -9,7 +9,7 @@
 #include <boost/date_time/local_time/local_time.hpp>
 #include <string>
 
-class CurrentRentsRepository;
+class RentsRepository;
 class Vehicle;
 class Client;
 

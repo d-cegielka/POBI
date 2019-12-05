@@ -3,7 +3,7 @@
 #include "model/Rent.h"
 #include "model/Client.h"
 #include "model/Vehicle.h"
-#include "model/CurrentRentsRepository.h"
+#include "model/RentsRepository.h"
 #include "model/ClientRepository.h"
 #include "model/VehicleRepository.h"
 #include "RentalGenerator.h"
@@ -20,7 +20,7 @@ int main() {
     Client k2("Jan","Kowalski","87110701881","Spokojna","1","Głośna","12");
     Vehicle vehicle1("WW5698",180);
     Vehicle vehicle2("PO9258",140);
-    CurrentRentsRepository* rentsRepository = new CurrentRentsRepository();
+    RentsRepository* rentsRepository = new RentsRepository();
     time_zone_ptr zone(new posix_time_zone("CET"));
     local_date_time *rentalDateTime1 = new local_date_time(local_sec_clock::local_time(zone)-hours(51));
     //local_date_time *rentalDateTime2 = new local_date_time(local_sec_clock::local_time(zone)-hours(258));
@@ -31,8 +31,8 @@ int main() {
     cout<<rent2.rentInfo()<<endl;
     rent1.returnVehicle();
     cout<<rent1.rentInfo()<<endl;*/
-    CurrentRentsRepositoryPtr currentRepository(new CurrentRentsRepository());
-    CurrentRentsRepositoryPtr archiveRepository(new CurrentRentsRepository());
+    CurrentRentsRepositoryPtr currentRepository(new RentsRepository());
+    CurrentRentsRepositoryPtr archiveRepository(new RentsRepository());
     ClientRepositoryPtr clientRepository(new ClientRepository());
     VehicleRepositoryPtr vehicleRepository(new VehicleRepository());
 

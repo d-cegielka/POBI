@@ -5,11 +5,11 @@
 #ifndef POBIPROJECT_RENTSMANAGER_H
 #define POBIPROJECT_RENTSMANAGER_H
 
-#include "CurrentRentsRepository.h"
+#include "RentsRepository.h"
 #include "VehicleRepository.h"
 #include "ClientRepository.h"
 
-typedef std::shared_ptr<CurrentRentsRepository> CurrentRentsRepositoryPtr;
+typedef std::shared_ptr<RentsRepository> CurrentRentsRepositoryPtr;
 typedef std::shared_ptr<VehicleRepository> VehicleRepositoryPtr;
 typedef std::shared_ptr<ClientRepository> ClientRepositoryPtr;
 
@@ -29,6 +29,11 @@ public:
 
     void returnVehicle(const VehiclePtr &vehicle);
 
+    void changeClientType(const ClientPtr &client);
+
+    const double checkClientRentBallance(const ClientPtr &client) const;
+
+    const std::list<RentPtr> getAllClientRents(const ClientPtr &client) const;
 
 };
 
