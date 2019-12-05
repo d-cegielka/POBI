@@ -16,7 +16,7 @@ std::string PremiumClientType::getClientType() const {
     return ClientType::getClientType() + "Premium";
 }
 
-const int PremiumClientType::getDiscount(int RentPrice) const {
+const double PremiumClientType::getDiscount(double RentPrice) const {
     if(RentPrice > 1000) return 125;
     if(RentPrice > 500) return 50;
     if(RentPrice > 250) return 20;

@@ -16,7 +16,7 @@ std::string VipClientType::getClientType() const {
     return ClientType::getClientType() + "VIP";
 }
 
-const int VipClientType::getDiscount(int RentPrice) const {
+const double VipClientType::getDiscount(double RentPrice) const {
     return 0.19 * RentPrice;
 }
 

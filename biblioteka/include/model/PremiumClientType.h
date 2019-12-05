@@ -18,7 +18,7 @@ public:
 
     std::string getClientType() const override;
 
-    const int getDiscount(int RentPrice) const override;
+    const double getDiscount(double RentPrice) const override;
 
 };
 

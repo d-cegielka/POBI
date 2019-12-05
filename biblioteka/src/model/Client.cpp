@@ -27,7 +27,7 @@ const string Client::clientInfo() const {
             .append("\nPESEL: ").append(personalID).append("\nAdres zameldowania: ")
             .append(registredAddress->getStreet()).append(" ").append(registredAddress->getNumber())
             .append("\nAdres zamieszkania: ").append(address->getStreet()).append(" ").append(
-                    address->getNumber()).append("\n");
+                    address->getNumber()).append("\n").append(getClientType()).append("\n");
     return infoClient;
 }
 
@@ -65,7 +65,7 @@ const int Client::getMaxNumOfRentalVehicles() const {
     return clientType->getNumOfRentalVehicles();
 }
 
-const int Client::getClientDiscount(int RentPrice) const {
+const double Client::getClientDiscount(double RentPrice) const {
     return clientType->getDiscount(RentPrice);
 }
 
@@ -91,12 +91,20 @@ bool Client::removeRent(RentPtr rent) {
 
 const string Client::clientRentsInfo() const {
     string info;
-    info.append("Klient: \n").append(clientInfo()).append("\nWypożyczenia: \n");
+    info.append("\nWypożyczenia: \n");
     if(rents.size() !=0) {
         for(auto rent:rents) info.append(rent->rentInfo()).append("\n");
     }
     else info.append("Klient nie ma wypożyczonych pojazdów.");
 
     return info;
+}
+
+const int Client::getNumOfClientRents() const {
+    return rents.size();
+}
+
+const list<RentPtr> &Client::getRentsList() const {
+    return rents;
 }
 

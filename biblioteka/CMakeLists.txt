@@ -12,13 +12,14 @@ set(SOURCE_FILES
     src/model/Bicycle.cpp
     src/model/Car.cpp
     src/model/Mope.cpp
-    src/model/CurrentRentsRepository.cpp
+        src/model/RentsRepository.cpp
     src/model/VehicleRepository.cpp
     src/model/ClientType.cpp
     src/model/StandardClientType.cpp
     src/model/PremiumClientType.cpp
     src/model/VipClientType.cpp
-    src/model/ClientRepository.cpp)
+    src/model/ClientRepository.cpp
+        src/model/RentsManager.cpp)
 
 add_library(Biblioteka ${SOURCE_FILES})
 

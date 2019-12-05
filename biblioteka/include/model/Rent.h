@@ -9,14 +9,13 @@
 #include <boost/date_time/local_time/local_time.hpp>
 #include <string>
 
-class CurrentRentsRepository;
+class RentsRepository;
 class Vehicle;
 class Client;
 
 typedef std::shared_ptr <Client> ClientPtr;
 typedef std::shared_ptr <Vehicle> VehiclePtr;
 typedef std::shared_ptr <boost::local_time::local_date_time> local_date_timePtr;
-typedef std::shared_ptr <CurrentRentsRepository> CurrentRentsRepositoryPtr;
 
 class Rent {
 private:
@@ -25,22 +24,25 @@ private:
     local_date_timePtr returnDateTime;
     ClientPtr client;
     VehiclePtr vehicle;
-    CurrentRentsRepositoryPtr currentRentsRepository;
+    double rentPrice;
 
 public:
-    Rent(ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository);
-    Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository);
+    Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle);
 
     virtual ~Rent();
 
     int rentDuration() const;
-    double rentPrice() const;
+
+    double getRentPrice() const;
+
     std::string rentClientInfo() const;
     std::string rentVehicleInfo() const;
     std::string rentInfo() const;
     void returnVehicle();
 
-    VehiclePtr getVehicle() const;
+    const VehiclePtr &getVehicle() const;
+
+    const ClientPtr &getClient() const;
 };
 
 

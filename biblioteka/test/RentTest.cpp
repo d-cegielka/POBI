@@ -7,7 +7,7 @@
 #include "model/Rent.h"
 #include "model/Vehicle.h"
 #include "model/Client.h"
-#include "model/CurrentRentsRepository.h"
+#include "model/RentsRepository.h"
 
 using namespace boost::local_time;
 using namespace boost::posix_time;

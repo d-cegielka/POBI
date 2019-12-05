@@ -7,32 +7,15 @@
 #include <boost/uuid/uuid_io.hpp>
 #include "model/Vehicle.h"
 #include "model/Client.h"
-#include "model/CurrentRentsRepository.h"
+#include "model/RentsRepository.h"
 
 using namespace std;
 using namespace boost::uuids;
 using namespace boost::local_time;
 using namespace boost::posix_time;
 
-
-Rent::Rent(ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository) : client(client), vehicle(vehicle), uuid(random_generator()()), currentRentsRepository(currentRentsRepository) {
-    time_zone_ptr zone(new posix_time_zone("CET+1"));
-    rentalDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone));
-    if(vehicle->isAvailability()) {
-        currentRentsRepository->createRent(static_cast<RentPtr>(this));
-        vehicle->setIsAvailability(false);
-        this->client->addRent(static_cast<RentPtr>(this));
-    }
-}
-
-Rent::Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle, CurrentRentsRepositoryPtr currentRentsRepository) : rentalDateTime(
-        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), currentRentsRepository(currentRentsRepository) {
-    if(vehicle->isAvailability()) {
-        currentRentsRepository->createRent(static_cast<RentPtr>(this));
-        vehicle->setIsAvailability(false);
-        this->client->addRent(static_cast<RentPtr>(this));
-    }
-}
+Rent::Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle) : rentalDateTime(
+        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), rentPrice(0.0) {}
 
 Rent::~Rent() = default;
 
@@ -43,19 +26,14 @@ int Rent::rentDuration() const {
         else return (duration.length().hours() /24) + 1;
     }
     else return 0;
-
-}
-
-double Rent::rentPrice() const{
-    return this->vehicle->actualRentalPrice() * this->rentDuration();
 }
 
 string Rent::rentClientInfo() const{
-    return this->client->clientInfo();
+    return client->clientInfo();
 }
 
 string Rent::rentVehicleInfo() const{
-    return this->vehicle->vehicleInfo();
+    return vehicle->vehicleInfo();
 }
 
 string Rent::rentInfo() const{
@@ -65,7 +43,7 @@ string Rent::rentInfo() const{
             .append("\nIlość dni wypożyczenia: ").append(to_string(rentDuration()));
     if(returnDateTime != nullptr){
         info.append("\nData zwrotu: ").append(returnDateTime->to_string())
-                .append("\nKoszt wypożyczenia: ").append(to_string(rentPrice()));
+                .append("\nKoszt wypożyczenia: ").append(to_string(rentPrice));
     }
     info.append("\nWypożyczony pojazd\n").append(rentVehicleInfo())
             .append("\nOsoba wypożyczająca\n").append(rentClientInfo());
@@ -75,12 +53,18 @@ string Rent::rentInfo() const{
 void Rent::returnVehicle() {
     time_zone_ptr zone(new posix_time_zone("CET"));
     returnDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone));
-    this->client->removeRent(static_cast<RentPtr>(this));
-    this->vehicle->setIsAvailability(true);
-    this->currentRentsRepository->removeRent(static_cast<RentPtr>(this));
+    rentPrice = vehicle->actualRentalPrice() * rentDuration();
+    rentPrice -= client->getClientDiscount(rentPrice);
 }
 
-VehiclePtr Rent::getVehicle() const {
+const ClientPtr &Rent::getClient() const {
+    return client;
+}
+
+const VehiclePtr &Rent::getVehicle() const {
     return vehicle;
 }
 
+double Rent::getRentPrice() const {
+    return rentPrice;
+}
