@@ -13,6 +13,7 @@ class RentsRepository;
 class Vehicle;
 class Client;
 
+typedef std::weak_ptr <Client> ClientWeakPtr;
 typedef std::shared_ptr <Client> ClientPtr;
 typedef std::shared_ptr <Vehicle> VehiclePtr;
 typedef std::shared_ptr <boost::local_time::local_date_time> local_date_timePtr;
@@ -22,7 +23,7 @@ private:
     boost::uuids::uuid uuid;
     local_date_timePtr rentalDateTime;
     local_date_timePtr returnDateTime;
-    ClientPtr client;
+    ClientWeakPtr client;
     VehiclePtr vehicle;
     double rentPrice;
 
@@ -42,7 +43,7 @@ public:
 
     const VehiclePtr &getVehicle() const;
 
-    const ClientPtr &getClient() const;
+    const ClientPtr getClient() const;
 };
 
 

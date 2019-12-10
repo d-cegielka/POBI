@@ -17,6 +17,8 @@ public:
     virtual std::string vehicleInfo() const;
 
     virtual double actualRentalPrice() const;
+
+    const std::string &getVehicleId() const;
 };
 
 

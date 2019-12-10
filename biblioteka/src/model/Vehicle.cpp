@@ -27,3 +27,7 @@ double Vehicle::actualRentalPrice() const {
     return baseRentPrice;
 }
 
+const string &Vehicle::getVehicleId() const {
+    return id;
+}
+

@@ -26,6 +26,8 @@ public:
 
     void changeClientType(ClientPtr client, ClientTypePtr clientType);
 
+    const bool findClient(const ClientPtr &client) const;
+
 
 };
 

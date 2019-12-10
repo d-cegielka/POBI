@@ -20,8 +20,11 @@ set(SOURCE_FILES
     src/model/VipClientType.cpp
     src/model/ClientRepository.cpp
     src/model/RentsManager.cpp
-        src/model/ClientException.cpp
-    src/model/RentException.cpp src/model/VehicleException.cpp include/model/VehicleException.h)
+    src/model/ClientException.cpp
+    src/model/RentException.cpp
+    src/model/VehicleException.cpp
+    src/model/ClientManager.cpp
+    src/model/VehicleManager.cpp)
 
 add_library(Biblioteka ${SOURCE_FILES})
 

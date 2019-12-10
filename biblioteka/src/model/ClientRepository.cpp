@@ -5,22 +5,29 @@
 #include "model/ClientRepository.h"
 #include <algorithm>
 
-ClientRepository::ClientRepository() {}
-
-ClientRepository::~ClientRepository() {
-
+bool operator ==(const ClientPtr & client1, const ClientPtr & client2) {
+   return (client1->getPersonalId() == client2->getPersonalId());
 }
 
+ClientRepository::ClientRepository() {}
+
+ClientRepository::~ClientRepository() {}
+
 void ClientRepository::createClient(const ClientPtr &client) {
-    if(find(listOfClients.begin(), listOfClients.end(), client) == listOfClients.end())
         listOfClients.push_back(client);
 }
 
 void ClientRepository::removeClient(const ClientPtr &client) {
-    if(find(listOfClients.begin(), listOfClients.end(), client) != listOfClients.end())
         listOfClients.remove(client);
 }
 
 void ClientRepository::changeClientType(ClientPtr client, ClientTypePtr clientType) {
     client->setClientType(clientType);
+}
+
+const bool ClientRepository::findClient(const ClientPtr &client) const {
+    if(find(listOfClients.begin(), listOfClients.end(), client) != listOfClients.end())
+        return true;
+
+    return false;
 }

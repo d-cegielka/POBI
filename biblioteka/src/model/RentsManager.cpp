@@ -11,7 +11,7 @@ using namespace std;
 using namespace boost::local_time;
 using namespace boost::posix_time;
 
-RentsManager::RentsManager(const CurrentRentsRepositoryPtr &currentRents, const CurrentRentsRepositoryPtr &archiveRents,
+RentsManager::RentsManager(const RentsRepositoryPtr &currentRents, const RentsRepositoryPtr &archiveRents,
                            const VehicleRepositoryPtr &vehicles, const ClientRepositoryPtr &clients) : currentRents(
         currentRents), archiveRents(archiveRents), vehicles(vehicles), clients(clients) {}
 
