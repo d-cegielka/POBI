@@ -11,11 +11,13 @@
 
 using namespace std;
 
+bool operator ==(const VehiclePtr & vehicle1, const VehiclePtr & vehicle2) {
+    return (vehicle1->getVehicleId() == vehicle2->getVehicleId());
+}
+
 VehicleRepository::VehicleRepository() {}
 
-VehicleRepository::~VehicleRepository() {
-
-}
+VehicleRepository::~VehicleRepository() {}
 
 VehiclePtr VehicleRepository::getVehicle(int index) const {
    if(index >=0 && index < listOfVehicles.size())
@@ -25,12 +27,10 @@ VehiclePtr VehicleRepository::getVehicle(int index) const {
 }
 
 void VehicleRepository::addVehicle(const VehiclePtr &vehicle) {
-    if(find(listOfVehicles.begin(),listOfVehicles.end(),vehicle) == listOfVehicles.end())
         listOfVehicles.push_back(vehicle);
 }
 
 void VehicleRepository::removeVehicle(const VehiclePtr &vehicle) {
-    if(find(listOfVehicles.begin(),listOfVehicles.end(),vehicle) != listOfVehicles.end())
         listOfVehicles.remove(vehicle);
 }
 
@@ -45,4 +45,12 @@ const std::string VehicleRepository::vehicleReport() {
 
         return raport;
     }
+}
+
+const bool VehicleRepository::findVehicle(const VehiclePtr &vehicle) const {
+    if (find(listOfVehicles.begin(), listOfVehicles.end(), vehicle) != listOfVehicles.end())
+        return true;
+
+    return false;
+
 }

@@ -11,9 +11,7 @@ bool operator ==(const ClientPtr & client1, const ClientPtr & client2) {
 
 ClientRepository::ClientRepository() {}
 
-ClientRepository::~ClientRepository() {
-
-}
+ClientRepository::~ClientRepository() {}
 
 void ClientRepository::createClient(const ClientPtr &client) {
         listOfClients.push_back(client);

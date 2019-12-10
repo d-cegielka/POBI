@@ -30,6 +30,8 @@ public:
 
     const std::string vehicleReport();
 
+    const bool findVehicle(const VehiclePtr &vehicle) const;
+
 };
 
 

@@ -8,10 +8,12 @@
 #include <model/ClientRepository.h>
 #include <model/VehicleRepository.h>
 #include <model/RentsManager.h>
+#include <model/ClientManager.h>
+#include <model/VehicleManager.h>
 #include "RentalGenerator.h"
 #include <iostream>
 #include <memory>
-#include <model/ClientManager.h>
+
 
 using namespace std;
 using namespace boost::local_time;
@@ -22,12 +24,14 @@ typedef shared_ptr<Mope> MopePtr;
 typedef shared_ptr<Bicycle> BicyclePtr;
 typedef shared_ptr<RentsManager> RentsManagerPtr;
 typedef shared_ptr<ClientManager> ClientManagerPtr;
+typedef shared_ptr<VehicleManager> VehicleManagerPtr;
 
 RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository, RentsRepositoryPtr archiveRent, RentsRepositoryPtr currentRent) :
                                 vehicleRepository(vehicleRepository), clientRepository(clientRepository), archiveRents(archiveRent), currentRents(currentRent) {
 
     RentsManagerPtr rentsManager = make_shared<RentsManager>(currentRent, archiveRent, vehicleRepository, clientRepository);
     ClientManagerPtr clientManager = make_shared<ClientManager>(clientRepository);
+    VehicleManagerPtr vehicleManager = make_shared<VehicleManager>(vehicleRepository);
 
     ClientPtr client1 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
     ClientPtr client2 = make_shared<Client>("Jan","Kowalski","87110701881","Spokojna","1","Głośna","12");
@@ -50,18 +54,19 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     BicyclePtr bicycle1 = make_shared<Bicycle>("BC1111", 20);
     BicyclePtr bicycle2 = make_shared<Bicycle>("BC2222", 45);
 
-    vehicleRepository->addVehicle(car1);
-    vehicleRepository->addVehicle(car2);
-    vehicleRepository->addVehicle(car3);
-    vehicleRepository->addVehicle(car4);
+    vehicleManager->addVehicle(car1);
+    vehicleManager->addVehicle(car2);
+    vehicleManager->addVehicle(car3);
+    vehicleManager->addVehicle(car4);
 
-    vehicleRepository->addVehicle(mope1);
-    vehicleRepository->addVehicle(mope2);
-    vehicleRepository->addVehicle(mope3);
-    vehicleRepository->addVehicle(mope4);
+    vehicleManager->addVehicle(mope1);
+    vehicleManager->addVehicle(mope2);
+    vehicleManager->addVehicle(mope3);
+    vehicleManager->addVehicle(mope4);
 
-    vehicleRepository->addVehicle(bicycle1);
-    vehicleRepository->addVehicle(bicycle2);
+    vehicleManager->addVehicle(bicycle1);
+    vehicleManager->addVehicle(bicycle2);
+    vehicleManager->addVehicle(bicycle2);
 
     time_zone_ptr zone(new posix_time_zone("CET"));
     local_date_timePtr rentTime = make_shared<local_date_time>(local_sec_clock::local_time(zone)-hours(23));
