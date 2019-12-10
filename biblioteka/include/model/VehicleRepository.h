@@ -28,7 +28,7 @@ public:
 
     VehiclePtr getVehicle(int index) const;
 
-    const std::string &vehicleReport();
+    const std::string vehicleReport();
 
 };
 

@@ -11,6 +11,7 @@
 #include "RentalGenerator.h"
 #include <iostream>
 #include <memory>
+#include <model/ClientManager.h>
 
 using namespace std;
 using namespace boost::local_time;
@@ -20,17 +21,21 @@ typedef shared_ptr<Car> CarPtr;
 typedef shared_ptr<Mope> MopePtr;
 typedef shared_ptr<Bicycle> BicyclePtr;
 typedef shared_ptr<RentsManager> RentsManagerPtr;
+typedef shared_ptr<ClientManager> ClientManagerPtr;
 
-RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository, CurrentRentsRepositoryPtr archiveRent, CurrentRentsRepositoryPtr currentRent) :
+RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository, RentsRepositoryPtr archiveRent, RentsRepositoryPtr currentRent) :
                                 vehicleRepository(vehicleRepository), clientRepository(clientRepository), archiveRents(archiveRent), currentRents(currentRent) {
 
     RentsManagerPtr rentsManager = make_shared<RentsManager>(currentRent, archiveRent, vehicleRepository, clientRepository);
+    ClientManagerPtr clientManager = make_shared<ClientManager>(clientRepository);
 
     ClientPtr client1 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
     ClientPtr client2 = make_shared<Client>("Jan","Kowalski","87110701881","Spokojna","1","Głośna","12");
+    ClientPtr client3 = make_shared<Client>("Waldfeemar","Noffwak","92875697851", "Warszawska", "22","Batorego","55G");
 
-    clientRepository->createClient(client1);
-    clientRepository->createClient(client2);
+    clientManager->addClient(client1);
+    clientManager->addClient(client2);
+    clientManager->addClient(client3);
 
     CarPtr car1 = make_shared<Car>("CA1111", 110, 1000, 'A');
     CarPtr car2 = make_shared<Car>("CA2222", 1000, 1300, 'E');

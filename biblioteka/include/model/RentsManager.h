@@ -9,18 +9,18 @@
 #include "VehicleRepository.h"
 #include "ClientRepository.h"
 
-typedef std::shared_ptr<RentsRepository> CurrentRentsRepositoryPtr;
+typedef std::shared_ptr<RentsRepository> RentsRepositoryPtr;
 typedef std::shared_ptr<VehicleRepository> VehicleRepositoryPtr;
 typedef std::shared_ptr<ClientRepository> ClientRepositoryPtr;
 
 class RentsManager {
 private:
-    CurrentRentsRepositoryPtr currentRents;
-    CurrentRentsRepositoryPtr archiveRents;
+    RentsRepositoryPtr currentRents;
+    RentsRepositoryPtr archiveRents;
     VehicleRepositoryPtr vehicles;
     ClientRepositoryPtr clients;
 public:
-    RentsManager(const CurrentRentsRepositoryPtr &currentRents, const CurrentRentsRepositoryPtr &archiveRents,
+    RentsManager(const RentsRepositoryPtr &currentRents, const RentsRepositoryPtr &archiveRents,
                  const VehicleRepositoryPtr &vehicles, const ClientRepositoryPtr &clients);
 
     virtual ~RentsManager();

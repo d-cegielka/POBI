@@ -31,8 +31,8 @@ int main() {
     cout<<rent2.rentInfo()<<endl;
     rent1.returnVehicle();
     cout<<rent1.rentInfo()<<endl;*/
-    CurrentRentsRepositoryPtr currentRepository(new RentsRepository());
-    CurrentRentsRepositoryPtr archiveRepository(new RentsRepository());
+    RentsRepositoryPtr currentRepository(new RentsRepository());
+    RentsRepositoryPtr archiveRepository(new RentsRepository());
     ClientRepositoryPtr clientRepository(new ClientRepository());
     VehicleRepositoryPtr vehicleRepository(new VehicleRepository());
 

@@ -34,7 +34,7 @@ void VehicleRepository::removeVehicle(const VehiclePtr &vehicle) {
         listOfVehicles.remove(vehicle);
 }
 
-const std::string &VehicleRepository::vehicleReport() {
+const std::string VehicleRepository::vehicleReport() {
     string raport="";
     if (listOfVehicles.size() == 0)
         return "Brak pojazdów!";

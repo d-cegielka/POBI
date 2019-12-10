@@ -29,7 +29,7 @@ int Rent::rentDuration() const {
 }
 
 string Rent::rentClientInfo() const{
-    return client->clientInfo();
+    return client.lock()->clientInfo();
 }
 
 string Rent::rentVehicleInfo() const{
@@ -54,11 +54,11 @@ void Rent::returnVehicle() {
     time_zone_ptr zone(new posix_time_zone("CET"));
     returnDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone));
     rentPrice = vehicle->actualRentalPrice() * rentDuration();
-    rentPrice -= client->getClientDiscount(rentPrice);
+    rentPrice -= client.lock()->getClientDiscount(rentPrice);
 }
 
-const ClientPtr &Rent::getClient() const {
-    return client;
+const ClientPtr Rent::getClient() const {
+    return client.lock();
 }
 
 const VehiclePtr &Rent::getVehicle() const {
