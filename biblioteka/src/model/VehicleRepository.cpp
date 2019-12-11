@@ -12,7 +12,7 @@
 using namespace std;
 
 bool operator ==(const VehiclePtr & vehicle1, const VehiclePtr & vehicle2) {
-    return (vehicle1->getVehicleId() == vehicle2->getVehicleId());
+    return (vehicle1->getId() == vehicle2->getId());
 }
 
 VehicleRepository::VehicleRepository() {}

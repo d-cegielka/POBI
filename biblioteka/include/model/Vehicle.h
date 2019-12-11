@@ -18,7 +18,7 @@ public:
 
     virtual double actualRentalPrice() const;
 
-    const std::string &getVehicleId() const;
+    const std::string &getId() const;
 };
 
 

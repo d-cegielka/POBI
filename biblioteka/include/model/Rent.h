@@ -30,6 +30,8 @@ private:
 public:
     Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle);
 
+    const std::string getId() const;
+
     virtual ~Rent();
 
     int rentDuration() const;

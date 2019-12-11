@@ -47,7 +47,7 @@ const string &Client::getLastName() const {
     return lastName;
 }
 
-const string &Client::getPersonalId() const {
+const string &Client::getId() const {
     return personalID;
 }
 
