@@ -21,6 +21,8 @@ public:
 
     void removeVehicle(const VehiclePtr &vehicle);
 
+    VehiclePtr operator()(const std::string ID);
+
 };
 
 

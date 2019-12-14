@@ -7,7 +7,6 @@
 
 #include "Client.h"
 #include "Repository.h"
-#include <memory>
 
 
 typedef std::shared_ptr<Client> ClientPtr;
