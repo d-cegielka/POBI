@@ -4,31 +4,11 @@
 
 #include "model/RentsRepository.h"
 #include "model/Vehicle.h"
+
 using namespace std;
 
-RentsRepository::RentsRepository() = default;
-
-RentsRepository::~RentsRepository() = default;
-
-void RentsRepository::createRent(const RentPtr &rentToAdd) {
-    for(auto rent:rentsRepository)
-        if(rent == rentToAdd)
-        break;
-
-    rentsRepository.push_back(rentToAdd);
-}
-
-void RentsRepository::removeRent(const RentPtr &rentToRemove) {
-    for(auto rent:rentsRepository){
-        if(rent == rentToRemove){
-            rentsRepository.remove(rentToRemove);
-            break;
-        }
-    }
-}
-
 const std::string RentsRepository::getClientInfoForRentedVehicle(const VehiclePtr &vehicle) const {
-    for(auto rent:rentsRepository){
+    for(auto rent:listElements){
         if(rent->getVehicle() == vehicle)
             return rent->rentClientInfo();
     }
@@ -37,7 +17,7 @@ const std::string RentsRepository::getClientInfoForRentedVehicle(const VehiclePt
 
 
 ClientPtr RentsRepository::getClientForRentedVehicle(const VehiclePtr &vehicle) const {
-    for(auto rent:rentsRepository){
+    for(auto rent:listElements){
         if(rent->getVehicle() == vehicle)
             return rent->getClient();
     }
@@ -46,8 +26,8 @@ ClientPtr RentsRepository::getClientForRentedVehicle(const VehiclePtr &vehicle) 
 
 std::string RentsRepository::rentReport() {
     string rentInfo;
-    if(rentsRepository.size() != 0){
-        for(auto rent:rentsRepository)
+    if(listElements.size() != 0){
+        for(auto rent:listElements)
             rentInfo.append(rent->rentInfo());
 
         return rentInfo;
@@ -56,7 +36,7 @@ std::string RentsRepository::rentReport() {
 
 const list<RentPtr> RentsRepository::getAllClientRents(const ClientPtr &client) const {
     list<RentPtr> rents;
-    for(const auto rent:rentsRepository){
+    for(auto rent:listElements){
         if(rent->getClient() == client)
             rents.push_back(rent);
     }

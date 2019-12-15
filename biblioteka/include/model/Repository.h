@@ -26,6 +26,8 @@ public:
 
     virtual T find(const T &element) const;
 
+    virtual std::list<T> getAll() const;
+
 };
 
 template<class T>
@@ -58,6 +60,11 @@ T Repository<T>::find(const T &element) const {
 template<class T>
 void Repository<T>::remove(const T &element) {
     listElements.remove(element);
+}
+
+template<class T>
+std::list<T> Repository<T>::getAll() const {
+    return std::list<T>();
 }
 
 
