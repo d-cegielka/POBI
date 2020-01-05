@@ -13,12 +13,17 @@ private:
     const int baseRentPrice;
 public:
     Vehicle(const std::string &id, const int baseRentPrice);
+
     virtual ~Vehicle();
+
     virtual std::string vehicleInfo() const;
 
     virtual double actualRentalPrice() const;
 
-    const std::string &getVehicleId() const;
+    virtual const std::string &getId() const;
+
+    bool operator==(const Vehicle &vehicle) const;
+
 };
 
 

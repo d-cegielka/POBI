@@ -35,7 +35,7 @@ public:
 
     const std::string &getFirstName() const;
     const std::string &getLastName() const;
-    const std::string &getPersonalId() const;
+    const std::string &getId() const;
 
     void setAddress(const std::string &street, const std::string &number);
     void setRegistredAddress(const std::string &street, const std::string &number);
@@ -50,6 +50,8 @@ public:
     void removeRent(const RentPtr &rent);
 
     const std::list<RentPtr> &getRentsList() const;
+
+    bool operator==(const Client &client) const;
 };
 
 

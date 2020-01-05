@@ -16,8 +16,8 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
                firstName(firstName),
                lastName(lastName),
                personalID(personalId),
-               address(new Address(address_street,address_number)),
-               registredAddress(new Address(registredAddress_street,registredAddress_number)),
+               address(make_unique<Address>(address_street,address_number)),
+               registredAddress(make_unique<Address>(registredAddress_street,registredAddress_number)),
                clientType(new StandardClientType()) {
     if(firstName == "")
         throw ClientException("Imię jest wymagane!");
@@ -47,7 +47,7 @@ const string &Client::getLastName() const {
     return lastName;
 }
 
-const string &Client::getPersonalId() const {
+const string &Client::getId() const {
     return personalID;
 }
 
@@ -108,3 +108,6 @@ const list<RentPtr> &Client::getRentsList() const {
     return rents;
 }
 
+bool Client::operator==(const Client &client) const {
+    return personalID == client.personalID;
+}

@@ -4,6 +4,7 @@
 #include "model/Client.h"
 #include "model/Vehicle.h"
 #include "model/RentsRepository.h"
+#include "model/Repository.h"
 #include "model/ClientRepository.h"
 #include "model/VehicleRepository.h"
 #include "RentalGenerator.h"
@@ -33,7 +34,7 @@ int main() {
     cout<<rent1.rentInfo()<<endl;*/
     RentsRepositoryPtr currentRepository(new RentsRepository());
     RentsRepositoryPtr archiveRepository(new RentsRepository());
-    ClientRepositoryPtr clientRepository(new ClientRepository());
+    ClientRepositoryPtr clientRepository = make_shared<ClientRepository>();
     VehicleRepositoryPtr vehicleRepository(new VehicleRepository());
 
     RentalGenerator* rentalGenerator = new RentalGenerator(vehicleRepository, clientRepository, currentRepository, archiveRepository);

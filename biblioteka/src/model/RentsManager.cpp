@@ -30,7 +30,7 @@ void RentsManager::rentVehicle(const ClientPtr &client, const VehiclePtr &vehicl
      if(client->getNumOfClientRents() == client->getMaxNumOfRentalVehicles())
          throw RentException("Klient osiągnał limit wypożycznych pojazdów!");
      RentPtr rent = make_shared<Rent>(finalRentDate, client, vehicle);
-     currentRents->createRent(rent);
+     currentRents->create(rent);
      client->addRent(rent);
 
 }
@@ -42,8 +42,8 @@ void RentsManager::returnVehicle(const VehiclePtr &vehicle) {
             if(rent->getVehicle() == vehicle) {
                 client->removeRent(rent);
                 rent->returnVehicle();
-                currentRents->removeRent(rent);
-                archiveRents->createRent(rent);
+                currentRents->remove(rent);
+                archiveRents->create(rent);
                 changeClientType(client);
                 break;
             }

@@ -35,11 +35,12 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
 
     ClientPtr client1 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
     ClientPtr client2 = make_shared<Client>("Jan","Kowalski","87110701881","Spokojna","1","Głośna","12");
-    ClientPtr client3 = make_shared<Client>("Waldfeemar","Noffwak","92875697851", "Warszawska", "22","Batorego","55G");
+    ClientPtr client3 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
 
     clientManager->addClient(client1);
     clientManager->addClient(client2);
     clientManager->addClient(client3);
+    clientManager->addClient(client1);
 
     CarPtr car1 = make_shared<Car>("CA1111", 110, 1000, 'A');
     CarPtr car2 = make_shared<Car>("CA2222", 1000, 1300, 'E');

@@ -9,11 +9,15 @@ VehicleManager::VehicleManager(const VehicleRepositoryPtr &vehicles) : vehicles(
 VehicleManager::~VehicleManager() {}
 
 void VehicleManager::addVehicle(const VehiclePtr &vehicle) {
-    if (!vehicles->findVehicle(vehicle))
-        vehicles->addVehicle(vehicle);
+    if (vehicles->find(vehicle) == nullptr)
+        vehicles->create(vehicle);
 }
 
 void VehicleManager::removeVehicle(const VehiclePtr &vehicle) {
-    if (vehicles->findVehicle(vehicle))
-        vehicles->removeVehicle(vehicle);
+    if (vehicles->find(vehicle) != nullptr)
+        vehicles->remove(vehicle);
+}
+
+VehiclePtr VehicleManager::operator()(const std::string ID) {
+    return VehiclePtr(vehicles->find(ID));
 }

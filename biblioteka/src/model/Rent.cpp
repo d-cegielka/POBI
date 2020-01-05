@@ -68,3 +68,7 @@ const VehiclePtr &Rent::getVehicle() const {
 double Rent::getRentPrice() const {
     return rentPrice;
 }
+
+const std::string Rent::getId() const {
+    return to_string(uuid);
+}

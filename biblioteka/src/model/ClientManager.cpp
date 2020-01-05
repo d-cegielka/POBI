@@ -9,11 +9,15 @@ ClientManager::ClientManager(const ClientRepositoryPtr &clients) : clients(clien
 ClientManager::~ClientManager() {}
 
 void ClientManager::addClient(const ClientPtr &client) {
-    if(!clients->findClient(client))
-        clients->createClient(client);
+    if(clients->find(client) == nullptr)
+        clients->create(client);
 }
 
 void ClientManager::removeClient(const ClientPtr &client) {
-    if(clients->findClient(client))
-        clients->removeClient(client);
+    if(clients->find(client) != nullptr)
+        clients->remove(client);
+}
+
+ClientPtr ClientManager::operator()(const std::string ID) {
+    return ClientPtr(clients->find(ID));
 }

@@ -6,30 +6,14 @@
 #define POBIPROJECT_CLIENTREPOSITORY_H
 
 #include "Client.h"
-#include <memory>
+#include "Repository.h"
 
 
 typedef std::shared_ptr<Client> ClientPtr;
 
-class ClientRepository {
-private:
-    std::list<ClientPtr> listOfClients;
-
+class ClientRepository : public Repository<ClientPtr> {
 public:
-    ClientRepository();
-
-    virtual ~ClientRepository();
-
-    void createClient(const ClientPtr &client);
-
-    void removeClient(const ClientPtr &client);
-
-    void changeClientType(ClientPtr client, ClientTypePtr clientType);
-
-    const bool findClient(const ClientPtr &client) const;
-
-
+    virtual void changeClientType(ClientPtr client, ClientTypePtr clientType);
 };
-
 
 #endif //POBIPROJECT_CLIENTREPOSITORY_H

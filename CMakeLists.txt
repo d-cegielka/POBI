@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.4)
 #Parametry konfiguracyjne cmake
 set(CMAKE_CXX_COMPILER g++)#wymaga by g++ był na ścieżce
 set(CMAKE_C_COMPILER gcc)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #Profil debug i maksymalny poziom debug info g3 oraz format debug info na dwarf-4 (musi być gdb w wersji 7)

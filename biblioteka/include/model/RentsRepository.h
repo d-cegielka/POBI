@@ -8,22 +8,12 @@
 #include <string>
 #include <list>
 #include "Rent.h"
+#include "Repository.h"
 
 typedef std::shared_ptr <Rent> RentPtr;
 
-class RentsRepository {
-private:
-    std::list<RentPtr> rentsRepository;
-
+class RentsRepository : public Repository<RentPtr> {
 public:
-    RentsRepository();
-
-    virtual ~RentsRepository();
-
-    void createRent(const RentPtr &rentToAdd);
-
-    void removeRent(const RentPtr &rentToRemove);
-
     const std::string getClientInfoForRentedVehicle(const VehiclePtr &vehicle) const;
 
     ClientPtr getClientForRentedVehicle(const VehiclePtr &vehicle) const;
@@ -31,7 +21,6 @@ public:
     const std::list<RentPtr> getAllClientRents(const ClientPtr &client) const;
 
     std::string rentReport();
-
 
 };
 

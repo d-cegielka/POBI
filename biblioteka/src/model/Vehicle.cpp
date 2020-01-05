@@ -27,7 +27,11 @@ double Vehicle::actualRentalPrice() const {
     return baseRentPrice;
 }
 
-const string &Vehicle::getVehicleId() const {
+const string &Vehicle::getId() const {
     return id;
+}
+
+bool Vehicle::operator==(const Vehicle &vehicle) const {
+    return id == vehicle.id;
 }
 
