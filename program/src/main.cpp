@@ -34,7 +34,6 @@ int main() {
     cout<<rent1.rentInfo()<<endl;*/
     RentsRepositoryPtr currentRepository(new RentsRepository());
     RentsRepositoryPtr archiveRepository(new RentsRepository());
-    //ClientRepositoryPtr clientRepository(new ClientRepository());
     ClientRepositoryPtr clientRepository = make_shared<ClientRepository>();
     VehicleRepositoryPtr vehicleRepository(new VehicleRepository());
 

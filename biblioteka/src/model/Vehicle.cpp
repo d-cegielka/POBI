@@ -31,3 +31,7 @@ const string &Vehicle::getId() const {
     return id;
 }
 
+bool Vehicle::operator==(const Vehicle &vehicle) const {
+    return id == vehicle.id;
+}
+

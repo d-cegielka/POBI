@@ -50,6 +50,8 @@ public:
     void removeRent(const RentPtr &rent);
 
     const std::list<RentPtr> &getRentsList() const;
+
+    bool operator==(const Client &client) const;
 };
 
 

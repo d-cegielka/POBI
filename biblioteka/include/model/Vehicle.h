@@ -21,6 +21,9 @@ public:
     virtual double actualRentalPrice() const;
 
     virtual const std::string &getId() const;
+
+    bool operator==(const Vehicle &vehicle) const;
+
 };
 
 

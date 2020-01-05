@@ -19,7 +19,7 @@ public:
 
     void addClient(const ClientPtr &client);
 
-    void removeClient(const ClientPtr  &client);
+    void removeClient(const ClientPtr &client);
 
     ClientPtr operator()(const std::string ID);
 };
