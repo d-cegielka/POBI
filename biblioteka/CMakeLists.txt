@@ -39,7 +39,7 @@ set(SOURCE_TEST_FILES
         test/master.cpp
         #[[test/RentTest.cpp]]
         test/VehicleTest.cpp
-        test/ClientTest.cpp test/VehicleRepositoryTest.cpp)
+        test/ClientTest.cpp test/VehicleRepositoryTest.cpp test/VehicleManagerTest.cpp test/ClientManagerTest.cpp test/RentsManagerTest.cpp)
 
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include
