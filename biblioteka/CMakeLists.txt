@@ -37,9 +37,9 @@ find_package (Boost 1.60.0 COMPONENTS "unit_test_framework" REQUIRED)
 
 set(SOURCE_TEST_FILES
         test/master.cpp
-        #[[test/RentTest.cpp]]
+        test/RentTest.cpp
         test/VehicleTest.cpp
-        test/ClientTest.cpp test/VehicleRepositoryTest.cpp test/VehicleManagerTest.cpp test/ClientManagerTest.cpp test/RentsManagerTest.cpp)
+        test/ClientTest.cpp test/VehicleRepositoryTest.cpp test/VehicleManagerTest.cpp test/ClientManagerTest.cpp test/RentsManagerTest.cpp test/RentsRepositoryTest.cpp test/ClientRepositoryTest.cpp)
 
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include

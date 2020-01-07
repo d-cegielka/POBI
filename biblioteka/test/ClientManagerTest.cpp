@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_CASE(ClientManagerAddClientTestCase) {
 
 }
 
-BOOST_AUTO_TEST_CASE(VehicleManagerRemoveVehicleTestCase) {
+BOOST_AUTO_TEST_CASE(ClientManagerRemoveVehicleTestCase) {
         ClientRepositoryPtr clientRepo = make_shared<ClientRepository>();
         ClientManagerPtr clientManager = make_shared<ClientManager>(clientRepo);
 
