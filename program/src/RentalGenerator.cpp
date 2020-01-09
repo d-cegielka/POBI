@@ -13,6 +13,7 @@
 #include "RentalGenerator.h"
 #include <iostream>
 #include <memory>
+#include <model/ClientException.h>
 
 
 using namespace std;
@@ -32,6 +33,12 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     RentsManagerPtr rentsManager = make_shared<RentsManager>(currentRent, archiveRent, vehicleRepository, clientRepository);
     ClientManagerPtr clientManager = make_shared<ClientManager>(clientRepository);
     VehicleManagerPtr vehicleManager = make_shared<VehicleManager>(vehicleRepository);
+    try {
+        ClientPtr clientex = make_shared<Client>("","Nowak","", "Warszawska", "22","Batorego","55G");
+    }
+    catch (...){
+        cout << "Przechwycono wyjatek: " << what(<< endl;
+    }
 
     ClientPtr client1 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
     ClientPtr client2 = make_shared<Client>("Jan","Kowalski","87110701881","Spokojna","1","Głośna","12");

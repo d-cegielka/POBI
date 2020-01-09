@@ -2,6 +2,7 @@
 // Created by Kamil Zarych <224546@edu.p.lodz.pl> on 04.12.2019.
 //
 
+#include <memory>
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 #include "model/Client.h"
@@ -9,7 +10,7 @@
 #include "model/PremiumClientType.h"
 #include "model/Vehicle.h"
 #include "model/Rent.h"
-#include <memory>
+#include "model/ClientException.h"
 
 using namespace std;
 using namespace boost::algorithm;
@@ -117,6 +118,16 @@ BOOST_AUTO_TEST_SUITE(ClientSuiteCorrect)
         BOOST_REQUIRE_EQUAL(client->getNumOfClientRents(), 1);
         client->addRent(rent2);
         BOOST_REQUIRE_EQUAL(client->getNumOfClientRents(), 2);
+    }
+
+    BOOST_AUTO_TEST_CASE(ClientExceptionCase)
+    {
+        BOOST_CHECK_NO_THROW(Client client("Waldemar", "Nowak", "92875697851", "Warszawska", "22", "Batorego","55G"));
+        BOOST_CHECK_THROW(Client client("", "Nowak", "92875697851", "Warszawska", "22", "Batorego","55G"), ClientException);
+        BOOST_CHECK_THROW(Client client("Waldemar", "", "92875697851", "Warszawska", "22", "Batorego","55G"), ClientException);
+        BOOST_CHECK_THROW(Client client("Waldemar", "Nowak", "", "Warszawska", "22", "Batorego","55G"), ClientException);
+        BOOST_CHECK_THROW(Client client("Waldemar", "Nowak", "", "Warszawska", "", "Batorego","55G"), ClientException);
+        BOOST_CHECK_THROW(Client client("Waldemar", "Nowak", "", "Warszawska", "22", "","55G"), ClientException);
     }
 
 BOOST_AUTO_TEST_SUITE_END();

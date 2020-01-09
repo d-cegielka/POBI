@@ -2,11 +2,11 @@
 // Created by Dominik Cegiełka <224478@edu.p.lodz.pl> on 07.11.2019.
 //
 
-#include <iostream>
 #include "model/Client.h"
 #include "model/Rent.h"
 #include "model/StandardClientType.h"
 #include "model/ClientException.h"
+#include "model/Address.h"
 
 using namespace std;
 
@@ -18,13 +18,17 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
                personalID(personalId),
                address(make_unique<Address>(address_street,address_number)),
                registredAddress(make_unique<Address>(registredAddress_street,registredAddress_number)),
-               clientType(new StandardClientType()) {
-    if(firstName == "")
-        throw ClientException("Imię jest wymagane!");
-    if(lastName == "")
-        throw ClientException("Nazwisko jest wymagane!");
-    if(personalId == "")
-        throw ClientException("PESEL jest wymagany!");
+               clientType(make_shared<StandardClientType>()) {
+    if(firstName.empty())
+        throw ClientException(ClientException::exceptionClientFirstName);
+    if(lastName.empty())
+        throw ClientException(ClientException::exceptionClientLastName);
+    if(personalId.empty())
+        throw ClientException(ClientException::exceptionClientPersonalId);
+    if(registredAddress_street.empty() or registredAddress_number.empty())
+        throw ClientException(ClientException::exceptionClientRegistredAddress);
+    if(address_street.empty() or address_number.empty())
+        throw ClientException(ClientException::exceptionClientAddress);
 }
 
 Client::~Client() {}
@@ -77,7 +81,6 @@ const double Client::getClientDiscount(double RentPrice) const {
     return clientType->getDiscount(RentPrice);
 }
 
-
 void Client::addRent(const RentPtr &rent) {
     if(find(rents.begin(),rents.end(),rent) == rents.end())
         rents.push_back(rent);
@@ -88,12 +91,12 @@ void Client::removeRent(const RentPtr &rent) {
         rents.remove(rent);
 }
 
-
 const string Client::clientRentsInfo() const {
     string info;
     info.append("\nWypożyczenia: \n");
     if(rents.size() !=0) {
-        for(auto rent:rents) info.append(rent->rentInfo()).append("\n");
+        for(auto rent:rents)
+            info.append(rent->rentInfo()).append("\n");
     }
     else info.append("Klient nie ma wypożyczonych pojazdów.");
 
