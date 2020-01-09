@@ -25,7 +25,7 @@ set(SOURCE_FILES
     src/model/VehicleException.cpp
     src/model/ClientManager.cpp
     src/model/VehicleManager.cpp
-    src/model/Repository.cpp)
+        src/model/ClientManagerException.cpp)
 
 add_library(Biblioteka ${SOURCE_FILES})
 

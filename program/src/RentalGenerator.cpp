@@ -36,8 +36,8 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     try {
         ClientPtr clientex = make_shared<Client>("","Nowak","", "Warszawska", "22","Batorego","55G");
     }
-    catch (...){
-        cout << "Przechwycono wyjatek: " << what(<< endl;
+    catch (logic_error ce){
+        cout << "Przechwycono wyjatek: " << ce.what() << endl;
     }
 
     ClientPtr client1 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");

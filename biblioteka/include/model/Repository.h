@@ -31,12 +31,17 @@ public:
 };
 
 template<class T>
+Repository<T>::~Repository() {}
+
+template<class T>
 void Repository<T>::create(const T &element) {
     listElements.push_back(element);
 }
 
 template<class T>
-Repository<T>::~Repository() {}
+void Repository<T>::remove(const T &element) {
+    listElements.remove(element);
+}
 
 template<class T>
 T Repository<T>::find(const std::string ID) const {
@@ -54,11 +59,6 @@ T Repository<T>::find(const T &element) const {
             return el;
 
     return nullptr;
-}
-
-template<class T>
-void Repository<T>::remove(const T &element) {
-    listElements.remove(element);
 }
 
 template<class T>
