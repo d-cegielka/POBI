@@ -33,12 +33,12 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     RentsManagerPtr rentsManager = make_shared<RentsManager>(currentRent, archiveRent, vehicleRepository, clientRepository);
     ClientManagerPtr clientManager = make_shared<ClientManager>(clientRepository);
     VehicleManagerPtr vehicleManager = make_shared<VehicleManager>(vehicleRepository);
-    try {
+    /*try {
         ClientPtr clientex = make_shared<Client>("","Nowak","", "Warszawska", "22","Batorego","55G");
     }
     catch (logic_error ce){
         cout << "Przechwycono wyjatek: " << ce.what() << endl;
-    }
+    }*/
 
     ClientPtr client1 = make_shared<Client>("Waldemar","Nowak","92875697851", "Warszawska", "22","Batorego","55G");
     ClientPtr client2 = make_shared<Client>("Jan","Kowalski","87110701881","Spokojna","1","Głośna","12");
@@ -46,8 +46,8 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
 
     clientManager->addClient(client1);
     clientManager->addClient(client2);
-    clientManager->addClient(client3);
-    clientManager->addClient(client1);
+    //clientManager->addClient(client3);
+    //clientManager->addClient(client1);
 
     CarPtr car1 = make_shared<Car>("CA1111", 110, 1000, 'A');
     CarPtr car2 = make_shared<Car>("CA2222", 1000, 1300, 'E');
@@ -76,9 +76,9 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
     vehicleManager->addVehicle(bicycle2);
     vehicleManager->addVehicle(bicycle2);
 
-    time_zone_ptr zone(new posix_time_zone("CET"));
-    local_date_timePtr rentTime = make_shared<local_date_time>(local_sec_clock::local_time(zone)-hours(23));
-    rentsManager->rentVehicle(client1, car2, rentTime);
+    time_zone_ptr zone(new posix_time_zone("CET+1"));
+    local_date_timePtr rentTime = make_shared<local_date_time>(local_sec_clock::local_time(zone)-hours(24));
+    rentsManager->rentVehicle(client1, car2, nullptr);
     cout<<client1->clientInfo()<<endl;
     cout<<client1->clientRentsInfo();
     rentsManager->returnVehicle(car2);

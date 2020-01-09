@@ -7,7 +7,6 @@
 #include <boost/uuid/uuid_io.hpp>
 #include "model/Vehicle.h"
 #include "model/Client.h"
-#include "model/RentsRepository.h"
 
 using namespace std;
 using namespace boost::uuids;
@@ -17,7 +16,11 @@ using namespace boost::posix_time;
 Rent::Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle) : rentalDateTime(
         rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), rentPrice(0.0) {}
 
-Rent::~Rent() = default;
+Rent::~Rent() {}
+
+const std::string Rent::getId() const {
+    return to_string(uuid);
+}
 
 int Rent::rentDuration() const {
     if(returnDateTime) {
@@ -67,8 +70,4 @@ const VehiclePtr &Rent::getVehicle() const {
 
 double Rent::getRentPrice() const {
     return rentPrice;
-}
-
-const std::string Rent::getId() const {
-    return to_string(uuid);
 }

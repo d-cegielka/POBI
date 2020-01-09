@@ -21,7 +21,7 @@ set(SOURCE_FILES
     src/model/ClientRepository.cpp
     src/model/RentsManager.cpp
     src/model/ClientException.cpp
-    src/model/RentException.cpp
+        src/model/RentsManagerException.cpp
     src/model/VehicleException.cpp
     src/model/ClientManager.cpp
     src/model/VehicleManager.cpp
