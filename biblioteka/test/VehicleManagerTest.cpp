@@ -1,0 +1,37 @@
+//
+// Created by Kamil Zarych <224546@edu.p.lodz.pl> on 05.01.2020.
+//
+
+#include <boost/test/unit_test.hpp>
+#include <boost/algorithm/string.hpp>
+#include <model/Bicycle.h>
+#include "model/VehicleManager.h"
+
+using namespace std;
+typedef shared_ptr<VehicleManager> VehicleManagerPtr;
+
+BOOST_AUTO_TEST_SUITE(VehicleManagerSuiteCorrect)
+
+    BOOST_AUTO_TEST_CASE(VehicleManagerAddVehicleTestCase) {
+        VehicleRepositoryPtr vehicleRepo = make_shared<VehicleRepository>();
+        VehicleManagerPtr vehicleManager = make_shared<VehicleManager>(vehicleRepo);
+
+        VehiclePtr vehicle1 = make_shared<Bicycle>("BI 1234",30);
+        vehicleManager->addVehicle(vehicle1);
+        BOOST_REQUIRE_EQUAL(vehicleManager->operator()(vehicle1->getId()), vehicle1);
+
+    }
+
+    BOOST_AUTO_TEST_CASE(VehicleManagerRemoveVehicleTestCase) {
+        VehicleRepositoryPtr vehicleRepo = make_shared<VehicleRepository>();
+        VehicleManagerPtr vehicleManager = make_shared<VehicleManager>(vehicleRepo);
+
+        VehiclePtr vehicle1 = make_shared<Bicycle>("BI 1234",30);
+        vehicleManager->addVehicle(vehicle1);
+        BOOST_REQUIRE_EQUAL(vehicleManager->operator()(vehicle1->getId()), vehicle1);
+        vehicleManager->removeVehicle(vehicle1);
+        BOOST_REQUIRE_EQUAL(vehicleManager->operator()(vehicle1->getId()), nullptr);
+
+    }
+
+BOOST_AUTO_TEST_SUITE_END();
