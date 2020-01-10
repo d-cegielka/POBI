@@ -8,10 +8,11 @@
 using namespace std;
 
 Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPrice(baseRentPrice){
-    if(baseRentPrice <= 0)
-        throw VehicleException("Cena bazowa musi być większa od 0!");
     if(id.size() < 3)
-        throw VehicleException("ID pojazdu musi mieć conajmniej 3 znaki!");
+        throw VehicleException(VehicleException::exceptionVehicleId);
+
+    if(baseRentPrice <= 0)
+        throw VehicleException(VehicleException::exceptionVehicleBaseRentPrice);
 }
 
 Vehicle::~Vehicle() {}
