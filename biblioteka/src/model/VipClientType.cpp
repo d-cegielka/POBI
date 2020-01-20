@@ -4,9 +4,9 @@
 
 #include "model/VipClientType.h"
 
-VipClientType::VipClientType() {}
+VipClientType::VipClientType() = default;
 
-VipClientType::~VipClientType() {}
+VipClientType::~VipClientType() = default;
 
 const int VipClientType::getNumOfRentalVehicles() const {
     return -1;

@@ -12,7 +12,7 @@ private:
     const std::string id;
     const int baseRentPrice;
 public:
-    Vehicle(const std::string &id, const int baseRentPrice);
+    Vehicle(const std::string &id, int baseRentPrice);
 
     virtual ~Vehicle();
 
@@ -24,6 +24,7 @@ public:
 
     bool operator==(const Vehicle &vehicle) const;
 
+    bool operator==(const std::string &vehicleId) const;
 };
 
 

@@ -5,13 +5,24 @@
 #ifndef POBIPROJECT_RENTSMANAGER_H
 #define POBIPROJECT_RENTSMANAGER_H
 
-#include "RentsRepository.h"
-#include "VehicleRepository.h"
-#include "ClientRepository.h"
+#include <memory>
+#include <list>
+#include <boost/date_time/local_time/local_time.hpp>
+
+class RentsRepository;
+class ClientRepository;
+class VehicleRepository;
+class Rent;
+class Client;
+class Vehicle;
 
 typedef std::shared_ptr<RentsRepository> RentsRepositoryPtr;
 typedef std::shared_ptr<VehicleRepository> VehicleRepositoryPtr;
 typedef std::shared_ptr<ClientRepository> ClientRepositoryPtr;
+typedef std::shared_ptr<Rent> RentPtr;
+typedef std::shared_ptr<Client> ClientPtr;
+typedef std::shared_ptr<Vehicle> VehiclePtr;
+typedef std::shared_ptr<boost::local_time::local_date_time> local_date_timePtr;
 
 class RentsManager {
 private:
@@ -34,7 +45,6 @@ public:
     const double checkClientRentBallance(const ClientPtr &client) const;
 
     const std::list<RentPtr> getAllClientRents(const ClientPtr &client) const;
-
 };
 
 

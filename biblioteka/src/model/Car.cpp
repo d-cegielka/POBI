@@ -3,13 +3,17 @@
 //
 
 #include "model/Car.h"
+#include "model/VehicleException.h"
 
 using namespace std;
 
 Car::Car(const string &id, const int baseRentPrice, const int engineDisplacement, char segment)
-        : MotorVehicle(id, baseRentPrice, engineDisplacement), segment(segment) {}
+        : MotorVehicle(id, baseRentPrice, engineDisplacement), segment(segment) {
+    if(segment != 'A' && segment != 'B' && segment != 'C' && segment != 'D' && segment != 'E')
+        throw VehicleException(VehicleException::exceptionCarSegment);
+}
 
-Car::~Car() {}
+Car::~Car() = default;
 
 double Car::actualRentalPrice() const {
     return MotorVehicle::actualRentalPrice() * getSegmentMultiplier();

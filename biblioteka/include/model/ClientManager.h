@@ -5,8 +5,12 @@
 #ifndef POBIPROJECT_CLIENTMANAGER_H
 #define POBIPROJECT_CLIENTMANAGER_H
 
-#include "model/ClientRepository.h"
+#include <memory>
 
+class Client;
+class ClientRepository;
+
+typedef std::shared_ptr<Client> ClientPtr;
 typedef std::shared_ptr<ClientRepository> ClientRepositoryPtr;
 
 class ClientManager {

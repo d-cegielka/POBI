@@ -4,9 +4,9 @@
 
 #include "model/StandardClientType.h"
 
-StandardClientType::StandardClientType() {}
+StandardClientType::StandardClientType() = default;
 
-StandardClientType::~StandardClientType() {}
+StandardClientType::~StandardClientType() = default;
 
 const int StandardClientType::getNumOfRentalVehicles() const {
     return 1;

@@ -9,7 +9,6 @@
 #include <boost/date_time/local_time/local_time.hpp>
 #include <string>
 
-class RentsRepository;
 class Vehicle;
 class Client;
 
@@ -26,26 +25,32 @@ private:
     ClientWeakPtr client;
     VehiclePtr vehicle;
     double rentPrice;
-
 public:
     Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle);
 
-    const std::string getId() const;
-
     virtual ~Rent();
+
+    const std::string getId() const;
 
     int rentDuration() const;
 
-    double getRentPrice() const;
-
     std::string rentClientInfo() const;
+
     std::string rentVehicleInfo() const;
+
     std::string rentInfo() const;
+
     void returnVehicle();
+
+    const ClientPtr getClient() const;
 
     const VehiclePtr &getVehicle() const;
 
-    const ClientPtr getClient() const;
+    double getRentPrice() const;
+
+    bool operator==(const Rent &rent) const;
+
+    bool operator==(const std::string &rentid) const;
 };
 
 

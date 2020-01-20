@@ -5,14 +5,12 @@
 #ifndef POBIPROJECT_RENTSREPOSITORY_H
 #define POBIPROJECT_RENTSREPOSITORY_H
 
-#include <string>
-#include <list>
 #include "Rent.h"
 #include "Repository.h"
 
-typedef std::shared_ptr <Rent> RentPtr;
+typedef std::shared_ptr<Rent> RentPtr;
 
-class RentsRepository : public Repository<RentPtr> {
+class RentsRepository : public Repository<Rent> {
 public:
     const std::string getClientInfoForRentedVehicle(const VehiclePtr &vehicle) const;
 
@@ -21,7 +19,6 @@ public:
     const std::list<RentPtr> getAllClientRents(const ClientPtr &client) const;
 
     std::string rentReport();
-
 };
 
 

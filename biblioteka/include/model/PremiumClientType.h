@@ -5,7 +5,6 @@
 #ifndef POBIPROJECT_PREMIUMCLIENTTYPE_H
 #define POBIPROJECT_PREMIUMCLIENTTYPE_H
 
-
 #include "ClientType.h"
 
 class PremiumClientType final : public ClientType {
@@ -19,7 +18,6 @@ public:
     std::string getClientType() const override;
 
     const double getDiscount(double RentPrice) const override;
-
 };
 
 

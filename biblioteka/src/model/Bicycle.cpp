@@ -8,7 +8,7 @@ using namespace std;
 
 Bicycle::Bicycle(const string &id, const int baseRentPrice) : Vehicle(id, baseRentPrice) {}
 
-Bicycle::~Bicycle() {}
+Bicycle::~Bicycle() = default;
 
 string Bicycle::vehicleInfo() const {
     string infoVehicle;

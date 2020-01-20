@@ -5,18 +5,16 @@
 #ifndef POBIPROJECT_VEHICLEREPOSITORY_H
 #define POBIPROJECT_VEHICLEREPOSITORY_H
 
-
 #include "Vehicle.h"
 #include "Repository.h"
-#include <string>
 
 typedef std::shared_ptr<Vehicle> VehiclePtr;
 
-class VehicleRepository : public Repository<VehiclePtr> {
+class VehicleRepository : public Repository<Vehicle> {
 public:
     VehiclePtr getVehicle(int index) const;
 
-    std::string vehicleReport();
+    const std::string vehicleReport() const;
 };
 
 

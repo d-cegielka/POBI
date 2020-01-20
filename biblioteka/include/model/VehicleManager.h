@@ -5,8 +5,12 @@
 #ifndef POBIPROJECT_VEHICLEMANAGER_H
 #define POBIPROJECT_VEHICLEMANAGER_H
 
-#include "model/VehicleRepository.h"
+#include <memory>
 
+class Vehicle;
+class VehicleRepository;
+
+typedef std::shared_ptr<Vehicle> VehiclePtr;
 typedef std::shared_ptr<VehicleRepository> VehicleRepositoryPtr;
 
 class VehicleManager {
@@ -21,8 +25,7 @@ public:
 
     void removeVehicle(const VehiclePtr &vehicle);
 
-    VehiclePtr operator()(const std::string ID);
-
+    VehiclePtr operator()(const std::string& ID);
 };
 
 

@@ -8,6 +8,7 @@
 #include "model/Vehicle.h"
 #include "model/Bicycle.h"
 #include "model/Mope.h"
+#include "model/VehicleException.h"
 
 using namespace boost::algorithm;
 
@@ -66,6 +67,24 @@ BOOST_AUTO_TEST_SUITE(VehicleSuiteCorrect)
     BOOST_AUTO_TEST_CASE(MopeMultiplierTestCase){
         Mope mopeTest("KGHJ",1000,1500);
         BOOST_REQUIRE_EQUAL(mopeTest.getMultiplier(), 1.25);
+    }
+
+    BOOST_AUTO_TEST_CASE(VehicleExceptionsTestCase){
+        BOOST_CHECK_THROW(Vehicle vehicle("D2",50), VehicleException);
+        BOOST_CHECK_THROW(Vehicle vehicle("D3342",-50), VehicleException);
+        BOOST_CHECK_NO_THROW(Vehicle vehicle("D3342",550));
+        BOOST_CHECK_THROW(MotorVehicle motorVehicle("DCXSF56",250,0), VehicleException);
+    }
+
+    BOOST_AUTO_TEST_CASE(MotorVehicleExceptionTestCase){
+        BOOST_CHECK_THROW(MotorVehicle motorVehicle("DCXSF56",250,0), VehicleException);
+        BOOST_CHECK_THROW(MotorVehicle motorVehicle("DCXSF56",250,-250), VehicleException);
+        BOOST_CHECK_NO_THROW(MotorVehicle motorVehicle("DCXSF56",250,1500));
+    }
+
+    BOOST_AUTO_TEST_CASE(CarExceptionTestCase){
+        BOOST_CHECK_THROW(Car car("XSDSFG",450,1799,'G'), VehicleException);
+        BOOST_CHECK_NO_THROW(Car car("XSDSFG",450,1799,'A'));
     }
 
 BOOST_AUTO_TEST_SUITE_END();

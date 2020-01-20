@@ -3,13 +3,17 @@
 //
 
 #include "model/MotorVehicle.h"
+#include "model/VehicleException.h"
 
 using namespace std;
 
 MotorVehicle::MotorVehicle(const string &id, const int baseRentPrice, const int engineDisplacement)
-: Vehicle(id, baseRentPrice), engineDisplacement(engineDisplacement) {}
+: Vehicle(id, baseRentPrice), engineDisplacement(engineDisplacement) {
+    if(engineDisplacement < 100)
+        throw VehicleException(VehicleException::exceptionMotorVehicleEngineDisplacement);
+}
 
-MotorVehicle::~MotorVehicle() {}
+MotorVehicle::~MotorVehicle() = default;
 
 double MotorVehicle::getMultiplier() const {
     if(engineDisplacement < 1000) return 1.0;

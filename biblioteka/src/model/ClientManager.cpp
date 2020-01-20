@@ -3,19 +3,23 @@
 //
 
 #include "model/ClientManager.h"
+#include "model/ClientManagerException.h"
+#include "model/ClientRepository.h"
 
 ClientManager::ClientManager(const ClientRepositoryPtr &clients) : clients(clients) {}
 
-ClientManager::~ClientManager() {}
+ClientManager::~ClientManager() = default;
 
 void ClientManager::addClient(const ClientPtr &client) {
-    if(clients->find(client) == nullptr)
-        clients->create(client);
+    if(clients->find(client) != nullptr)
+        throw ClientManagerException(ClientManagerException::exceptionClientExist);
+    clients->create(client);
 }
 
 void ClientManager::removeClient(const ClientPtr &client) {
-    if(clients->find(client) != nullptr)
-        clients->remove(client);
+    if(clients->find(client) == nullptr)
+        throw ClientManagerException(ClientManagerException::exceptionClientNotExist);
+    clients->remove(client);
 }
 
 ClientPtr ClientManager::operator()(const std::string ID) {

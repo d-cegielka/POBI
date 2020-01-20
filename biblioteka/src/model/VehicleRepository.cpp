@@ -13,7 +13,7 @@ VehiclePtr VehicleRepository::getVehicle(int index) const {
    return nullptr;
 }
 
-std::string VehicleRepository::vehicleReport() {
+const std::string VehicleRepository::vehicleReport() const {
     string raport;
     if (listElements.size() == 0)
         return "Brak pojazdów!";

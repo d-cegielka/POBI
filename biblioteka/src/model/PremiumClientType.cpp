@@ -4,9 +4,9 @@
 
 #include "model/PremiumClientType.h"
 
-PremiumClientType::PremiumClientType() {}
+PremiumClientType::PremiumClientType() = default;
 
-PremiumClientType::~PremiumClientType() {}
+PremiumClientType::~PremiumClientType() = default;
 
 const int PremiumClientType::getNumOfRentalVehicles() const {
     return 3;

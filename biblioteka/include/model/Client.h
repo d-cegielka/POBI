@@ -8,10 +8,10 @@
 #include <string>
 #include <list>
 #include <memory>
-#include "Address.h"
-#include "ClientType.h"
 
 class Rent;
+class ClientType;
+class Address;
 
 typedef std::unique_ptr<Address> AddressPtr;
 typedef std::shared_ptr<Rent> RentPtr;
@@ -29,29 +29,42 @@ private:
 public:
     Client(const std::string &firstName, const std::string &lastName, const std::string &personalId,const std::string &registredAddress_street,
            const std::string &registredAddress_number, const std::string &address_street, const std::string &address_number);
+
     virtual ~Client();
+
     const std::string clientInfo() const;
+
     const std::string clientRentsInfo() const;
 
     const std::string &getFirstName() const;
+
     const std::string &getLastName() const;
+
     const std::string &getId() const;
 
     void setAddress(const std::string &street, const std::string &number);
+
     void setRegistredAddress(const std::string &street, const std::string &number);
 
     void setClientType(const ClientTypePtr &clientType);
+
     const std::string getClientType() const;
+
     const int getMaxNumOfRentalVehicles() const;
+
     const double getClientDiscount(double RentPrice) const;
+
     const int getNumOfClientRents() const;
 
     void addRent(const RentPtr &rent);
+
     void removeRent(const RentPtr &rent);
 
     const std::list<RentPtr> &getRentsList() const;
 
     bool operator==(const Client &client) const;
+
+    bool operator==(const std::string &clientid) const;
 };
 
 

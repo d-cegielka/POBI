@@ -7,7 +7,6 @@
 #include <boost/uuid/uuid_io.hpp>
 #include "model/Vehicle.h"
 #include "model/Client.h"
-#include "model/RentsRepository.h"
 
 using namespace std;
 using namespace boost::uuids;
@@ -15,15 +14,19 @@ using namespace boost::local_time;
 using namespace boost::posix_time;
 
 Rent::Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle) : rentalDateTime(
-        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), rentPrice(0.0) {}
+        rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), rentPrice(vehicle->actualRentalPrice()) {}
 
 Rent::~Rent() = default;
+
+const std::string Rent::getId() const {
+    return to_string(uuid);
+}
 
 int Rent::rentDuration() const {
     if(returnDateTime) {
         local_time_period duration(*rentalDateTime, *returnDateTime);
         if (duration.length().hours() % 24 == 0) return duration.length().hours() /24;
-        else return (duration.length().hours() /24) + 1;
+        else return (duration.length().hours() / 24) + 1;
     }
     else return 0;
 }
@@ -53,7 +56,7 @@ string Rent::rentInfo() const{
 void Rent::returnVehicle() {
     time_zone_ptr zone(new posix_time_zone("CET"));
     returnDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone));
-    rentPrice = vehicle->actualRentalPrice() * rentDuration();
+    rentPrice *= rentDuration();
     rentPrice -= client.lock()->getClientDiscount(rentPrice);
 }
 
@@ -69,6 +72,10 @@ double Rent::getRentPrice() const {
     return rentPrice;
 }
 
-const std::string Rent::getId() const {
-    return to_string(uuid);
+bool Rent::operator==(const Rent &rent) const {
+    return uuid == rent.uuid;
+}
+
+bool Rent::operator==(const std::string &rentid) const {
+    return to_string(uuid) == rentid;
 }
