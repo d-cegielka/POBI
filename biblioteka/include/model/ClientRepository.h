@@ -11,7 +11,7 @@
 
 typedef std::shared_ptr<Client> ClientPtr;
 
-class ClientRepository : public Repository<ClientPtr> {
+class ClientRepository : public Repository<Client> {
 public:
     virtual void changeClientType(ClientPtr client, ClientTypePtr clientType);
 };

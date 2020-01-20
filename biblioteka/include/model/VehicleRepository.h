@@ -12,7 +12,7 @@
 
 typedef std::shared_ptr<Vehicle> VehiclePtr;
 
-class VehicleRepository : public Repository<VehiclePtr> {
+class VehicleRepository : public Repository<Vehicle> {
 public:
     VehiclePtr getVehicle(int index) const;
 

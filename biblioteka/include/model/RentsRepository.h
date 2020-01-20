@@ -12,7 +12,7 @@
 
 typedef std::shared_ptr <Rent> RentPtr;
 
-class RentsRepository : public Repository<RentPtr> {
+class RentsRepository : public Repository<Rent> {
 public:
     const std::string getClientInfoForRentedVehicle(const VehiclePtr &vehicle) const;
 

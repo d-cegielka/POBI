@@ -47,6 +47,10 @@ public:
     const VehiclePtr &getVehicle() const;
 
     double getRentPrice() const;
+
+    bool operator==(const Rent &rent) const;
+
+    bool operator==(const std::string &rentid) const;
 };
 
 

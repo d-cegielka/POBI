@@ -63,6 +63,8 @@ public:
     const std::list<RentPtr> &getRentsList() const;
 
     bool operator==(const Client &client) const;
+
+    bool operator==(const std::string &clientid) const;
 };
 
 

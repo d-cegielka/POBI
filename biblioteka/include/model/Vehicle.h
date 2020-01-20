@@ -24,6 +24,8 @@ public:
 
     bool operator==(const Vehicle &vehicle) const;
 
+    bool operator==(const std::string &vehicleId) const;
+
 };
 
 

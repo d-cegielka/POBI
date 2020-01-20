@@ -36,3 +36,7 @@ bool Vehicle::operator==(const Vehicle &vehicle) const {
     return id == vehicle.id;
 }
 
+bool Vehicle::operator==(const std::string &vehicleId) const {
+    return id == vehicleId;
+}
+

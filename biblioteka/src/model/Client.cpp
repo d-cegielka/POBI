@@ -114,3 +114,7 @@ const list<RentPtr> &Client::getRentsList() const {
 bool Client::operator==(const Client &client) const {
     return personalID == client.personalID;
 }
+
+bool Client::operator==(const std::string &clientid) const {
+    return personalID == clientid;
+}

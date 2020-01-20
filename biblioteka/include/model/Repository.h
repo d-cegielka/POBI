@@ -13,20 +13,20 @@
 template <class T>
 class Repository {
 protected:
-    std::list<T> listElements;
+    std::list<std::shared_ptr<T>> listElements;
 
 public:
     virtual ~Repository();
 
-    virtual void create(const T &element);
+    virtual void create(const std::shared_ptr<T> &element);
 
-    virtual void remove(const T &element);
+    virtual void remove(const std::shared_ptr<T> &element);
 
-    virtual T find(const std::string ID) const;
+    virtual std::shared_ptr<T> find(const std::string ID) const;
 
-    virtual T find(const T &element) const;
+    virtual std::shared_ptr<T> find(const std::shared_ptr<T> &element) const;
 
-    virtual std::list<T> getAll() const;
+    virtual std::list<std::shared_ptr<T>> getAll() const;
 
 };
 
@@ -34,36 +34,38 @@ template<class T>
 Repository<T>::~Repository() {}
 
 template<class T>
-void Repository<T>::create(const T &element) {
+void Repository<T>::create(const std::shared_ptr<T> &element) {
     listElements.push_back(element);
 }
 
 template<class T>
-void Repository<T>::remove(const T &element) {
+void Repository<T>::remove(const std::shared_ptr<T> &element) {
     listElements.remove(element);
 }
 
 template<class T>
-T Repository<T>::find(const std::string ID) const {
-    for(auto element:listElements)
-        if(element->getId() == ID)
-            return element;
+std::shared_ptr<T> Repository<T>::find(const std::string ID) const {
+    auto it = std::find_if(listElements.begin(), listElements.end(),
+                           [&ID](const std::shared_ptr<T> &x) -> bool { return *x == ID; });
+    if (it != listElements.end())
+        return *it;
 
     return nullptr;
 }
 
 template<class T>
-T Repository<T>::find(const T &element) const {
-    for(auto el:listElements)
-        if(el->getId() == element->getId())
-            return el;
+std::shared_ptr<T> Repository<T>::find(const std::shared_ptr<T> &element) const {
+    auto it = std::find_if(listElements.begin(), listElements.end(),
+                           [&element](const std::shared_ptr<T> &x) -> bool { return *x == *element; });
+    if (it != listElements.end())
+        return *it;
 
     return nullptr;
 }
 
 template<class T>
-std::list<T> Repository<T>::getAll() const {
-    return std::list<T>();
+std::list<std::shared_ptr<T>> Repository<T>::getAll() const {
+    return std::list<std::shared_ptr<T>>();
 }
 
 #endif //POBIPROJECT_REPOSITORY_H
