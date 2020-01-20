@@ -6,6 +6,8 @@
 #include <boost/algorithm/string.hpp>
 #include <model/Bicycle.h>
 #include "model/VehicleManager.h"
+#include "model/VehicleRepository.h"
+#include "model/VehicleManagerException.h"
 
 using namespace std;
 typedef shared_ptr<VehicleManager> VehicleManagerPtr;
@@ -32,6 +34,17 @@ BOOST_AUTO_TEST_SUITE(VehicleManagerSuiteCorrect)
         vehicleManager->removeVehicle(vehicle1);
         BOOST_REQUIRE_EQUAL(vehicleManager->operator()(vehicle1->getId()), nullptr);
 
+    }
+
+    BOOST_AUTO_TEST_CASE(VehicleManagerExceptionTestCase) {
+        VehicleRepositoryPtr vehicleRepo = make_shared<VehicleRepository>();
+        VehicleManagerPtr vehicleManager = make_shared<VehicleManager>(vehicleRepo);
+
+        VehiclePtr vehicle1 = make_shared<Bicycle>("BI 1234",30);
+        BOOST_CHECK_THROW(vehicleManager->removeVehicle(vehicle1),VehicleManagerException);
+        BOOST_CHECK_NO_THROW( vehicleManager->addVehicle(vehicle1));
+        BOOST_CHECK_THROW(vehicleManager->addVehicle(vehicle1),VehicleManagerException);
+        BOOST_CHECK_NO_THROW(vehicleManager->removeVehicle(vehicle1));
     }
 
 BOOST_AUTO_TEST_SUITE_END();

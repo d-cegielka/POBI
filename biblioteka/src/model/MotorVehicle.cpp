@@ -13,7 +13,7 @@ MotorVehicle::MotorVehicle(const string &id, const int baseRentPrice, const int 
         throw VehicleException(VehicleException::exceptionMotorVehicleEngineDisplacement);
 }
 
-MotorVehicle::~MotorVehicle() {}
+MotorVehicle::~MotorVehicle() = default;
 
 double MotorVehicle::getMultiplier() const {
     if(engineDisplacement < 1000) return 1.0;

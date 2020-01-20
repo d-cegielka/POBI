@@ -6,9 +6,9 @@
 
 using namespace std;
 
-ClientType::ClientType() {}
+ClientType::ClientType() = default;
 
-ClientType::~ClientType() {}
+ClientType::~ClientType() = default;
 
 const int ClientType::getNumOfRentalVehicles() const {
     return 0;

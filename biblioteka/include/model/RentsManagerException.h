@@ -5,7 +5,6 @@
 #ifndef POBIPROJECT_RENTSMANAGEREXCEPTION_H
 #define POBIPROJECT_RENTSMANAGEREXCEPTION_H
 
-
 #include <stdexcept>
 
 class RentsManagerException : public std::logic_error {

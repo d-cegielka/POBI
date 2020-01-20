@@ -5,7 +5,6 @@
 #ifndef POBIPROJECT_MOPE_H
 #define POBIPROJECT_MOPE_H
 
-
 #include "MotorVehicle.h"
 
 class Mope final : public MotorVehicle{

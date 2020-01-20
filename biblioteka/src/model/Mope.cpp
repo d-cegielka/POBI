@@ -9,7 +9,7 @@ using namespace std;
 Mope::Mope(const string &id, const int baseRentPrice, const int engineDisplacement)
             : MotorVehicle(id, baseRentPrice, engineDisplacement) {}
 
-Mope::~Mope() {}
+Mope::~Mope() = default;
 
 string Mope::vehicleInfo() const {
     string infoVehicle;

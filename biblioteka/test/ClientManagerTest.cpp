@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_SUITE(ClientManagerSuiteCorrect)
             BOOST_REQUIRE_EQUAL(clientManager->operator()(client1->getId()), client1);
     }
 
-    BOOST_AUTO_TEST_CASE(ClientManagerRemoveVehicleTestCase) {
+    BOOST_AUTO_TEST_CASE(ClientManagerRemoveClientTestCase) {
             ClientRepositoryPtr clientRepo = make_shared<ClientRepository>();
             ClientManagerPtr clientManager = make_shared<ClientManager>(clientRepo);
 

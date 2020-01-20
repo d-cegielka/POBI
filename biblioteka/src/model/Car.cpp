@@ -13,7 +13,7 @@ Car::Car(const string &id, const int baseRentPrice, const int engineDisplacement
         throw VehicleException(VehicleException::exceptionCarSegment);
 }
 
-Car::~Car() {}
+Car::~Car() = default;
 
 double Car::actualRentalPrice() const {
     return MotorVehicle::actualRentalPrice() * getSegmentMultiplier();

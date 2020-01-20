@@ -8,7 +8,7 @@ using namespace std;
 
 Address::Address(const string &street, const string &number) : street(street), number(number) {}
 
-Address::~Address() {}
+Address::~Address() = default;
 
 const string &Address::getStreet() const {
     return street;

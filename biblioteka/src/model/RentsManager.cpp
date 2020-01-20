@@ -19,7 +19,7 @@ RentsManager::RentsManager(const RentsRepositoryPtr &currentRents, const RentsRe
                            const VehicleRepositoryPtr &vehicles, const ClientRepositoryPtr &clients) : currentRents(
         currentRents), archiveRents(archiveRents), vehicles(vehicles), clients(clients) {}
 
-RentsManager::~RentsManager() {}
+RentsManager::~RentsManager() = default;
 
 void RentsManager::rentVehicle(const ClientPtr &client, const VehiclePtr &vehicle, const local_date_timePtr &rentDate) {
     if(client == nullptr)

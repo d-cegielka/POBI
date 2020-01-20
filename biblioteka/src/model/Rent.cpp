@@ -16,7 +16,7 @@ using namespace boost::posix_time;
 Rent::Rent(local_date_timePtr rentalDateTime, ClientPtr client, VehiclePtr vehicle) : rentalDateTime(
         rentalDateTime), client(client), vehicle(vehicle), uuid(random_generator()()), rentPrice(vehicle->actualRentalPrice()) {}
 
-Rent::~Rent() {}
+Rent::~Rent() = default;
 
 const std::string Rent::getId() const {
     return to_string(uuid);
@@ -26,7 +26,7 @@ int Rent::rentDuration() const {
     if(returnDateTime) {
         local_time_period duration(*rentalDateTime, *returnDateTime);
         if (duration.length().hours() % 24 == 0) return duration.length().hours() /24;
-        else return (duration.length().hours() /24) + 1;
+        else return (duration.length().hours() / 24) + 1;
     }
     else return 0;
 }

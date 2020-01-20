@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPrice(baseRentPrice){
+Vehicle::Vehicle(const string &id, int baseRentPrice) : id(id), baseRentPrice(baseRentPrice){
     if(id.size() < 3)
         throw VehicleException(VehicleException::exceptionVehicleId);
 
@@ -15,7 +15,7 @@ Vehicle::Vehicle(const string &id, const int baseRentPrice) : id(id), baseRentPr
         throw VehicleException(VehicleException::exceptionVehicleBaseRentPrice);
 }
 
-Vehicle::~Vehicle() {}
+Vehicle::~Vehicle() = default;
 
 std::string Vehicle::vehicleInfo() const {
     string infoVehicle;

@@ -27,7 +27,6 @@ public:
     virtual std::shared_ptr<T> find(const std::shared_ptr<T> &element) const;
 
     virtual std::list<std::shared_ptr<T>> getAll() const;
-
 };
 
 template<class T>

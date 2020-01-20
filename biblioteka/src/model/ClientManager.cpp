@@ -8,7 +8,7 @@
 
 ClientManager::ClientManager(const ClientRepositoryPtr &clients) : clients(clients) {}
 
-ClientManager::~ClientManager() {}
+ClientManager::~ClientManager() = default;
 
 void ClientManager::addClient(const ClientPtr &client) {
     if(clients->find(client) != nullptr)

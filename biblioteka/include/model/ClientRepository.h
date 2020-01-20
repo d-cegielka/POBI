@@ -8,7 +8,6 @@
 #include "Client.h"
 #include "Repository.h"
 
-
 typedef std::shared_ptr<Client> ClientPtr;
 
 class ClientRepository : public Repository<Client> {

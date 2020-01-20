@@ -74,29 +74,29 @@ RentalGenerator::RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientR
 
     vehicleManager->addVehicle(bicycle1);
     vehicleManager->addVehicle(bicycle2);
-    vehicleManager->addVehicle(bicycle2);
+    //vehicleManager->addVehicle(bicycle2);
 
     time_zone_ptr zone(new posix_time_zone("CET+1"));
-    local_date_timePtr rentTime = make_shared<local_date_time>(local_sec_clock::local_time(zone)-hours(24));
-    rentsManager->rentVehicle(client1, car2, nullptr);
+    local_date_timePtr rentTime = make_shared<local_date_time>(local_sec_clock::local_time(zone)-hours(48));
+    rentsManager->rentVehicle(client1, car2, rentTime);
     cout<<client1->clientInfo()<<endl;
     cout<<client1->clientRentsInfo();
     rentsManager->returnVehicle(car2);
     cout<<client1->clientInfo()<<endl;
     cout<<client1->clientRentsInfo()<<endl;
-    cout<<rentsManager->checkClientRentBallance(client1)<<endl;
+    cout<<"Obrót klienta: "<<rentsManager->checkClientRentBallance(client1)<<endl;
 
     rentsManager->rentVehicle(client1, car2, rentTime);
     //rentsManager->rentVehicle(client1, car2, rentTime);
     rentsManager->returnVehicle(car2);
     cout<<client1->clientRentsInfo()<<endl;
     cout<<client1->clientInfo()<<endl;
-    cout<<rentsManager->checkClientRentBallance(client1)<<endl;
+    cout<<"Obrót klienta: "<<rentsManager->checkClientRentBallance(client1)<<endl;
     rentsManager->rentVehicle(client1, car2, rentTime);
     rentsManager->returnVehicle(car2);
     cout<<client1->clientRentsInfo()<<endl;
     cout<<client1->clientInfo()<<endl;
-    cout<<rentsManager->checkClientRentBallance(client1)<<endl;
+    cout<<"Obrót klienta: "<<rentsManager->checkClientRentBallance(client1)<<endl;
 
     //std::cout<<vehicleRepository->vehicleReport();
 }

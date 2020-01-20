@@ -31,7 +31,7 @@ Client::Client(const string &firstName, const string &lastName, const string &pe
         throw ClientException(ClientException::exceptionClientAddress);
 }
 
-Client::~Client() {}
+Client::~Client() = default;
 
 const string Client::clientInfo() const {
     string infoClient;

@@ -3,21 +3,25 @@
 //
 
 #include "model/VehicleManager.h"
+#include "model/VehicleManagerException.h"
+#include "model/VehicleRepository.h"
 
 VehicleManager::VehicleManager(const VehicleRepositoryPtr &vehicles) : vehicles(vehicles) {}
 
-VehicleManager::~VehicleManager() {}
+VehicleManager::~VehicleManager() = default;
 
 void VehicleManager::addVehicle(const VehiclePtr &vehicle) {
-    if (vehicles->find(vehicle) == nullptr)
-        vehicles->create(vehicle);
+    if (vehicles->find(vehicle) != nullptr)
+        throw VehicleManagerException(VehicleManagerException::exceptionVehicleExist);
+    vehicles->create(vehicle);
 }
 
 void VehicleManager::removeVehicle(const VehiclePtr &vehicle) {
-    if (vehicles->find(vehicle) != nullptr)
-        vehicles->remove(vehicle);
+    if (vehicles->find(vehicle) == nullptr)
+        throw VehicleManagerException(VehicleManagerException::exceptionVehicleNotExist);
+    vehicles->remove(vehicle);
 }
 
-VehiclePtr VehicleManager::operator()(const std::string ID) {
+VehiclePtr VehicleManager::operator()(const std::string& ID) {
     return VehiclePtr(vehicles->find(ID));
 }
