@@ -8,24 +8,25 @@ set(SOURCE_FILES
     src/model/Address.cpp
     src/model/Vehicle.cpp
     src/model/Rent.cpp
-    src/model/MotorVehicle.cpp
-    src/model/Bicycle.cpp
-    src/model/Car.cpp
-    src/model/Mope.cpp
-    src/model/RentsRepository.cpp
-    src/model/VehicleRepository.cpp
+        src/Vehicles/MotorVehicle.cpp
+        src/Vehicles/Bicycle.cpp
+        src/Vehicles/Car.cpp
+        src/Vehicles/Mope.cpp
+        src/Repositories/RentsRepository.cpp
+        src/Repositories/VehicleRepository.cpp
     src/model/ClientType.cpp
-    src/model/StandardClientType.cpp
-    src/model/PremiumClientType.cpp
-    src/model/VipClientType.cpp
-    src/model/ClientRepository.cpp
-    src/model/RentsManager.cpp
-    src/model/ClientException.cpp
-        src/model/RentsManagerException.cpp
-    src/model/VehicleException.cpp
-    src/model/ClientManager.cpp
-    src/model/VehicleManager.cpp
-        src/model/ClientManagerException.cpp src/model/VehicleManagerException.cpp include/model/VehicleManagerException.h)
+        src/ClientTypes/StandardClientType.cpp
+        src/ClientTypes/PremiumClientType.cpp
+        src/ClientTypes/VipClientType.cpp
+        src/Repositories/ClientRepository.cpp
+        src/Managers/RentsManager.cpp
+        src/Exceptions/ClientException.cpp
+        src/Exceptions/RentsManagerException.cpp
+        src/Exceptions/VehicleException.cpp
+        src/Managers/ClientManager.cpp
+        src/Managers/VehicleManager.cpp
+        src/Exceptions/ClientManagerException.cpp
+        src/Exceptions/VehicleManagerException.cpp)
 
 add_library(Biblioteka ${SOURCE_FILES})
 
@@ -39,7 +40,13 @@ set(SOURCE_TEST_FILES
         test/master.cpp
         test/RentTest.cpp
         test/VehicleTest.cpp
-        test/ClientTest.cpp test/VehicleRepositoryTest.cpp test/VehicleManagerTest.cpp test/ClientManagerTest.cpp test/RentsManagerTest.cpp test/RentsRepositoryTest.cpp test/ClientRepositoryTest.cpp)
+        test/ClientTest.cpp
+        test/VehicleRepositoryTest.cpp
+        test/VehicleManagerTest.cpp
+        test/ClientManagerTest.cpp
+        test/RentsManagerTest.cpp
+        test/RentsRepositoryTest.cpp
+        test/ClientRepositoryTest.cpp)
 
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include

@@ -4,10 +4,10 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
-#include <model/VehicleRepository.h>
-#include <model/Car.h>
-#include <model/Bicycle.h>
-#include <model/Mope.h>
+#include <Repositories/VehicleRepository.h>
+#include <Vehicles/Car.h>
+#include <Vehicles/Bicycle.h>
+#include <Vehicles/Mope.h>
 
 using namespace std;
 using namespace boost::algorithm;
@@ -35,8 +35,8 @@ BOOST_AUTO_TEST_SUITE(VehicleRepositorySuiteCorrect)
         BOOST_REQUIRE_EQUAL(contains(report, "CA1111"), true);
         BOOST_REQUIRE_EQUAL(contains(report, "BC2222"), true);
         BOOST_REQUIRE_EQUAL(contains(report, "MO2222"), true);
-        BOOST_REQUIRE_EQUAL(contains(report, "Cena wypożyczenia: 60"), true);
-        BOOST_REQUIRE_EQUAL(contains(report, "Cena wypożyczenia: 1000"), true);
+        BOOST_REQUIRE_EQUAL(contains(report, "Bazowa cena wypożyczenia: 60"), true);
+        BOOST_REQUIRE_EQUAL(contains(report, "Bazowa cena wypożyczenia: 1000"), true);
         BOOST_REQUIRE_EQUAL(contains(report, "Segment: E"), true);
         BOOST_REQUIRE_EQUAL(contains(report, "Pojemność silnika: 1450"), true);
 

@@ -3,10 +3,9 @@
 //
 
 #include <boost/test/unit_test.hpp>
-#include <boost/algorithm/string.hpp>
-#include <model/ClientManager.h>
-#include <model/ClientManagerException.h>
-#include <model/ClientRepository.h>
+#include <Managers/ClientManager.h>
+#include <Exceptions/ClientManagerException.h>
+#include <Repositories/ClientRepository.h>
 
 using namespace std;
 typedef shared_ptr<ClientManager> ClientManagerPtr;

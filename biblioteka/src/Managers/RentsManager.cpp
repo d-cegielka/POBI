@@ -2,14 +2,14 @@
 // Created by Kamil Zarych <224546@edu.p.lodz.pl> on 04.12.2019.
 //
 
-#include "model/RentsManager.h"
-#include "model/PremiumClientType.h"
-#include "model/VipClientType.h"
-#include "model/RentsManagerException.h"
+#include "Managers/RentsManager.h"
+#include "ClientTypes/PremiumClientType.h"
+#include "ClientTypes/VipClientType.h"
+#include "Exceptions/RentsManagerException.h"
 #include "model/Rent.h"
 #include "model/Client.h"
-#include "model/RentsRepository.h"
-#include "model/ClientRepository.h"
+#include "Repositories/RentsRepository.h"
+#include "Repositories/ClientRepository.h"
 
 using namespace std;
 using namespace boost::local_time;
@@ -36,7 +36,7 @@ void RentsManager::rentVehicle(const ClientPtr &client, const VehiclePtr &vehicl
     else if(*rentDate > *actualDate)
         throw RentsManagerException(RentsManagerException::exceptionIncorrectRentalDate);
     else
-        correctRentDate = rentDate;
+        correctRentDate = make_shared<local_date_time>(rentDate->utc_time(),zone);
 
     if(currentRents->getClientForRentedVehicle(vehicle) != nullptr)
         throw RentsManagerException(RentsManagerException::exceptionVehicleNotAvailable);

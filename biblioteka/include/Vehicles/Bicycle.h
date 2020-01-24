@@ -5,7 +5,7 @@
 #ifndef POBIPROJECT_BICYCLE_H
 #define POBIPROJECT_BICYCLE_H
 
-#include "Vehicle.h"
+#include "model/Vehicle.h"
 
 class Bicycle final : public Vehicle {
 public:

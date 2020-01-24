@@ -2,9 +2,9 @@
 // Created by Dominik Cegiełka <224478@edu.p.lodz.pl> on 10.12.2019.
 //
 
-#include "model/ClientManager.h"
-#include "model/ClientManagerException.h"
-#include "model/ClientRepository.h"
+#include "Managers/ClientManager.h"
+#include "Exceptions/ClientManagerException.h"
+#include "Repositories/ClientRepository.h"
 
 ClientManager::ClientManager(const ClientRepositoryPtr &clients) : clients(clients) {}
 

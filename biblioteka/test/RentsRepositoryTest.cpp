@@ -6,11 +6,11 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/date_time/local_time/local_time.hpp>
-#include <model/VehicleRepository.h>
-#include <model/ClientRepository.h>
-#include <model/Car.h>
-#include <model/Bicycle.h>
-#include <model/RentsRepository.h>
+#include <Repositories/VehicleRepository.h>
+#include <Repositories/ClientRepository.h>
+#include <Vehicles/Car.h>
+#include <Vehicles/Bicycle.h>
+#include <Repositories/RentsRepository.h>
 
 using namespace std;
 using namespace boost::algorithm;

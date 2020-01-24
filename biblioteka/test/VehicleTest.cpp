@@ -4,11 +4,11 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
-#include "model/Car.h"
-#include "model/Vehicle.h"
-#include "model/Bicycle.h"
-#include "model/Mope.h"
-#include "model/VehicleException.h"
+#include <Vehicles/Car.h>
+#include <model/Vehicle.h>
+#include <Vehicles/Bicycle.h>
+#include <Vehicles/Mope.h>
+#include <Exceptions/VehicleException.h>
 
 using namespace boost::algorithm;
 

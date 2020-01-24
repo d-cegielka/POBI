@@ -5,7 +5,7 @@
 #ifndef POBIPROJECT_MOTORVEHICLE_H
 #define POBIPROJECT_MOTORVEHICLE_H
 
-#include "Vehicle.h"
+#include "model/Vehicle.h"
 
 class MotorVehicle : public Vehicle {
 private:

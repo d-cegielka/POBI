@@ -2,16 +2,16 @@
 // Created by Dominik Cegiełka <224478@edu.p.lodz.pl> on 03.12.2019.
 //
 
-#ifndef POBIPROJECT_STANDARDCLIENTTYPE_H
-#define POBIPROJECT_STANDARDCLIENTTYPE_H
+#ifndef POBIPROJECT_PREMIUMCLIENTTYPE_H
+#define POBIPROJECT_PREMIUMCLIENTTYPE_H
 
-#include "ClientType.h"
+#include "model/ClientType.h"
 
-class StandardClientType final : public ClientType {
+class PremiumClientType final : public ClientType {
 public:
-    StandardClientType();
+    PremiumClientType();
 
-    virtual ~StandardClientType();
+    virtual ~PremiumClientType();
 
     const int getNumOfRentalVehicles() const override;
 
@@ -21,4 +21,4 @@ public:
 };
 
 
-#endif //POBIPROJECT_STANDARDCLIENTTYPE_H
+#endif //POBIPROJECT_PREMIUMCLIENTTYPE_H

@@ -5,6 +5,8 @@
 #ifndef POBIPROJECT_RENTALGENERATOR_H
 #define POBIPROJECT_RENTALGENERATOR_H
 
+#include <memory>
+
 class VehicleRepository;
 class ClientRepository;
 class RentsRepository;
@@ -21,7 +23,7 @@ private:
     RentsRepositoryPtr archiveRents;
 
 public:
-    RentalGenerator(VehicleRepositoryPtr vehicleRepository, ClientRepositoryPtr clientRepository, RentsRepositoryPtr currentRents, RentsRepositoryPtr archiveRents );
+    RentalGenerator();
 
     virtual ~RentalGenerator();
 };

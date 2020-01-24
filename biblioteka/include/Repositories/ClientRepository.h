@@ -5,7 +5,7 @@
 #ifndef POBIPROJECT_CLIENTREPOSITORY_H
 #define POBIPROJECT_CLIENTREPOSITORY_H
 
-#include "Client.h"
+#include "model/Client.h"
 #include "Repository.h"
 
 typedef std::shared_ptr<Client> ClientPtr;

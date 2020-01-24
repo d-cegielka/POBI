@@ -11,9 +11,11 @@ class ClientType {
 public:
     ClientType();
 
+    virtual ~ClientType();
+
     virtual const int getNumOfRentalVehicles() const;
 
-    virtual ~ClientType();
+    virtual std::string setConnector(int type) {return 0;};
 
     virtual std::string getClientType() const;
 

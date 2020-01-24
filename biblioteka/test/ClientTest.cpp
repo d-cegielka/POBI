@@ -5,12 +5,12 @@
 #include <memory>
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
-#include "model/Client.h"
-#include "model/VipClientType.h"
-#include "model/PremiumClientType.h"
-#include "model/Vehicle.h"
-#include "model/Rent.h"
-#include "model/ClientException.h"
+#include <model/Client.h>
+#include <ClientTypes/VipClientType.h>
+#include <ClientTypes/PremiumClientType.h>
+#include <model/Vehicle.h>
+#include <model/Rent.h>
+#include <Exceptions/ClientException.h>
 
 using namespace std;
 using namespace boost::algorithm;

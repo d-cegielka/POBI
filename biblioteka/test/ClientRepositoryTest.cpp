@@ -3,9 +3,9 @@
 //
 
 #include <boost/test/unit_test.hpp>
-#include <model/ClientRepository.h>
-#include <model/ClientManager.h>
-#include <model/VipClientType.h>
+#include <Repositories/ClientRepository.h>
+#include <Managers/ClientManager.h>
+#include <ClientTypes/VipClientType.h>
 
 using namespace std;
 

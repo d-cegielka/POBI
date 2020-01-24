@@ -2,7 +2,7 @@
 // Created by Dominik Cegiełka <224478@edu.p.lodz.pl> on 20.01.2020.
 //
 
-#include "model/VehicleManagerException.h"
+#include "Exceptions/VehicleManagerException.h"
 
 VehicleManagerException::VehicleManagerException(const std::string &arg) : logic_error(arg) {}
 

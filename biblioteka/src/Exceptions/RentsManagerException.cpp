@@ -2,7 +2,7 @@
 // Created by Kamil Zarych <224546@edu.p.lodz.pl> on 05.12.2019.
 //
 
-#include "model/RentsManagerException.h"
+#include "Exceptions/RentsManagerException.h"
 
 RentsManagerException::RentsManagerException(const std::string &arg) : logic_error(arg) {}
 

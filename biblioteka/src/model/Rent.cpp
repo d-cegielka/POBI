@@ -5,6 +5,7 @@
 #include "model/Rent.h"
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+#include <boost/math/special_functions/round.hpp>
 #include "model/Vehicle.h"
 #include "model/Client.h"
 
@@ -46,15 +47,18 @@ string Rent::rentInfo() const{
             .append("\nIlość dni wypożyczenia: ").append(to_string(rentDuration()));
     if(returnDateTime != nullptr){
         info.append("\nData zwrotu: ").append(returnDateTime->to_string())
-                .append("\nKoszt wypożyczenia: ").append(to_string(rentPrice));
-    }
+                .append("\nCena wypożyczenia za dzień: ").append((to_string(rentPrice/rentDuration())))
+                .append("\nŁączny koszt wypożyczenia: ").append(to_string(rentPrice));
+    } else
+        info.append("\nCena wypożyczenia za dzień: ").append((to_string(rentPrice)));
+
     info.append("\nWypożyczony pojazd\n").append(rentVehicleInfo())
             .append("\nOsoba wypożyczająca\n").append(rentClientInfo());
     return info;
 }
 
 void Rent::returnVehicle() {
-    time_zone_ptr zone(new posix_time_zone("CET"));
+    time_zone_ptr zone(new posix_time_zone("CET+1"));
     returnDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone));
     rentPrice *= rentDuration();
     rentPrice -= client.lock()->getClientDiscount(rentPrice);

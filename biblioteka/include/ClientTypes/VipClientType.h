@@ -5,7 +5,7 @@
 #ifndef POBIPROJECT_VIPCLIENTTYPE_H
 #define POBIPROJECT_VIPCLIENTTYPE_H
 
-#include "ClientType.h"
+#include "model/ClientType.h"
 
 class VipClientType final : public ClientType{
 public:

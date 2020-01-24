@@ -5,7 +5,7 @@
 #ifndef POBIPROJECT_RENTSREPOSITORY_H
 #define POBIPROJECT_RENTSREPOSITORY_H
 
-#include "Rent.h"
+#include "model/Rent.h"
 #include "Repository.h"
 
 typedef std::shared_ptr<Rent> RentPtr;

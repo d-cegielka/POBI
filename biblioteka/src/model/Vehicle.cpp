@@ -3,7 +3,7 @@
 //
 
 #include "model/Vehicle.h"
-#include "model/VehicleException.h"
+#include "Exceptions/VehicleException.h"
 
 using namespace std;
 
@@ -20,7 +20,7 @@ Vehicle::~Vehicle() = default;
 std::string Vehicle::vehicleInfo() const {
     string infoVehicle;
     infoVehicle.append("Numer rejestracyjny: ").append(id)
-    .append("\nCena wypożyczenia: ").append(to_string(baseRentPrice));
+    .append("\nBazowa cena wypożyczenia: ").append(to_string(baseRentPrice));
     return infoVehicle;
 }
 

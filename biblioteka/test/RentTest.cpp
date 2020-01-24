@@ -4,17 +4,15 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/date_time/local_time/local_time.hpp>
 #include <boost/algorithm/string.hpp>
-#include "model/Rent.h"
-#include "model/Vehicle.h"
-#include "model/Client.h"
-#include "model/RentsRepository.h"
+#include <model/Rent.h>
+#include <model/Vehicle.h>
+#include <model/Client.h>
+#include <Repositories/RentsRepository.h>
 
 using namespace boost::local_time;
 using namespace boost::posix_time;
 using namespace boost::algorithm;
 using namespace std;
-
-//typedef shared_ptr<local_date_time> local_date_timePtr;
 
 time_zone_ptr zone(new posix_time_zone("CET"));
 shared_ptr<local_date_time> rentalDateTime = make_shared<local_date_time>(local_sec_clock::local_time(zone)-hours(120));

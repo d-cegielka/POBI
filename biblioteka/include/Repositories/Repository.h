@@ -30,7 +30,7 @@ public:
 };
 
 template<class T>
-Repository<T>::~Repository() {}
+Repository<T>::~Repository() = default;
 
 template<class T>
 void Repository<T>::create(const std::shared_ptr<T> &element) {

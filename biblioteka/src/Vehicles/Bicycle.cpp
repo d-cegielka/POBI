@@ -2,7 +2,7 @@
 // Created by Dominik Cegiełka <224478@edu.p.lodz.pl> on 25.11.2019.
 //
 
-#include "model/Bicycle.h"
+#include "Vehicles/Bicycle.h"
 
 using namespace std;
 

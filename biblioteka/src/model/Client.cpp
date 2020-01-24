@@ -4,8 +4,8 @@
 
 #include "model/Client.h"
 #include "model/Rent.h"
-#include "model/StandardClientType.h"
-#include "model/ClientException.h"
+#include "ClientTypes/StandardClientType.h"
+#include "Exceptions/ClientException.h"
 #include "model/Address.h"
 
 using namespace std;

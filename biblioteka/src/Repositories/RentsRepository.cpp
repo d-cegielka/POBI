@@ -2,7 +2,7 @@
 // Created by Kamil Zarych <224546@edu.p.lodz.pl> on 25.11.2019.
 //
 
-#include "model/RentsRepository.h"
+#include "Repositories/RentsRepository.h"
 #include "model/Vehicle.h"
 
 using namespace std;
@@ -28,7 +28,7 @@ std::string RentsRepository::rentReport() {
     string rentInfo;
     if(listElements.size() != 0){
         for(auto rent:listElements)
-            rentInfo.append(rent->rentInfo());
+            rentInfo.append(rent->rentInfo()).append("\n");
 
         return rentInfo;
     } else return "Brak wypożyczeń!";

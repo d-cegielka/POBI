@@ -2,14 +2,14 @@
 // Created by Dominik Cegiełka <224478@edu.p.lodz.pl> on 25.11.2019.
 //
 
-#include "model/MotorVehicle.h"
-#include "model/VehicleException.h"
+#include "Vehicles/MotorVehicle.h"
+#include "Exceptions/VehicleException.h"
 
 using namespace std;
 
 MotorVehicle::MotorVehicle(const string &id, const int baseRentPrice, const int engineDisplacement)
 : Vehicle(id, baseRentPrice), engineDisplacement(engineDisplacement) {
-    if(engineDisplacement < 100)
+    if(engineDisplacement < 40)
         throw VehicleException(VehicleException::exceptionMotorVehicleEngineDisplacement);
 }
 

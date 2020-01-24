@@ -5,12 +5,12 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/date_time/local_time/local_time.hpp>
 #include <boost/algorithm/string.hpp>
-#include <model/RentsManager.h>
-#include <model/Bicycle.h>
-#include <model/ClientRepository.h>
-#include <model/VehicleRepository.h>
-#include <model/RentsRepository.h>
-#include <model/RentsManagerException.h>
+#include <Managers/RentsManager.h>
+#include <Vehicles/Bicycle.h>
+#include <Repositories/ClientRepository.h>
+#include <Repositories/VehicleRepository.h>
+#include <Repositories/RentsRepository.h>
+#include <Exceptions/RentsManagerException.h>
 
 using namespace std;
 using namespace boost::local_time;

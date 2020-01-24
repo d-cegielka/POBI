@@ -2,7 +2,7 @@
 // Created by Dominik Cegiełka <224478@edu.p.lodz.pl> on 03.12.2019.
 //
 
-#include "model/StandardClientType.h"
+#include "ClientTypes/StandardClientType.h"
 
 StandardClientType::StandardClientType() = default;
 

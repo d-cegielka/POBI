@@ -4,10 +4,10 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
-#include <model/Bicycle.h>
-#include "model/VehicleManager.h"
-#include "model/VehicleRepository.h"
-#include "model/VehicleManagerException.h"
+#include <Vehicles/Bicycle.h>
+#include <Managers/VehicleManager.h>
+#include <Repositories/VehicleRepository.h>
+#include <Exceptions/VehicleManagerException.h>
 
 using namespace std;
 typedef shared_ptr<VehicleManager> VehicleManagerPtr;

@@ -2,8 +2,8 @@
 // Created by Dominik Cegiełka <224478@edu.p.lodz.pl> on 25.11.2019.
 //
 
-#include "model/Car.h"
-#include "model/VehicleException.h"
+#include "Vehicles/Car.h"
+#include "Exceptions/VehicleException.h"
 
 using namespace std;
 

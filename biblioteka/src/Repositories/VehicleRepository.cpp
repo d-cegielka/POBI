@@ -2,7 +2,7 @@
 // Created by Kamil Zarych <224546@edu.p.lodz.pl> on 26.11.2019.
 //
 
-#include "model/VehicleRepository.h"
+#include "Repositories/VehicleRepository.h"
 
 using namespace std;
 

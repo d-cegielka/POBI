@@ -5,7 +5,7 @@
 #ifndef POBIPROJECT_VEHICLEREPOSITORY_H
 #define POBIPROJECT_VEHICLEREPOSITORY_H
 
-#include "Vehicle.h"
+#include "model/Vehicle.h"
 #include "Repository.h"
 
 typedef std::shared_ptr<Vehicle> VehiclePtr;
