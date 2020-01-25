@@ -44,7 +44,8 @@ string Rent::rentInfo() const{
     string info;
     info.append("ID wypożyczenia: ").append(to_string(uuid))
             .append("\nData wypożyczenia: ").append(rentalDateTime->to_string())
-            .append("\nIlość dni wypożyczenia: ").append(to_string(rentDuration()));
+            .append("\nIlość dni wypożyczenia: ").append(to_string(rentDuration()))
+            .append("\nCena wypożyczenia za dzień: ").append((to_string(rentPrice)));
     if(returnDateTime != nullptr){
         info.append("\nData zwrotu: ").append(returnDateTime->to_string())
                 .append("\nCena wypożyczenia za dzień: ").append((to_string(rentPrice/rentDuration())))
